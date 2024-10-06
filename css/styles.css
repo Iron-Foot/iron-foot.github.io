@@ -1,0 +1,137 @@
+body {
+    font-family: "din-condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Make sure body is at least the height of the viewport */
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+a {
+    transition: font-size 0.3s ease;
+}
+
+a:hover{
+    color:black;
+    animation: normal;
+    font-size: 1.2em
+}
+
+h1 {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 6.5rem;
+    line-height: 6.5rem;
+    margin: 0;
+}
+
+#mainTitle {
+    padding: 6em 20%;
+}
+
+#prodList {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4em; /* Adjust spacing between items if needed */
+    padding: 6em 20%;
+  }
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ensure wrapper takes up all available space */
+}
+
+main {
+    background: #E51D30;
+    flex: 1; /* Allows main content to grow and push the footer down */
+}
+
+header {
+    background: #E51D30;
+    padding: 2vw;
+    text-align: right;
+    position: sticky;
+    top: 0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Space items apart */
+}
+
+.logo {
+    max-height: 75px; /* Set an appropriate height for your logo */
+    margin-right: 20px; /* Optional: spacing between the logo and nav */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#home, #about, #services, #contact, #protfolio {
+    background: #E51D30;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.portfolio-item {
+    background: #E51D30;
+    padding: 1em;
+    border: 1px solid #E51D30;
+    width: calc(33% - 2em);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.portfolio-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background: #E51D30;
+    color: #fff;
+    text-align: left;
+    padding: 6em 20%;
+    /* Remove absolute positioning */
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 0;
+  }
+  
+  .footer a {
+    color: white; /* White color for links */
+    text-decoration: underline;
+  }
+  
+  .footer-section p {
+    margin: 5px 0;
+  }
