@@ -18,7 +18,6 @@ a {
 }
 
 a:hover{
-    color:black;
     animation: normal;
     font-size: 1.2em
 }
@@ -109,28 +108,6 @@ nav ul li a {
 
 #home, #about, #services, #contact, #protfolio {
     background: #E51D30;
-}
-
-/* Portfolio Grid */
-.portfolio-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
-}
-
-.portfolio-item {
-    background: #E51D30;
-    padding: 1em;
-    border: 1px solid #E51D30;
-    width: calc(33% - 2em);
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.portfolio-item img {
-    max-width: 100%;
-    height: auto;
 }
 
 footer {
