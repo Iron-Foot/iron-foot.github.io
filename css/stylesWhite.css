@@ -8,7 +8,7 @@ body {
     min-height: 100vh; /* Make sure body is at least the height of the viewport */
     display: flex;
     flex-direction: column;
-    color: #525050;
+    color: #000;
 }
 
 a {
@@ -28,6 +28,10 @@ h1 {
     font-size: 6.5rem;
     line-height: 6.5rem;
     margin: 0;
+}
+
+section {
+    padding: 6em 0
 }
 
 #mainTitle {
@@ -56,14 +60,26 @@ header {
     background: #fff;
     padding: 2vw;
     text-align: right;
-    position: sticky;
-    top: 0;
+    position: static;
+    top: auto;
+    z-index: 1000
 }
 
 .header-container {
     display: flex;
     align-items: center; /* Align items vertically centered */
     justify-content: space-between; /* Space items apart */
+}
+
+.fadein {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .75s ease, transform .75s ease;
+  }
+  
+.fadein.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .logo {
@@ -82,7 +98,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #525050;
+    color: #000;
     text-decoration: none;
 }
 
@@ -99,7 +115,7 @@ nav ul li a {
 }
 
 .portfolio-item {
-    background: #525050;
+    background: #fff;
     padding: 1em;
     width: calc(33% - 2em);
     box-sizing: border-box;
@@ -109,6 +125,7 @@ nav ul li a {
 .portfolio-item img {
     max-width: 100%;
     height: auto;
+    border-radius: 1em;
 }
 
 section.vid {
@@ -129,7 +146,7 @@ section.vid video {
 
 footer {
     background: #fff;
-    color: #525050;
+    color: #000;
     text-align: left;
     padding: 6em 20%;
     /* Remove absolute positioning */
