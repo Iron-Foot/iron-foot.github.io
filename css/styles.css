@@ -65,7 +65,7 @@ header {
     background: #E51D30;
     padding: 2vw;
     text-align: right;
-    position: sticky;
+    position: fixed;
     top: 0;
 }
 
