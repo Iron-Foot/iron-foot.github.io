@@ -27,8 +27,8 @@ h1 {
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 6.5rem;
-    line-height: 6.5rem;
+    font-size: clamp(3rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
+    line-height: clamp(3rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
     margin: 0;
 }
 
