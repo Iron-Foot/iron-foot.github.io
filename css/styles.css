@@ -26,8 +26,8 @@ h1 {
     font-family: "neue-haas-grotesk-display", sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: clamp(3rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
-    line-height: clamp(3rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
+    font-size: clamp(4rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
+    line-height: clamp(4rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
     margin: 0;
 }
 
@@ -39,14 +39,14 @@ h3 {
 }
 
 #mainTitle {
-    padding: 6em 20%;
+    padding: 1% 20%;
 }
 
 #prodList {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 4em; /* Adjust spacing between items if needed */
-    padding: 6em 20%;
+    padding: 10% 20%;
   }
 
 .wrapper {
