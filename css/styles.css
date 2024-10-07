@@ -65,8 +65,14 @@ header {
     background: #E51D30;
     padding: 2vw;
     text-align: right;
-    position: fixed;
+    position: sticky;
     top: 0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Space items apart */
 }
 
 .fadein {
@@ -78,12 +84,6 @@ header {
 .fadein.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-.header-container {
-    display: flex;
-    align-items: center; /* Align items vertically centered */
-    justify-content: space-between; /* Space items apart */
 }
 
 .logo {
@@ -145,13 +145,13 @@ footer {
 .footer-section {
     flex: 1;
     padding: 0;
-  }
+}
   
-  .footer a {
+.footer a {
     color: white; /* White color for links */
     text-decoration: underline;
-  }
+}
   
-  .footer-section p {
+.footer-section p {
     margin: 5px 0;
-  }
+}
