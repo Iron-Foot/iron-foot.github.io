@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add('visible');
-      }, index * 300); // Adjust the delay (300 ms) for the desired effect
+      }, index * 150); // Adjust the delay (300 ms) for the desired effect
     });
   });
   

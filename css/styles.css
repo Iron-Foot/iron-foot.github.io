@@ -65,8 +65,9 @@ header {
     background: #E51D30;
     padding: 2vw;
     text-align: right;
-    position: sticky;
-    top: 0;
+    position: static;
+    top: auto;
+    z-index: 100
 }
 
 .header-container {
@@ -78,7 +79,7 @@ header {
 .fadein {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity .75s ease, transform .75s ease;
   }
   
 .fadein.visible {
