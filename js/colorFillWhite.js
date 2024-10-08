@@ -5,7 +5,12 @@ document.querySelectorAll("a").forEach(link => {
         // Change the size of the circles by modifying the 'size' variable below
         const size = Math.max(window.innerWidth, window.innerHeight) * 3;
         // Change the color of the circles by modifying the 'randomColor' variable below
-        const circleColor = '#fff';
+        let circleColor;
+        if (link.closest('nav')) {
+            circleColor = '#E51D30'; // Red for navigation links
+        } else {
+            circleColor = '#fff'; // White for other links
+        }
         
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
@@ -23,7 +28,7 @@ document.querySelectorAll("a").forEach(link => {
         circle.setAttribute("cy", event.clientY);
         circle.setAttribute("r", 5);
         circle.setAttribute("fill", circleColor);
-        circle.style.transition = 'r 2s ease-out';
+        circle.style.transition = 'r 1.5s ease-out';
 
         svg.appendChild(circle);
         document.body.appendChild(svg);
