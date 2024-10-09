@@ -112,8 +112,24 @@ header {
     z-index: 10000; /* Make sure the circle is always on top */
 }
 
-a, button, [role="button"], input[type="button"], input[type="submit"] {
-    cursor: none; /* Ensure default cursor stays hidden on clickable elements */
+@media (hover: hover) and (pointer: fine) {
+    .circle-pointer {
+        display: block;
+    }
+
+    a, button, [role="button"], input[type="button"], input[type="submit"] {
+        cursor: none; /* Ensure default cursor stays hidden on clickable elements */
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .circle-pointer {
+        display: none;
+    }
+
+    a, button, [role="button"], input[type="button"], input[type="submit"] {
+        cursor: auto; /* Show default cursor on clickable elements */
+    }
 }
 
 .logo {
@@ -152,30 +168,28 @@ nav ul li a {
 }
 
 .newSectionPortfolio {
-    padding: 6em;
+    padding: 10px;
     background: #f0f0f0;
 }
 
 /* Portfolio Grid */
 .portfolio-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 10px;
 }
 
 .portfolio-item {
     background: none;
-    padding: 1em;
-    width: calc(33% - 2em);
-    box-sizing: border-box;
     text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .portfolio-item img {
     max-width: 100%;
     height: auto;
-    border-radius: 1em;
 }
 
 /* Mobile-specific styles */
@@ -211,6 +225,7 @@ section.vid {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        margin: -1px;
     }
 
     section.vid img.fallback-image {

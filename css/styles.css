@@ -112,8 +112,24 @@ header {
     z-index: 10000; /* Make sure the circle is always on top */
 }
 
-a, button, [role="button"], input[type="button"], input[type="submit"] {
-    cursor: none; /* Ensure default cursor stays hidden on clickable elements */
+@media (hover: hover) and (pointer: fine) {
+    .circle-pointer {
+        display: block;
+    }
+
+    a, button, [role="button"], input[type="button"], input[type="submit"] {
+        cursor: none; /* Ensure default cursor stays hidden on clickable elements */
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .circle-pointer {
+        display: none;
+    }
+
+    a, button, [role="button"], input[type="button"], input[type="submit"] {
+        cursor: auto; /* Show default cursor on clickable elements */
+    }
 }
 
 .logo {
