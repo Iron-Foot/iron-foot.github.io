@@ -151,6 +151,11 @@ nav ul li a {
     background: #fff; /* Set background color for these sections */
 }
 
+.newSectionPortfolio {
+    padding: 6em;
+    background: #f0f0f0;
+}
+
 /* Portfolio Grid */
 .portfolio-grid {
     display: flex;
@@ -160,7 +165,7 @@ nav ul li a {
 }
 
 .portfolio-item {
-    background: #ffffff;
+    background: none;
     padding: 1em;
     width: calc(33% - 2em);
     box-sizing: border-box;
@@ -171,6 +176,26 @@ nav ul li a {
     max-width: 100%;
     height: auto;
     border-radius: 1em;
+}
+
+@media (max-width: 768px) {
+    section.vid video {
+        display: none;
+    }
+    section.vid {
+        background-image: url('path/to/static-image.jpg');
+        background-size: cover;
+        background-position: center;
+        height: auto;
+        padding: 2em 0;
+    }
+    .portfolio-grid {
+        display: block;
+    }
+    .portfolio-item {
+        width: 100%;
+        margin-bottom: 1em;
+    }
 }
 
 section.vid {
