@@ -117,8 +117,8 @@ a, button, [role="button"], input[type="button"], input[type="submit"] {
 }
 
 .logo {
-    max-height: clamp(50px, 10vw, 100px); /* Responsive logo height for different screen sizes */
-    margin: clamp(10px, 2vw, 30px); /* Responsive margin for spacing around the logo */
+    height: min(10vw, 120px); /* Will be 10% of the viewport width but will not exceed 120px */
+    margin: .5vh; /* Fixed margin for simplicity */
 }
 
 .nav-link {
