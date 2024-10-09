@@ -178,40 +178,63 @@ nav ul li a {
     border-radius: 1em;
 }
 
+/* Mobile-specific styles */
 @media (max-width: 768px) {
-    section.vid video {
-        display: none;
-    }
-    section.vid {
-        background-image: url('path/to/static-image.jpg');
-        background-size: cover;
-        background-position: center;
-        height: auto;
-        padding: 2em 0;
-    }
+   
     .portfolio-grid {
         display: block;
     }
+    
     .portfolio-item {
         width: 100%;
         margin-bottom: 1em;
     }
 }
 
+/* General Section Styles */
 section.vid {
-    height: 600vh;
     position: relative;
 }
 
-section.vid div.holder {
-    position: sticky;
-    top: 0;
+/* Desktop-specific Styles */
+@media (min-width: 769px) {
+    section.vid {
+        height: 600vh; /* Maintain long height for desktop */
+    }
+
+    section.vid div.holder {
+        position: sticky;
+        top: 0;
+    }
+
+    section.vid video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    section.vid img.fallback-image {
+        display: none;
+    }
 }
 
-section.vid video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Mobile-specific Styles */
+@media (max-width: 768px) {
+    section.vid {
+        height: auto; /* Shorter height for mobile to avoid large blank spaces */
+        padding: 2em 0;
+    }
+
+    section.vid video {
+        display: none; /* Hide video on mobile */
+    }
+
+    section.vid img.fallback-image {
+        display: block; /* Show the fallback image on mobile */
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 }
 
 footer {
