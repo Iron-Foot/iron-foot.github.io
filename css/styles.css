@@ -1,152 +1,176 @@
 body {
-    font-family: "din-condensed", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh; /* Make sure body is at least the height of the viewport */
+    font-family: "din-condensed", sans-serif; /* Set the main font for the body */
+    font-weight: 400; /* Normal font weight */
+    font-style: normal; /* Normal font style */
+    line-height: 1.6; /* Line height for better readability */
+    cursor: none; 
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    min-height: 100vh; /* Ensure body is at least the height of the viewport */
     display: flex;
-    flex-direction: column;
-    color: #fff;
+    flex-direction: column; /* Arrange children in a column */
+    color: #fff; /* Set text color to white */
+    font-size: 1rem; /* Base font size for body text */
 }
 
 a {
-    text-decoration: none;
-    color: #fff;
-    transition: font-size 0.3s ease;
+    text-decoration: none; /* Remove default underline from links */
+    color: #fff; /* Set link color to white */
+    transition: font-size 0.3s ease, color 0.3s ease; /* Smooth transition for font size and color changes */
 }
 
-a:hover{
+a:hover {
     animation: normal;
-    font-size: 1.2em
+    font-size: 1.2em; /* Slightly increase font size on hover for emphasis */
 }
 
 h1 {
-    font-family: "neue-haas-grotesk-display", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: clamp(3.25rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
-    line-height: clamp(3.25rem, 8vw, 6.5rem); /* Minimum, preferred, and maximum sizes */
-    margin: 0;
+    font-family: "neue-haas-grotesk-display", sans-serif; /* Set specific font for h1 */
+    font-weight: 600; /* Bold font weight */
+    font-style: normal; /* Normal font style */
+    font-size: clamp(3rem, 6vw + 1rem, 6.5rem); /* Responsive font size for different screen sizes */
+    line-height: 1.2; /* Consistent line height for better readability */
+    margin: 0; /* Remove default margin */
 }
 
 h3 {
-    font-family: "neue-haas-grotesk-display", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color:#fff
+    font-family: "neue-haas-grotesk-display", sans-serif; /* Set specific font for h3 */
+    font-weight: 400; /* Normal font weight */
+    font-style: normal; /* Normal font style */
+    font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem); /* Responsive font size for different screen sizes */
+    color: #fff; /* Set text color to white */
 }
 
-#mainTitle {
-    padding: 5% 20%;
+.mainTitle {
+    padding: 5% 20%; /* Padding to give space around the title */
+    font-size: clamp(1.5rem, 2vw + 1rem, 3rem); /* Responsive font size based on screen width */
 }
 
-#bodyCopy {
+.bodyCopy {
     display: grid;
-    grid-template-columns: 2fr 1fr 3fr;
-    padding: 5% 20%;
-    text-align: left;
+    grid-template-columns: 2fr 1fr 3fr; /* Define three-column layout */
+    padding: 5% 20%; /* Padding to give space around the content */
+    text-align: left; /* Align text to the left */
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem); /* Reduce the maximum font size for large screens */ /* Responsive body text size */
 }
 
 #prodList {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 8vh; /* Adjust spacing between items if needed */
-    padding: 5% 20%;
-  }
+    grid-template-columns: 1fr 2fr; /* Define two-column layout */
+    gap: 8vh; /* Vertical spacing between items */
+    padding: 5% 20%; /* Padding to give space around the product list */
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive body text size */
+}
 
 .wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Arrange children in a column */
     flex: 1; /* Ensure wrapper takes up all available space */
 }
 
 main {
-    background: #E51D30;
+    background: #E51D30; /* Set main background color */
     flex: 1; /* Allows main content to grow and push the footer down */
 }
 
 header {
-    background: #E51D30;
-    padding: 2vw;
-    text-align: right;
+    background: #E51D30; /* Set header background color */
+    padding: 2vw; /* Padding for spacing inside the header */
+    text-align: right; /* Align header content to the right */
     position: static;
     top: auto;
-    z-index: 1000
+    z-index: 1000; /* Ensure header appears above other elements */
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive font size for the header */
 }
 
 .header-container {
     display: flex;
     align-items: center; /* Align items vertically centered */
-    justify-content: space-between; /* Space items apart */
+    justify-content: space-between; /* Space items apart for balanced layout */
 }
 
 .fadein {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .75s ease, transform .75s ease;
-  }
-  
+    opacity: 0; /* Start with element hidden */
+    transform: translateY(20px); /* Position slightly below initial location */
+    transition: opacity 0.75s ease, transform 0.75s ease; /* Smooth transition for opacity and position */
+}
+
 .fadein.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Make element fully visible */
+    transform: translateY(0); /* Move element to its final position */
+}
+
+.circle-pointer {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    pointer-events: none; /* Prevent pointer events so it doesn't interfere with clicking */
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+    z-index: 10000; /* Make sure the circle is always on top */
+}
+
+a, button, [role="button"], input[type="button"], input[type="submit"] {
+    cursor: none; /* Ensure default cursor stays hidden on clickable elements */
 }
 
 .logo {
-    max-height: 75px; /* Set an appropriate height for your logo */
-    margin-right: 20px; /* Optional: spacing between the logo and nav */
+    max-height: clamp(50px, 10vw, 100px); /* Responsive logo height for different screen sizes */
+    margin: clamp(10px, 2vw, 30px); /* Responsive margin for spacing around the logo */
 }
 
 .nav-link {
-    text-decoration: none; /* Remove default underline */
+    text-decoration: none; /* Remove default underline from nav links */
     padding-bottom: 4px; /* Space between text and border */
     border-bottom: 2px solid transparent; /* No border for inactive links */
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive font size for navigation links */
 }
-  
+
 .nav-link.active {
-    border-bottom: 2px solid #fff; /* Add border to active link */
+    border-bottom: 2px solid #fff; /* Add border to active link for emphasis */
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
+    list-style: none; /* Remove bullet points from list */
+    padding: 0; /* Remove default padding */
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 15px;
+    display: inline; /* Display list items inline for horizontal navigation */
+    margin: 0 15px; /* Horizontal spacing between navigation items */
 }
 
 nav ul li a {
-    color: #fff;
-    text-decoration: none;
+    color: #fff; /* Set link color to white */
+    text-decoration: none; /* Remove default underline */
 }
 
 #home, #about, #services, #contact, #protfolio {
-    background: #E51D30;
+    background: #E51D30; /* Set background color for these sections */
 }
 
 footer {
-    background: #E51D30;
-    color: #fff;
-    text-align: left;
-    padding: 6em 20%;
-    /* Remove absolute positioning */
+    background: #E51D30; /* Set footer background color */
+    color: #fff; /* Set text color to white */
+    text-align: left; /* Align text to the left */
+    padding: 6em 20%; /* Padding for space inside the footer */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space items apart for balanced footer layout */
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive footer text size */
 }
 
 .footer-section {
-    flex: 1;
-    padding: 0;
+    flex: 1; /* Ensure each footer section takes up equal space */
+    padding: 0; /* Remove padding */
 }
-  
+
 .footer a {
-    color: white; /* White color for links */
-    text-decoration: underline;
+    color: white; /* Set link color to white for footer */
+    text-decoration: none; /* Remove default underline */
 }
-  
+
 .footer-section p {
-    margin: 5px 0;
+    margin: 5px 0; /* Set margin for paragraphs inside footer */
 }
