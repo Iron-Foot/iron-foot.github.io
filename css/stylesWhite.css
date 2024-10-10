@@ -259,7 +259,7 @@ footer {
     background: #ffffff;
     color: #000;
     text-align: center;
-    padding: 6em 20%;
+    padding: 1em 20%;
     justify-content: space-between;
     font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem); /* Responsive font size for different screen sizes */
 }
