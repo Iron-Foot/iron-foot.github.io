@@ -37,7 +37,22 @@ const scroll = () => {
 }
 
 // Apply throttling to the scroll event
-window.addEventListener('scroll', throttle(scroll, 50));
+const throttledScroll = throttle(scroll, 50);
+
+// Use IntersectionObserver to handle visibility changes
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Add scroll event listener when section is visible
+      window.addEventListener('scroll', throttledScroll);
+    } else {
+      // Remove listener when section is not visible
+      window.removeEventListener('scroll', throttledScroll);
+    }
+  });
+}, { threshold: [0, 1] });
+
+observer.observe(section);
 
 // Update cached values on resize
 window.addEventListener('resize', () => {
