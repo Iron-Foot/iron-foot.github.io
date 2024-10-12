@@ -172,6 +172,11 @@ nav ul li a {
     background: #f0f0f0;
 }
 
+.newSectionPortfolioWhite {
+    padding: 10px;
+    background: #ffffff;
+}
+
 /* Portfolio Grid */
 .portfolio-grid {
     display: grid;
