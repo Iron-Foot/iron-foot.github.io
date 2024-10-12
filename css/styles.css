@@ -1,129 +1,171 @@
 body {
-    font-family: "din-condensed", sans-serif; /* Set the main font for the body */
-    font-weight: 400; /* Normal font weight */
-    font-style: normal; /* Normal font style */
-    line-height: 1.6; /* Line height for better readability */
-    cursor: none; 
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    min-height: 100vh; /* Ensure body is at least the height of the viewport */
+    font-family: "din-condensed", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    cursor: none;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Arrange children in a column */
-    color: #fff; /* Set text color to white */
-    font-size: 1rem; /* Base font size for body text */
+    flex-direction: column;
+    color: #fff;
+    font-size: 1rem;
 }
 
 a {
-    text-decoration: none; /* Remove default underline from links */
-    color: #fff; /* Set link color to white */
-    transition: font-size 0.3s ease, color 0.3s ease; /* Smooth transition for font size and color changes */
+    text-decoration: none;
+    color: #fff;
+    transition: font-size 0.3s ease, color 0.3s ease;
 }
 
 a:hover {
-    animation: normal;
-    font-size: 1.2em; /* Slightly increase font size on hover for emphasis */
+    font-size: 1.2em;
+}
+
+h1, h3 {
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-style: normal;
+    margin: 0;
+    color: #fff;
 }
 
 h1 {
-    font-family: "neue-haas-grotesk-display", sans-serif; /* Set specific font for h1 */
-    font-weight: 600; /* Bold font weight */
-    font-style: normal; /* Normal font style */
-    font-size: clamp(3rem, 6vw + 1rem, 6.5rem); /* Responsive font size for different screen sizes */
-    line-height: 1.2; /* Consistent line height for better readability */
-    margin: 0; /* Remove default margin */
+    font-weight: 600;
+    font-size: clamp(3rem, 6vw + 1rem, 6.5rem);
+    line-height: 1.2;
 }
 
 h3 {
-    font-family: "neue-haas-grotesk-display", sans-serif; /* Set specific font for h3 */
-    font-weight: 400; /* Normal font weight */
-    font-style: normal; /* Normal font style */
-    font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem); /* Responsive font size for different screen sizes */
-    color: #fff; /* Set text color to white */
+    font-weight: 400;
+    font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
+}
+
+.mainTitle, .bodyCopy, #prodList, #contactForm, #aboutPage {
+    padding: 5% 20%;
 }
 
 .mainTitle {
-    padding: 5% 20%; /* Padding to give space around the title */
-    font-size: clamp(1.5rem, 2vw + 1rem, 3rem); /* Responsive font size based on screen width */
+    font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
 }
 
 .bodyCopy {
     display: grid;
-    grid-template-columns: 2fr 1fr 3fr; /* Define three-column layout */
-    padding: 5% 20%; /* Padding to give space around the content */
-    text-align: left; /* Align text to the left */
-    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem); /* Reduce the maximum font size for large screens */ /* Responsive body text size */
+    grid-template-columns: 2fr 1fr 3fr;
+    text-align: left;
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+}
+
+.bodyCopyContact, #contactForm {
+    text-align: left;
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.25rem);
 }
 
 #prodList {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Define two-column layout */
-    gap: 8vh; /* Vertical spacing between items */
-    padding: 5% 20%; /* Padding to give space around the product list */
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive body text size */
+    grid-template-columns: 1fr 2fr;
+    gap: 8vh;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
 }
 
 #aboutPage {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Define two-column layout */
-    padding: 5% 20%; /* Padding to give space around the product list */
+    grid-template-columns: 1fr 2fr;
 }
 
 #aboutPage img {
-    width: 75%; /* The image will take up 50% of its container's width */
-    height: auto; /* The height will adjust to maintain the aspect ratio */
-    margin: .5vh; /* Fixed margin for simplicity */
-  }
+    width: 75%;
+    height: auto;
+    margin: 0.5vh;
+}
 
 @media (max-width: 768px) {
-    #aboutPage {
+    #aboutPage, footer {
         display: flex;
         flex-direction: column;
-        padding: 5% 10%; /* Reduced padding for a cleaner mobile layout */
+        padding: 5% 10%;
     }
-    
+
     #aboutPage img {
-        width: 100%; /* Make image full width for a better fit */
-        height: auto;
-        margin: .5vh; /* Fixed margin for simplicity */
+        width: 100%;
     }
-  }
+}
 
 .wrapper {
     display: flex;
-    flex-direction: column; /* Arrange children in a column */
-    flex: 1; /* Ensure wrapper takes up all available space */
+    flex-direction: column;
+    flex: 1;
 }
 
-main {
-    background: #E51D30; /* Set main background color */
-    flex: 1; /* Allows main content to grow and push the footer down */
+main, header, footer {
+    background: #E51D30;
+    color: #fff;
 }
 
 header {
-    background: #E51D30; /* Set header background color */
-    padding: 2vw; /* Padding for spacing inside the header */
-    text-align: right; /* Align header content to the right */
-    position: static;
-    top: auto;
-    z-index: 1000; /* Ensure header appears above other elements */
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive font size for the header */
+    padding: 2vw;
+    text-align: right;
+    z-index: 1000;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+}
+
+footer {
+    text-align: left;
+    padding: 6em 20%;
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+}
+
+.footer-section {
+    flex: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+}
+
+label {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+input, textarea {
+    margin-bottom: 1.5rem;
+    padding: 15px;
+    font-size: 1.1rem;
+    background-color: white;
+    color: #333;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #000;
+    border-style: solid;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #999;
 }
 
 .header-container {
     display: flex;
-    align-items: center; /* Align items vertically centered */
-    justify-content: space-between; /* Space items apart for balanced layout */
+    align-items: center;
+    justify-content: space-between;
 }
 
 .fadein {
-    opacity: 0; /* Start with element hidden */
-    transform: translateY(20px); /* Position slightly below initial location */
-    transition: opacity 0.75s ease, transform 0.75s ease; /* Smooth transition for opacity and position */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
 .fadein.visible {
-    opacity: 1; /* Make element fully visible */
-    transform: translateY(0); /* Move element to its final position */
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .circle-pointer {
@@ -132,10 +174,24 @@ header {
     height: 20px;
     background-color: #fff;
     border-radius: 50%;
-    pointer-events: none; /* Prevent pointer events so it doesn't interfere with clicking */
+    pointer-events: none;
     transform: translate(-50%, -50%);
     transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-    z-index: 10000; /* Make sure the circle is always on top */
+    z-index: 10000;
+}
+
+button {
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    color: #E51D30;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #E51D30;
+    color: #fff;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -144,7 +200,7 @@ header {
     }
 
     a, button, [role="button"], input[type="button"], input[type="submit"] {
-        cursor: none; /* Ensure default cursor stays hidden on clickable elements */
+        cursor: none;
     }
 }
 
@@ -154,77 +210,41 @@ header {
     }
 
     a, button, [role="button"], input[type="button"], input[type="submit"] {
-        cursor: auto; /* Show default cursor on clickable elements */
+        cursor: auto;
     }
 }
 
 .logo {
-    height: min(10vw, 120px); /* Will be 10% of the viewport width but will not exceed 120px */
-    margin: .5vh;
+    height: min(10vw, 120px);
+    margin: 0.5vh;
 }
 
 .nav-link {
-    text-decoration: none; /* Remove default underline from nav links */
-    padding-bottom: 4px; /* Space between text and border */
-    border-bottom: 2px solid transparent; /* No border for inactive links */
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive font size for navigation links */
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
 }
 
 .nav-link.active {
-    border-bottom: 2px solid #fff; /* Add border to active link for emphasis */
+    border-bottom: 2px solid #fff;
 }
 
 nav ul {
-    list-style: none; /* Remove bullet points from list */
-    padding: 0; /* Remove default padding */
+    list-style: none;
+    padding: 0;
 }
 
 nav ul li {
-    display: inline; /* Display list items inline for horizontal navigation */
-    margin: 0 15px; /* Horizontal spacing between navigation items */
+    display: inline;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: #fff; /* Set link color to white */
-    text-decoration: none; /* Remove default underline */
+    color: #fff;
+    text-decoration: none;
 }
 
-#home, #about, #services, #contact, #protfolio {
-    background: #E51D30; /* Set background color for these sections */
-}
-
-footer {
-    background: #E51D30; /* Set footer background color */
-    color: #fff; /* Set text color to white */
-    text-align: left; /* Align text to the left */
-    padding: 6em 20%; /* Padding for space inside the footer */
-    display: flex;
-    justify-content: space-between; /* Space items apart for balanced footer layout */
-    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive footer text size */
-}
-
-.footer-section {
-    flex: 1; /* Ensure each footer section takes up equal space */
-    padding: 0; /* Remove padding */
-}
-
-.footer a {
-    color: white; /* Set link color to white for footer */
-    text-decoration: none; /* Remove default underline */
-}
-
-.footer-section p {
-    margin: 5px 0; /* Set margin for paragraphs inside footer */
-}
-
-@media (max-width: 768px) {
-    footer {
-        background: #E51D30; /* Set footer background color */
-        color: #fff; /* Set text color to white */
-        text-align: center; /* Align text to the left */
-        display: flex;
-        flex-direction: column;
-        padding: 5% 10%; /* Reduced padding for a cleaner mobile layout */
-        font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem); /* Responsive footer text size */
-    }
+#home, #about, #services, #contact {
+    background: #E51D30;
 }
