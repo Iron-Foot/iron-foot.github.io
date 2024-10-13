@@ -177,6 +177,11 @@ nav ul li a {
     background: #ffffff;
 }
 
+.newSectionPortfolioFull {
+    padding: 0;
+    background: #fff;
+}
+
 /* Portfolio Grid */
 .portfolio-grid {
     display: grid;
@@ -195,6 +200,31 @@ nav ul li a {
 .portfolio-item img {
     max-width: 100%;
     height: auto;
+}
+
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 10001; /* Ensures the overlay is above other content */
+}
+
+.image-overlay img {
+    max-width: 90%; /* Image won't exceed 90% of the viewport width */
+    max-height: 90%; /* Image won't exceed 90% of the viewport height */
+    border: 5px solid #fff; /* Optional: add a border to the image for better visibility */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Optional: shadow for a more polished look */
+    transition: transform 0.3s ease; /* Smooth transition when image appears */
+}
+
+.image-overlay img:hover {
+    transform: scale(1.05); /* Slight zoom on hover for emphasis */
 }
 
 /* Mobile-specific styles */
