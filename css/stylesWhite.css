@@ -212,7 +212,7 @@ nav ul li a {
     display: none; /* Initially hidden */
     justify-content: center;
     align-items: center;
-    z-index: 10001; /* Ensures the overlay is above other content */
+    z-index: 9999; /* Ensures the overlay is above other content */
 }
 
 .image-overlay img {
