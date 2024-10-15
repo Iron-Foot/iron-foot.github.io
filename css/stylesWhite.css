@@ -240,6 +240,12 @@ nav ul li a {
     }
 }
 
+section.vidPlay video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* General Section Styles */
 section.vid {
     position: relative;
