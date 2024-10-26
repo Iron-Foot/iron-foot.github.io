@@ -40,7 +40,7 @@ h3 {
     font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
 }
 
-.mainTitle, .bodyCopy, #prodList, #contactForm, #aboutPage {
+.mainTitle, .bodyCopy, #prodList, #contactForm {
     padding: 5% 20%;
 }
 
@@ -69,13 +69,13 @@ h3 {
 
 #aboutPage {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 3fr 2fr;
+    padding: 5% 20% 5% 0;
 }
 
 #aboutPage img {
-    width: 75%;
+    width: 90%;
     height: auto;
-    margin: 0.5vh;
 }
 
 @media (max-width: 768px) {
