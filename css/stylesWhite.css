@@ -26,13 +26,13 @@ a:hover {
 
 footer a {
     text-decoration: none; /* Remove default underline from links */
-    color: #000; /* Set link color to white */
+    color:rgba(0, 0, 0, 0.25);
     transition: font-size 0.3s ease, color 0.3s ease;
 }
 
 footer a:hover {
     animation: normal;
-    color:rgba(0, 0, 0, 0.5);
+    color:rgba(0, 0, 0, 1);
     font-size: 1.2em;
 }
 
