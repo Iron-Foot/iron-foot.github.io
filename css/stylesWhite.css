@@ -24,6 +24,18 @@ a:hover {
     font-size: 1.2em; /* Slightly increase font size on hover for emphasis */
 }
 
+footer a {
+    text-decoration: none; /* Remove default underline from links */
+    color: #000; /* Set link color to white */
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+footer a:hover {
+    animation: normal;
+    color:rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+}
+
 h1 {
     font-family: "neue-haas-grotesk-display", sans-serif; /* Set specific font for h1 */
     font-weight: 600; /* Bold font weight */
