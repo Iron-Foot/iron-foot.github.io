@@ -9,7 +9,7 @@ function preloadImages(urls) {
   // Fetch image URLs from the JSON file
   async function fetchImageUrls(page) {
     try {
-      const response = await fetch('https://rileysligting.com/data/images.json');
+      const response = await fetch('/data/images.json');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
