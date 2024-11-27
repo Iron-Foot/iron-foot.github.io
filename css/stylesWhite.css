@@ -1,7 +1,7 @@
 body {
-    font-family: "din-condensed", sans-serif; /* Set the main font for the body */
-    font-weight: 400; /* Normal font weight */
-    font-style: normal; /* Normal font style */
+    font-family: "din-2014", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     line-height: 1.6; /* Line height for better readability */
     cursor: none; /* Hide the default cursor */
     margin: 0; /* Remove default margin */
