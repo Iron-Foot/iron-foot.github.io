@@ -1,15 +1,12 @@
-// JavaScript to handle form submission (same as before)
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    emailjs.sendForm('service_qt01eza', 'template_n9najab', this)
+        .then(function() {
+            alert('Thank you! Your message has been sent.');
+        }, function(error) {
+            alert('Oops! Something went wrong.\n' + JSON.stringify(error));
+        });
 
-    alert(`Thank you, ${name}! Your message has been received.\n\nEmail: ${email}\nMessage: ${message}`);
-
-    // Optionally, reset the form after submission
     this.reset();
 });
-
-
