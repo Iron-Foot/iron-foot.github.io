@@ -7,7 +7,7 @@ document.querySelectorAll("a").forEach(link => {
         // Change the color of the circles by modifying the 'randomColor' variable below
         let circleColor;
         if (link.closest('nav')) {
-            circleColor = '#E51D30'; // Red for navigation links
+            circleColor = '#000'; // Black for navigation links
         } else {
             circleColor = '#fff'; // White for other links
         }

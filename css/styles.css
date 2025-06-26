@@ -107,7 +107,7 @@ h3 {
 }
 
 main, header, footer {
-    background: #E51D30;
+    background: #000;
     color: #fff;
 }
 
@@ -192,13 +192,13 @@ button {
     padding: 15px;
     background-color: #fff;
     border: 2px solid #fff;
-    color: #E51D30;
+    color: #000;
     font-size: 1.3rem;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #E51D30;
+    background-color: #000;
     color: #fff;
 }
 
@@ -254,5 +254,5 @@ nav ul li a {
 }
 
 #home, #about, #services, #contact {
-    background: #E51D30;
+    background: #000;
 }
