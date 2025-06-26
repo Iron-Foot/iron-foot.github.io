@@ -1,50 +1,49 @@
-<script type="module">
-/* 1.  Wipe any stray overlays every time this document is shown
-   ------------------------------------------------------------ */
-function removeTransitionOverlays () {
-  document.querySelectorAll('[data-route-overlay]').forEach(el => el.remove());
-}
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.preventDefault();
+        // Change the size of the circles by modifying the 'size' variable below
+        const size = Math.max(window.innerWidth, window.innerHeight) * 3;
+        // Change the color of the circles by modifying the 'randomColor' variable below
+        let circleColor;
+        if (link.closest('nav')) {
+            circleColor = '#000'; // Black for navigation links
+        } else {
+            circleColor = '#fff'; // White for other links
+        }
+        
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        const circle = document.createElementNS(svgNS, "circle");
+        
+        svg.style.position = "fixed";
+        svg.style.zIndex = "2000";
+        svg.style.left = "0";
+        svg.style.top = "0";
+        svg.style.width = "100%";
+        svg.style.height = "100%";
+        svg.style.pointerEvents = "none";
 
-window.addEventListener('pageshow',   removeTransitionOverlays); // coming **from** BFCache
-window.addEventListener('DOMContentLoaded', removeTransitionOverlays); // normal load
+        circle.setAttribute("cx", event.clientX);
+        circle.setAttribute("cy", event.clientY);
+        circle.setAttribute("r", 5);
+        circle.setAttribute("fill", circleColor);
+        circle.style.transition = 'r 1.5s ease-out';
 
-/* 2.  Link-click transition effect
-   -------------------------------- */
-document.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();                       // (only needs to be called once)
+        svg.appendChild(circle);
+        document.body.appendChild(svg);
+        
+        // Force a reflow to restart the transition
+        void circle.getBoundingClientRect();
 
-    /* ----  circle setup  ---- */
-    const size   = Math.max(innerWidth, innerHeight) * 3;
-    const color  = link.closest('nav') ? '#000' : '#fff';
+        circle.setAttribute("r", size / 2);
 
-    const svgNS  = 'http://www.w3.org/2000/svg';
-    const svg    = document.createElementNS(svgNS, 'svg');
-    const circle = document.createElementNS(svgNS, 'circle');
-
-    svg.dataset.routeOverlay = '';            // magic flag for later clean-up
-    Object.assign(svg.style, {
-      position: 'fixed', inset: 0, zIndex: 2000,
-      width: '100%', height: '100%', pointerEvents: 'none'
+        // Remove the previous SVG after animation
+        setTimeout(() => {
+            if (svg.previousSibling) {
+                svg.previousSibling.remove();
+            }
+            window.location = link.href;
+        }, 1000);
     });
-
-    circle.setAttribute('cx', e.clientX);
-    circle.setAttribute('cy', e.clientY);
-    circle.setAttribute('r', 5);
-    circle.setAttribute('fill', color);
-    circle.style.transition = 'r 1.5s ease-out';
-
-    svg.append(circle);
-    document.body.append(svg);
-
-    /* trigger the animation */
-    void circle.getBoundingClientRect();
-    circle.setAttribute('r', size / 2);
-
-    /* after the animation, navigate away */
-    setTimeout(() => {
-      window.location.href = link.href;
-    }, 1000);
-  });
 });
-</script>
