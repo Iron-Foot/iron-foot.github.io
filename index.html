@@ -1,85 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riley Sligting</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
-    <link rel="icon" href="img/Favicon.ico" sizes="any">
-    <link rel="icon" href="img/Favicon.svg" type="image/svg+xml">    
-    <meta name="description" content="portfolio of Riley Sligting, a Utah-based freelance graphic designer and illustrator with seven years of experience, showcasing logos, photos, posters, websites, and more.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riley Sligting - Graphic Design Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="circle-pointer" id="circlePointer"></div>
-    <header>
-        <nav class="fadein">
-            <div class="header-container">
-                <a href="index.html" class="logo"><img src="img/White-Logo-Header.svg" alt="Logo" class="logo"></a>
-                <ul>
-                    <li><a href="index.html" class="nav-link active">Work</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="mainTitle">
-            <h1 class="fadein">Riley Sligting</h1>
-             <p class="fadein">I'm a Freelance Graphic Designer from Utah with 5 years of Industry experience. This is my Digital Showcase.</p>
-        </section>
-        <section>
-            <div id="prodList">
-                <p class="fadein">01</p>
-                <h1 class="fadein"><a href="projects/action-target.html"><span class="project-name">Action Target</span></a></h1>
+  <header>
+    <div class="logo" aria-label="Site Logo">
+      <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
+      Riley Sligting
+    </div>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html" tabindex="1">Work</a></li>        
+        <li><a href="about.html" tabindex="2">About</a></li>
+        <li><a href="contact.html" tabindex="3">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+  </header>
 
-                <p class="fadein">02</p>
-                <h1 class="fadein"><a href="projects/social-climb.html"><span class="project-name"></span>SocialClimb</span></a></h1>
-                
-                <p class="fadein">03</p>
-                <h1 class="fadein"><a href="projects/hollis-brewery.html"><span class="project-name">Hollis Brewery</span></a></h1>
+<main id="main">
+  <div class="container">
+    <div class="grid" aria-live="polite">
+      <div class="scene span-2x2">
+        <a class="card" id="about" href="Beak-and-Comb.html" tabindex="4">
+          <img src="img/ChickenCards.webp" alt="Beak and Comb" />
+          <span class="card-title">Beak and Comb</span>
+        </a>
+      </div>
+      <div class="scene span-1x2">
+        <a class="card" href="Poster-73.html" tabindex="5">
+          <img src="img/Poster-73.webp" alt="Poster 73" />
+          <span class="card-title">Poster 73</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="work" href="Action-Target.html" tabindex="6">
+          <img src="img/ActionTarget-Sticker.webp" alt="Action Target" />
+          <span class="card-title">Action Target</span>
+        </a>
+      </div>
+      <div class="scene" style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      ">
+        <img id="gridLogo" src="img/Red-Logo-Header.svg" alt="logo" style="
+          max-width: 100%;
+          max-height: 100%;
+          height: auto;
+          width: auto;
+          vertical-align: middle;
+        " />
+      </div>  
+      <div class="scene">
+        <a class="card" href="Action-Target.html" tabindex="7">
+          <img src="img/ActionTarget-StoreCat.webp" alt="Action Target" />
+          <span class="card-title">Action Target</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="contact" href="contact.html" tabindex="9">
+          <img src="img/Hollis-Brewery-Beer-Mockup.webp" alt="Contact" />
+          <span class="card-title">Contact</span>
+        </a>
+      </div>
+            <div class="scene span-2x2">
+        <a class="card" href="about.html" tabindex="10">
+          <img src="img/SocailClimb-Website.webp" alt="SocialClimb" />
+          <span class="card-title">SocialClimb</span>
+        </a>
+      </div>
+      <div class="scene span-1x2">
+        <a class="card" href="project1.html" tabindex="11">
+          <img src="img/Ruds-Dirt-Shirt.webp" alt="Project 1" />
+          <span class="card-title">Project 1</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="work" href="project2.html" tabindex="12">
+          <img src="img/Me-Poster-Mockup-Wide.webp" alt="Project 2" />
+          <span class="card-title">Project 2</span>
+        </a>
+      </div>
+      <div class="scene">
+        <a class="card" href="Book-Cover.html" tabindex="8">
+          <img src="img/Book-Cover.webp" alt="Book Cover" />
+          <span class="card-title">Book Cover</span>
+        </a>
+      </div>
+      <div class="scene">
+        <a class="card" href="project4.html" tabindex="14">
+          <img src="img/Mafia-Cards-All-three.webp" alt="Project 4" />
+          <span class="card-title">Mafia Cards</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="contact" href="contact.html" tabindex="9">
+          <img src="img/Poster-Watches.webp" alt="Contact" />
+          <span class="card-title">Watch Maintenance</span>
+        </a>
+      </div>
+      <div class="scene span-2x2">
+        <a class="card" id="about" href="about.html" tabindex="10">
+          <img src="img/ActionTarget-Buff.webp" alt="About" />
+          <span class="card-title">About</span>
+        </a>
+      </div>
+      <div class="scene span-1x2">
+        <a class="card" href="project1.html">
+          <img src="img/ActionTarget-Patch.webp" alt="Project 1" />
+          <span class="card-title">Project 1</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="work" href="project2.html">
+          <img src="img/ActionTarget-Sticker.webp" alt="Project 2" />
+          <span class="card-title">Project 2</span>
+        </a>
+      </div>
+      <div class="scene">
+        <a class="card" href="project3.html">
+          <img src="img/project3.png" alt="Project 3" />
+          <span class="card-title">Project 3</span>
+        </a>
+      </div>
+      <div class="scene">
+        <a class="card" href="project4.html">
+          <img src="img/project4.png" alt="Project 4" />
+          <span class="card-title">Project 4</span>
+        </a>
+      </div>
+      <div class="scene span-2x1">
+        <a class="card" id="contact" href="contact.html">
+          <img src="img/Ruds-Dirt-Shirt.webp" alt="Contact" />
+          <span class="card-title">Contact</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
 
-                <p class="fadein">04</p>
-                <h1 class="fadein"><a href="projects/ruds-dirt.html"><span class="project-name">Rud's Dirt</span></a></h1>
+  <footer>
+    <p>© <span id="year"></span> Riley Sligting | <a href="mailto:riley@sligting.com">riley@sligting.com</a></p>
+    <p>
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a> •
+      <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </footer>
 
-                <p class="fadein">06</p>
-                <h1 class="fadein"><a href="projects/photos.html">Photos</a></h1>
-
-                <p class="fadein">07</p>
-                <h1 class="fadein"><a href="projects/magazine-spreads.html">Magazines</a></h1>
-
-                <p class="fadein">08</p>
-                <h1 class="fadein"><a href="projects/cards.html">Cards</a></h1>
-
-                <p class="fadein">09</p>
-                <h1 class="fadein"><span class="project-name"></span><a href="projects/book-cover.html">Book&nbsp;Cover</span></a></h1>
-
-                <p class="fadein">10</p>
-                <h1 class="fadein"><a href="projects/posters.html">Posters</a></h1>
-            </div>    
-        </section>
-        <section class="mainTitle">
-            <h1 class="fadein"><a href=contact.html>Get in touch</a>.</h1>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-section">
-            <p class="fadein">Riley Sligting</p>
-          </div>
-          <div class="footer-section">
-            <p class="fadein"><a href="tel:(801)906-3543">(801) 906-3543</a></p>
-            <p class="fadein"><a href="mailto:riley@sligting.com">riley@sligting.com</a></p>
-          </div>
-    </footer>
-    
-    <script src="js/circular Mouse Pointer.js"></script>
-    <script src="js/fadein.js"></script>
-    <script src="js/conditionalNbsp.js"></script>
-    <script src="js/colorFillWhite.js"></script>
-    <script src="js/downloadimages.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
