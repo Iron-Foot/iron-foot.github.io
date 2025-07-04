@@ -414,3 +414,41 @@ main {
     display: block;
   }
 }
+
+/* Modern masonry photo grid for photos.html */
+.photo-grid {
+  column-count: 4;
+  column-gap: 1.5rem;
+  padding: 2rem 1rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: #fff;
+  object-fit: contain;
+  break-inside: avoid;
+}
+
+/* Responsive: 3 columns on tablet, 2 on mobile, 1 on small screens */
+@media (max-width: 1200px) {
+  .photo-grid {
+    column-count: 3;
+  }
+}
+@media (max-width: 800px) {
+  .photo-grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 500px) {
+  .photo-grid {
+    column-count: 1;
+  }
+}
