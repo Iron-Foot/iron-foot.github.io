@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riley Sligting - Graphic Design Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo" aria-label="Site Logo">
+      <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
+      Riley Sligting
+    </div>
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html" class="active">Work</a></li>
+        <li><a href="photos.html">Photography</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+  </header>
+  <main>
+    <section class="gallery">
+      <h1 class="mainTitle">My Work</h1>
+      <div class="photo-grid">
+        <a class="card" href="#" tabindex="4" data-image="img/Portfolio-Images/Hill.webp">
+          <img src="img/Portfolio-Images/Hill.webp" alt="Hill" />
+        </a>
+        <a class="card" href="#" tabindex="4" data-image="img/Portfolio-Images/Blossoms2.webp">
+          <img src="img/Portfolio-Images/Blossoms2.webp" alt="Blossoms" />
+        </a>
+        <a class="card" href="#" tabindex="4" data-image="img/Portfolio-Images/Blossoms3.webp">
+          <img src="img/Portfolio-Images/Blossoms3.webp" alt="Blossoms" />
+        </a>
+        <!-- Add more images as needed -->
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

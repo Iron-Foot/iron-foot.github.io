@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riley Sligting - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
+    <link rel="icon" href="img/Favicon.ico" sizes="any">
+    <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
+</head>
+<body class="contact-page">
+    <!-- Use this nav structure in all pages -->
+    <header>
+      <div class="logo" aria-label="Site Logo">
+        <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
+        Riley Sligting
+      </div>
+      <nav aria-label="Primary Navigation">
+        <ul>
+          <li><a href="/index.html">Work</a></li>
+          <li><a href="/photos.html">Photography</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+    </header>
+    
+    <main>
+      <section class="contact-form">
+        <h1>Contact Me</h1>
+        <p>I'd love to hear from you! Please fill out the form below to get in touch.</p>
+        <form id="contactForm" action="https://formspree.io/f/mrbzzgjn" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+        <div id="form-status"></div>
+      </section>
+    </main>
+
+    <footer>
+        <p>© <span id="year"></span> Riley Sligting | <a href="mailto:riley@sligting.com">riley@sligting.com</a></p>
+        <p>
+          <a href="https://www.instagram.com/r.s.design.art/" target="_blank" rel="noopener">Instagram</a> •
+          <a href="https://www.linkedin.com/in/rileysligting/" target="_blank" rel="noopener">LinkedIn</a>
+        </p>
+    </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
