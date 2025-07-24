@@ -323,12 +323,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let scrollTimeout;
 
   // Populate thumbnails
-  photos.forEach((photo) => {
+  photos.forEach((photo, index) => {
     const imgSrc = photo.querySelector('img').src;
     const thumb = document.createElement('img');
     thumb.src = imgSrc;
     thumb.addEventListener('click', () => {
-      thumb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      updateMainImage(index); // Add this line
+      if (window.innerWidth <= 800) {
+        thumb.scrollIntoView({ 
+          behavior: 'smooth', 
+          inline: 'center',
+          block: 'nearest'
+        });
+      } else {
+        thumb.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }
     });
     thumbnailsContainer.appendChild(thumb);
   });
@@ -350,26 +362,49 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function findCenterThumbnail() {
-    // Use the viewport's center as the absolute reference, as you suggested.
-    const viewportCenterY = window.innerHeight / 2;
-
-    let closestIndex = 0;
-    let minDistance = Infinity;
-
-    thumbnailImages.forEach((thumb, index) => {
-      const thumbRect = thumb.getBoundingClientRect();
-      // Find the thumbnail's center relative to the viewport.
-      const thumbCenterY = thumbRect.top + thumbRect.height / 2;
+    if (window.innerWidth <= 800) {
+      // Mobile: Use horizontal center for horizontal thumbnail strip
+      const viewportCenterX = window.innerWidth / 2;
       
-      // Check its distance from the viewport's true center.
-      const distance = Math.abs(viewportCenterY - thumbCenterY);
+      let closestIndex = 0;
+      let minDistance = Infinity;
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-    updateMainImage(closestIndex);
+      thumbnailImages.forEach((thumb, index) => {
+        const thumbRect = thumb.getBoundingClientRect();
+        // Find the thumbnail's center relative to the viewport horizontally
+        const thumbCenterX = thumbRect.left + thumbRect.width / 2;
+        
+        // Check its distance from the viewport's horizontal center
+        const distance = Math.abs(viewportCenterX - thumbCenterX);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+      updateMainImage(closestIndex);
+    } else {
+      // Desktop: Use vertical center for vertical thumbnail strip
+      const viewportCenterY = window.innerHeight / 2;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      thumbnailImages.forEach((thumb, index) => {
+        const thumbRect = thumb.getBoundingClientRect();
+        // Find the thumbnail's center relative to the viewport vertically
+        const thumbCenterY = thumbRect.top + thumbRect.height / 2;
+        
+        // Check its distance from the viewport's vertical center
+        const distance = Math.abs(viewportCenterY - thumbCenterY);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+      updateMainImage(closestIndex);
+    }
   }
 
   // Use requestAnimationFrame for smooth, instant selection on scroll
@@ -381,17 +416,41 @@ document.addEventListener('DOMContentLoaded', () => {
     isScrolling = window.requestAnimationFrame(findCenterThumbnail);
   });
 
-  // NEW: Handle global mouse wheel scrolling
+  // NEW: Handle global mouse wheel scrolling with mobile consideration
   function handleWheelScroll(e) {
-    e.preventDefault(); // Prevent default window scroll
-    thumbnailsContainer.scrollTop += e.deltaY;
+    // Only prevent default on desktop to allow mobile touch scrolling
+    if (window.innerWidth > 800) {
+      e.preventDefault(); // Prevent default window scroll on desktop
+      thumbnailsContainer.scrollTop += e.deltaY;
+    } else {
+      // On mobile, let the thumbnails container handle horizontal scrolling
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        thumbnailsContainer.scrollLeft += e.deltaX;
+      }
+    }
   }
 
   function openLightbox(index) {
     document.body.classList.add('lightbox-active'); // Disable body scroll
     lightbox.classList.add('active');
     
-    thumbnailImages[index].scrollIntoView({ block: 'center' });
+    // Different scroll behavior for mobile vs desktop
+    if (window.innerWidth <= 800) {
+      // Mobile: horizontal scroll into view
+      thumbnailImages[index].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      // Desktop: vertical scroll into view
+      thumbnailImages[index].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+    
     updateMainImage(index);
     
     window.addEventListener('keydown', handleKeydown);
@@ -407,12 +466,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showNext() {
     const nextIndex = (currentIndex + 1) % photos.length;
-    thumbnailImages[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateMainImage(nextIndex); // Add this line
+    if (window.innerWidth <= 800) {
+      thumbnailImages[nextIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      thumbnailImages[nextIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
   }
 
   function showPrev() {
     const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
-    thumbnailImages[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateMainImage(prevIndex); // Add this line
+    if (window.innerWidth <= 800) {
+      thumbnailImages[prevIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      thumbnailImages[prevIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
   }
 
   function handleKeydown(e) {
@@ -436,3 +519,39 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === lightbox) closeLightbox();
   });
 });
+
+// ──────────────── Hamburger Menu Logic ──────────────
+const hamburger = document.getElementById('hamburger');
+const nav = document.querySelector('nav');
+
+if (hamburger && nav) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (nav.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on a link
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}

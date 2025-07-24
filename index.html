@@ -6,7 +6,7 @@
   <title>Riley Sligting - Graphic Design Portfolio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="index-page">
   <header>
     <div class="logo" aria-label="Site Logo">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -20,7 +20,14 @@
         <li><a href="contact.html" tabindex="3">Contact</a></li>
       </ul>
     </nav>
-    <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+    <div class="header-controls">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+    </div>
   </header>
 
 <main id="main">
@@ -53,6 +60,12 @@
           <span class="card-title">Posters</span>
         </a>
       </div>
+      <div class="scene span-2x1">
+        <a class="card" href="projects/hollis-brewery.html">
+          <img src="img/Hollis-Brewery-Beer-Mockup.webp" alt="Hollis Brewery Beer Mockup" />
+          <span class="card-title">Hollis Brewery</span>
+        </a>
+      </div>
       <div class="scene">
         <a class="card" href="projects/action-target.html">
           <img src="img/ActionTarget-Coin.webp" alt="Action Target Buff" />
@@ -63,12 +76,6 @@
         <a class="card" href="projects/cards.html">
           <img src="img/Mafia-Cards-All-three.webp" alt="Mafia Cards All three" />
           <span class="card-title">Mafia Cards</span>
-        </a>
-      </div>
-      <div class="scene span-2x1">
-        <a class="card" href="projects/hollis-brewery.html">
-          <img src="img/Hollis-Brewery-Beer-Mockup.webp" alt="Hollis Brewery Beer Mockup" />
-          <span class="card-title">Hollis Brewery</span>
         </a>
       </div>
       <div class="scene">
@@ -89,32 +96,17 @@
           <span class="card-title">Rud's Dirt</span>
         </a>
       </div>
-      <div class="scene span-2x1">
-        <a class="card" href="#">
-          <img src="img/Why-Mars-Mockup2.webp" alt="Why Mars Mockup1" />
-          <span class="card-title">Why Mars?</span>
-        </a>
-      </div>
-      <div class="scene span-1x2">
+            <div class="scene span-1x2">
         <a class="card" href="projects/social-climb.html">
           <img src="img/SocailClimb-Website.webp" alt="SocailClimb Case Study" />
           <span class="card-title">Social Climb</span>
         </a>
       </div>
-            <div class="scene" style="
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-      ">
-        <img id="gridLogo" src="img/Red-Logo-Header.svg" alt="logo" style="
-          max-width: 100%;
-          max-height: 100%;
-          height: auto;
-          width: auto;
-          vertical-align: middle;
-        " />
+      <div class="scene span-2x1">
+        <a class="card" href="#">
+          <img src="img/Why-Mars-Mockup2.webp" alt="Why Mars Mockup1" />
+          <span class="card-title">Why Mars?</span>
+        </a>
       </div>
   </div>
 </main>
