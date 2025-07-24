@@ -238,3 +238,201 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial call
   handleScroll();
 });
+
+// Robust Masonry Grid Layout for Photos Page
+function initializePhotoGrid() {
+  const grid = document.querySelector('.photo-grid');
+  if (!grid) return; // Exit if no grid on page
+
+  const rowHeight = parseInt(getComputedStyle(grid).gridAutoRows);
+  const rowGap = parseInt(getComputedStyle(grid).gap);
+
+  const setItemSpan = (item) => {
+    const card = item.querySelector('.card');
+    if (!card) return;
+    const itemHeight = card.getBoundingClientRect().height;
+    const itemSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+    item.style.gridRowEnd = `span ${itemSpan}`;
+  };
+
+  const layoutGrid = () => {
+    grid.querySelectorAll('.scene').forEach(setItemSpan);
+  };
+
+  // Layout each item after its image loads
+  const images = grid.querySelectorAll('img');
+  images.forEach(img => {
+    img.classList.add('loading');
+    // Handle both cached and loading images
+    if (img.complete) {
+      setItemSpan(img.closest('.scene'));
+      img.classList.remove('loading');
+    } else {
+      img.addEventListener('load', () => {
+        setItemSpan(img.closest('.scene'));
+        img.classList.remove('loading');
+      }, { once: true });
+    }
+  });
+
+  // Re-layout on window resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(layoutGrid, 100);
+  });
+}
+
+// Run the function
+initializePhotoGrid();
+
+// =================================================
+// Lightbox Photo Viewer Script (Global Scroll-to-Select)
+// =================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const photoGrid = document.querySelector('.photo-grid');
+  if (!photoGrid) return;
+
+  const photos = Array.from(photoGrid.querySelectorAll('.card'));
+  if (photos.length === 0) return;
+
+  // Create lightbox elements once
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  document.body.appendChild(lightbox);
+
+  lightbox.innerHTML = `
+    <div class="lightbox-container">
+      <div class="lightbox-thumbnails"></div>
+      <div class="lightbox-main">
+        <button class="lightbox-btn lightbox-prev" aria-label="Previous image">&lt;</button>
+        <img src="" alt="Enlarged photo" />
+        <button class="lightbox-btn lightbox-next" aria-label="Next image">&gt;</button>
+      </div>
+    </div>
+    <button class="lightbox-btn lightbox-close" aria-label="Close viewer">&times;</button>
+  `;
+
+  const mainImage = lightbox.querySelector('.lightbox-main img');
+  const thumbnailsContainer = lightbox.querySelector('.lightbox-thumbnails');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const nextBtn = lightbox.querySelector('.lightbox-next');
+  const prevBtn = lightbox.querySelector('.lightbox-prev');
+
+  let currentIndex = -1;
+  let scrollTimeout;
+
+  // Populate thumbnails
+  photos.forEach((photo) => {
+    const imgSrc = photo.querySelector('img').src;
+    const thumb = document.createElement('img');
+    thumb.src = imgSrc;
+    thumb.addEventListener('click', () => {
+      thumb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    thumbnailsContainer.appendChild(thumb);
+  });
+
+  const thumbnailImages = thumbnailsContainer.querySelectorAll('img');
+
+  function updateMainImage(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+    const photo = photos[currentIndex];
+    const imgSrc = photo.querySelector('img').src;
+    const imgAlt = photo.querySelector('img').alt;
+
+    mainImage.src = imgSrc;
+    mainImage.alt = imgAlt;
+
+    thumbnailImages.forEach(thumb => thumb.classList.remove('active'));
+    thumbnailImages[currentIndex].classList.add('active');
+  }
+
+  function findCenterThumbnail() {
+    // Use the viewport's center as the absolute reference, as you suggested.
+    const viewportCenterY = window.innerHeight / 2;
+
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    thumbnailImages.forEach((thumb, index) => {
+      const thumbRect = thumb.getBoundingClientRect();
+      // Find the thumbnail's center relative to the viewport.
+      const thumbCenterY = thumbRect.top + thumbRect.height / 2;
+      
+      // Check its distance from the viewport's true center.
+      const distance = Math.abs(viewportCenterY - thumbCenterY);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+    updateMainImage(closestIndex);
+  }
+
+  // Use requestAnimationFrame for smooth, instant selection on scroll
+  let isScrolling = null;
+  thumbnailsContainer.addEventListener('scroll', () => {
+    if (isScrolling) {
+      window.cancelAnimationFrame(isScrolling);
+    }
+    isScrolling = window.requestAnimationFrame(findCenterThumbnail);
+  });
+
+  // NEW: Handle global mouse wheel scrolling
+  function handleWheelScroll(e) {
+    e.preventDefault(); // Prevent default window scroll
+    thumbnailsContainer.scrollTop += e.deltaY;
+  }
+
+  function openLightbox(index) {
+    document.body.classList.add('lightbox-active'); // Disable body scroll
+    lightbox.classList.add('active');
+    
+    thumbnailImages[index].scrollIntoView({ block: 'center' });
+    updateMainImage(index);
+    
+    window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('wheel', handleWheelScroll, { passive: false });
+  }
+
+  function closeLightbox() {
+    document.body.classList.remove('lightbox-active'); // Re-enable body scroll
+    lightbox.classList.remove('active');
+    window.removeEventListener('keydown', handleKeydown);
+    window.removeEventListener('wheel', handleWheelScroll);
+  }
+
+  function showNext() {
+    const nextIndex = (currentIndex + 1) % photos.length;
+    thumbnailImages[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function showPrev() {
+    const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
+    thumbnailImages[prevIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  }
+
+  photos.forEach((photo, index) => {
+    photo.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+});
