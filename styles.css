@@ -737,35 +737,43 @@ body:not(.index-page) main {
 
 /* ======= Contact Form ======= */
 .contact-hero {
-  height: 100vh; /* Use full viewport height */
+  min-height: calc(100vh - 80px); /* Full viewport minus header height */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  padding-top: calc(80px + 2rem); /* Account for header height plus padding */
-  padding-bottom: 2rem;
+  margin-top: 80px; /* Push content below fixed header */
+  box-sizing: border-box;
 }
 
 .contact-form {
-  max-width: 600px;
+  max-width: 800px; /* Increased width for embedded form */
   width: 100%;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 .contact-form h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem); /* Same as about page */
-  margin-bottom: 1rem; /* Same as about page */
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .contact-form p {
-  font-size: 1.1rem; /* Match about page paragraph size */
+  font-size: 1.1rem;
   margin-bottom: 2rem;
-  opacity: 0.9; /* Match about page opacity */
-  line-height: 1.6; /* Match about page line height */
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* ClickUp embedded form styling */
+.clickup-embed {
+  min-height: 600px; /* Set minimum height for the form */
+  border-radius: var(--radius); /* Match your site's border radius */
+  border: 0px solid var(--border) !important; /* Use your theme border color */
+  background: transparent !important;
+  overflow: hidden;
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10); /* Match main cards */
 }
 
 #contactForm {
@@ -773,7 +781,6 @@ body:not(.index-page) main {
   flex-direction: column;
   gap: 1rem;
   text-align: left;
-  max-height: none; /* Remove height restriction */
 }
 
 #contactForm label {
@@ -791,6 +798,7 @@ body:not(.index-page) main {
   color: var(--text);
   font-family: var(--font-stack);
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 #contactForm textarea {
@@ -802,7 +810,7 @@ body:not(.index-page) main {
   padding: 1rem 2rem;
   border-radius: var(--radius);
   border: none;
-  background: #cc3333; /* Same red as CTA button */
+  background: #cc3333;
   color: #fff;
   font-weight: 600;
   font-size: 1.1rem;
@@ -813,7 +821,7 @@ body:not(.index-page) main {
 
 #contactForm button:hover {
   transform: translateY(-2px);
-  background: #a72929; /* Same darker red on hover */
+  background: #a72929;
   box-shadow: 0 8px 24px rgba(204, 51, 51, 0.4);
 }
 
@@ -824,20 +832,20 @@ body:not(.index-page) main {
   min-height: 1.2em;
 }
 
-/* Contact page specific styling - remove old styles */
+/* Contact page specific styling */
 body.contact-page {
-  height: auto; /* Remove height restriction */
-  overflow: auto; /* Allow scrolling */
+  height: auto;
+  overflow: auto;
 }
 
 body.contact-page main {
-  height: auto; /* Remove height restriction */
-  display: block; /* Remove flex */
-  padding-top: 0; /* Remove padding since we handle it in .contact-hero */
+  height: auto;
+  display: block;
+  padding-top: 0; /* Remove default padding since we handle it in .contact-hero */
 }
 
 body.contact-page footer {
-  position: static; /* Remove fixed positioning */
+  position: static;
   background: var(--bg);
   padding: 1rem;
   text-align: center;
@@ -857,21 +865,39 @@ body.contact-page footer a:hover {
 
 @media (max-width: 900px) {
   .contact-hero {
-    height: 100vh;
+    min-height: calc(100vh - 80px);
     padding: 1.5rem;
-    padding-top: calc(80px + 1.5rem);
+    margin-top: 80px;
   }
   
   .contact-form {
     max-width: 100%;
   }
+  
+  .clickup-embed {
+    min-height: 500px; /* Smaller height on mobile */
+  }
 }
 
 @media (max-width: 600px) {
   .contact-hero {
-    height: 100vh;
+    min-height: calc(100vh - 80px);
     padding: 1rem;
-    padding-top: calc(80px + 1rem);
+    margin-top: 80px;
+  }
+  
+  .contact-form h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+  
+  .contact-form p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .clickup-embed {
+    min-height: 450px; /* Even smaller height on very small screens */
   }
 }
 
@@ -1235,5 +1261,278 @@ body.lightbox-active {
   
   .lightbox-prev, .lightbox-next {
     bottom: 110px; /* More space from thumbnails */
+  }
+}
+
+/* ======= Project Pages ======= */
+.project-page main {
+  padding-top: 80px;
+}
+
+.project-hero {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.project-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.project-hero p {
+  font-size: 1.3rem;
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Project Video Section - Scroll-driven */
+.project-video {
+  height: 300vh; /* Make the section 3x viewport height to allow for scroll duration */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.video-container {
+  position: sticky;
+  top: 80px;
+  max-width: 100vw;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex; /* Add flex to center the video */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center; /* Ensure it's centered when cropping */
+  display: block;
+}
+
+/* Responsive adjustments for project video */
+@media (max-width: 900px) {
+  .project-video {
+    height: 250vh; /* Slightly shorter on mobile */
+  }
+  
+  .video-container {
+    top: 80px; /* Maintain header spacing on mobile */
+    height: calc(100vh - 80px);
+  }
+}
+
+@media (max-width: 600px) {
+  .project-video {
+    height: 200vh; /* Even shorter on very small screens */
+  }
+  
+  .video-container {
+    top: 80px; /* Maintain header spacing on mobile */
+    height: calc(100vh - 80px);
+  }
+}
+
+/* Project Gallery Grid */
+.project-gallery {
+  padding: 2rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.project-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px 0 rgba(0,0,0,0.25), 0 4px 12px 0 rgba(0,0,0,0.15);
+}
+
+.project-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Featured Project Section */
+.project-featured {
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.featured-item {
+  max-width: 1400px;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+}
+
+.featured-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Project Footer Navigation */
+.project-footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+  padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem) clamp(1.5rem, 3vh, 2rem) clamp(1rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 6vh, 4rem);
+  /* Remove min-height that was creating too much space */
+}
+
+.project-nav {
+  width: 100%;
+}
+
+.project-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: min(1000px, 90vw);
+  margin: 0 auto;
+}
+
+.project-nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.project-nav a:hover {
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.project-nav a.current {
+  opacity: 0.6;
+}
+
+/* Dark mode hover effect for project nav */
+@media (prefers-color-scheme: dark) {
+  .project-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+:root[data-theme="dark"] .project-nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .project-nav a:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure project page body extends full height */
+.project-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-page .project-main {
+  flex: 1;
+}
+
+.project-page .project-footer {
+  margin-top: auto; /* Push footer to bottom */
+}
+
+/* Responsive Design for Projects */
+@media (max-width: 900px) {
+  .project-hero {
+    padding: clamp(2rem, 6vh, 4rem) clamp(1rem, 4vw, 2rem) clamp(1rem, 3vh, 2rem);
+  }
+  
+  .project-gallery {
+    padding: clamp(1rem, 4vw, 2rem);
+  }
+  
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 45vw), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  
+  .project-featured {
+    padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2rem);
+  }
+  
+  .project-footer {
+    padding: clamp(1.5rem, 3vh, 2.5rem) clamp(1rem, 4vw, 2rem) clamp(1rem, 2vh, 1.5rem) clamp(1rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .project-hero {
+    padding: clamp(1.5rem, 5vh, 3rem) clamp(0.75rem, 3vw, 1.5rem) clamp(0.75rem, 2vh, 1.5rem);
+  }
+  
+  .project-hero h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+  
+  .project-hero p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+  
+  .project-gallery {
+    padding: clamp(0.75rem, 3vw, 1.5rem);
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2.5vw, 1.5rem);
+  }
+  
+  .project-featured {
+    padding: clamp(1rem, 3vh, 2rem) clamp(0.75rem, 3vw, 1.5rem);
+  }
+  
+  .project-footer {
+    /* Show footer on mobile with appropriate padding */
+    padding: clamp(1rem, 2.5vh, 1.5rem) clamp(0.75rem, 3vw, 1.5rem);
+    display: block; /* Ensure it's visible */
+  }
+  
+  .project-nav ul {
+    gap: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 1.5rem);
+  }
+  
+  .project-nav a {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    padding: clamp(0.4rem, 1.2vw, 0.8rem) clamp(0.8rem, 2vw, 1.2rem);
   }
 }
