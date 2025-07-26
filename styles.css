@@ -308,6 +308,18 @@ nav a:hover {
   width: auto;
 }
 
+.portfolio-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 100vh;
+  background: var(--bg);
+}
+
+.portfolio-content .container {
+  margin-top: 0;
+  min-height: 0;
+}
+
 .container {
   max-width: 1400px;   /* Adjust as needed */
   margin: 0 auto;
@@ -315,10 +327,11 @@ nav a:hover {
   padding-left: var(--gap);
   padding-right: var(--gap);
   position: relative;
-  z-index: 2; /* Above the main title */
-  margin-top: 100vh; /* Push content down by viewport height */
-  background: var(--bg); /* Ensure background covers the title */
-  min-height: 100vh; /* Ensure it's tall enough */
+  /* The following properties will now only apply to the first container if it's not in .portfolio-content */
+  z-index: 2; 
+  margin-top: 100vh; 
+  background: var(--bg); 
+  min-height: 100vh; 
 }
 
 /* ======= Grid ======= */
@@ -1346,6 +1359,35 @@ body.lightbox-active {
 /* Project Gallery Grid */
 .project-gallery {
   padding: 2rem;
+}
+
+/* Full-width Quote Block */
+.quote-block-full-width {
+  color: var(--text);
+  padding: 2rem 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.quote-block-full-width blockquote {
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  max-width: 800px; /* Constrain the text width for readability */
+}
+
+.quote-block-full-width blockquote p {
+  margin: 0 0 1rem 0;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.quote-block-full-width blockquote footer {
+  font-style: normal;
+  font-size: 1rem;
+  opacity: 0.7;
 }
 
 .project-grid {
