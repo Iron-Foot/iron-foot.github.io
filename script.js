@@ -305,9 +305,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="lightbox-container">
       <div class="lightbox-thumbnails"></div>
       <div class="lightbox-main">
-        <button class="lightbox-btn lightbox-prev" aria-label="Previous image">&lt;</button>
+        <button class="lightbox-btn lightbox-prev" aria-label="Previous image">‹</button>
         <img src="" alt="Enlarged photo" />
-        <button class="lightbox-btn lightbox-next" aria-label="Next image">&gt;</button>
+        <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
       </div>
     </div>
     <button class="lightbox-btn lightbox-close" aria-label="Close viewer">&times;</button>
@@ -632,4 +632,150 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mute the video for better user experience
     projectVideo.muted = true;
   }
+});
+
+// Quote Slider
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.quote-track');
+  if (track) {
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.quote-next');
+    const prevButton = document.querySelector('.quote-prev');
+    let currentIndex = 0;
+
+    const updateSlides = () => {
+      track.style.transform = 'translateX(-' + 100 * currentIndex + '%)';
+    };
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides();
+    });
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlides();
+    });
+
+    // Initialize
+    updateSlides();
+  }
+});
+
+// Load Quotes from JSON file
+function loadQuotes() {
+  fetch('quotes.json')
+    .then(response => response.json())
+    .then(data => {
+      const track = document.querySelector('.quote-track');
+      if (!track) return;
+
+      // Clear existing slides
+      track.innerHTML = '';
+
+      data.quotes.forEach(quote => {
+        const slide = document.createElement('div');
+        slide.className = 'quote-slide';
+        slide.innerHTML = `
+          <p class="quote-text">"${quote.text}"</p>
+          <p class="quote-author">— ${quote.author}</p>
+        `;
+        track.appendChild(slide);
+      });
+
+      // Re-initialize the slider with new slides
+      initializeQuoteSlider();
+    })
+    .catch(error => console.error('Error loading quotes:', error));
+}
+
+// Initialize quote slider
+function initializeQuoteSlider() {
+  const track = document.querySelector('.quote-track');
+  if (!track) return;
+
+  const slides = Array.from(track.children);
+  const nextButton = document.querySelector('.quote-next');
+  const prevButton = document.querySelector('.quote-prev');
+  let currentIndex = 0;
+
+  const updateSlides = () => {
+    track.style.transform = 'translateX(-' + 100 * currentIndex + '%)';
+  };
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlides();
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlides();
+  });
+
+  // Initialize
+  updateSlides();
+}
+
+// Load quotes on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  loadQuotes();
+});
+
+// Responsive Grid Reordering - Move Mafia Cards on medium screens
+document.addEventListener('DOMContentLoaded', () => {
+  let resizeTimeout;
+  
+  function debounce(func, wait) {
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(resizeTimeout);
+        func(...args);
+      };
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(later, wait);
+    };
+  }
+  
+  function repositionMafiaCards() {
+    const mafiaCardsScene = document.querySelector('.scene .card[href="projects/cards.html"]')?.closest('.scene');
+    const quoteBlock = document.querySelector('.quote-block-full-width');
+    const portfolioContinued = document.querySelector('#portfolio-continued .grid');
+    const originalGrid = document.querySelector('#portfolio .grid');
+    
+    if (!mafiaCardsScene || !quoteBlock || !portfolioContinued || !originalGrid) {
+      console.log('Missing elements for repositioning');
+      return;
+    }
+    
+    const screenWidth = window.innerWidth;
+    console.log('Screen width:', screenWidth); // Debug log
+    
+    // Move to after quote block on medium screens (601px to 900px)
+    if (screenWidth <= 900 && screenWidth > 600) {
+      console.log('Moving to portfolio-continued'); // Debug log
+      // Only move if it's not already there
+      if (!portfolioContinued.contains(mafiaCardsScene)) {
+        portfolioContinued.insertBefore(mafiaCardsScene, portfolioContinued.firstChild);
+      }
+    } else {
+      console.log('Moving back to original portfolio'); // Debug log
+      // Move back to original position on other screen sizes
+      if (!originalGrid.contains(mafiaCardsScene)) {
+        originalGrid.appendChild(mafiaCardsScene);
+      }
+    }
+  }
+  
+  // Initial positioning
+  repositionMafiaCards();
+  
+  // Debounced resize handler
+  const debouncedReposition = debounce(repositionMafiaCards, 150);
+  window.addEventListener('resize', debouncedReposition);
+  
+  // Also listen for orientation change on mobile
+  window.addEventListener('orientationchange', () => {
+    setTimeout(repositionMafiaCards, 100);
+  });
 });
