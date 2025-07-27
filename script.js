@@ -4,60 +4,64 @@ if (yearSpan) {
 }
 
 // ──────────────── Theme-toggle logic ──────────────
-const root       = document.documentElement;
-const button     = document.getElementById('modeToggle');
-const ORDER      = ['system', 'dark', 'light'];       // cycle order
-
-const icons = {
-  system: `<svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><rect x="3" y="18" width="18" height="2" rx="1"/></svg>`,
-  dark:   `<svg aria-hidden="true" class="icon" viewBox="0 0 512 512"><path fill="#fff" d="M503.56,347.56c-21.88,57.2-64.25,106.79-123.17,136.7-126.07,64.01-280.15,13.7-344.16-112.37S22.54,91.74,148.6,27.73C207.51-2.18,272.54-7.13,331.64,8.96c-20.24,3.16-40.34,9.52-59.6,19.3-98.31,49.91-137.55,170.08-87.63,268.4,49.91,98.31,170.08,137.55,268.4,87.63,19.26-9.78,36.25-22.25,50.75-36.73Z"/></svg>`,
-  light:  `<svg aria-hidden="true" class="icon" viewBox="0 0 512 512"><path d="M512,256l-115.69-58.12 40.71-122.9-122.9 40.71L256 0l-58.12 115.69-122.9-40.71 40.71 122.9L0 256l115.69 58.12-40.71 122.9 122.9-40.71L256 512l58.12-115.69 122.9 40.71-40.71-122.9L512 256Zm-152 0c0 57.57-46.83 104.4-104.4 104.4S151.2 313.57 151.2 256 198.03 151.6 255.6 151.6 360 198.43 360 256Z"/></svg>`
-};
-
-function updateLogo() {
-  const headerLogo = document.getElementById('siteLogo');
-  const gridLogo = document.getElementById('gridLogo');
-  const theme = document.documentElement.getAttribute('data-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const isDark = theme === 'dark' || (!theme && prefersDark);
-
-  if (headerLogo) {
-    headerLogo.src = isDark ? 'img/White-Logo-Header.svg' : 'img/Red-Logo-Header.svg';
+class ThemeManager {
+  constructor() {
+    this.root = document.documentElement;
+    this.button = document.getElementById('modeToggle');
+    this.themes = ['system', 'dark', 'light'];
+    this.icons = {
+      system: `<svg aria-hidden="true" class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><rect x="3" y="18" width="18" height="2" rx="1"/></svg>`,
+      dark: `<svg aria-hidden="true" class="icon" viewBox="0 0 512 512"><path fill="#fff" d="M503.56,347.56c-21.88,57.2-64.25,106.79-123.17,136.7-126.07,64.01-280.15,13.7-344.16-112.37S22.54,91.74,148.6,27.73C207.51-2.18,272.54-7.13,331.64,8.96c-20.24,3.16-40.34,9.52-59.6,19.3-98.31,49.91-137.55,170.08-87.63,268.4,49.91,98.31,170.08,137.55,268.4,87.63,19.26-9.78,36.25-22.25,50.75-36.73Z"/></svg>`,
+      light: `<svg aria-hidden="true" class="icon" viewBox="0 0 512 512"><path d="M512,256l-115.69-58.12 40.71-122.9-122.9 40.71L256 0l-58.12 115.69-122.9-40.71 40.71 122.9L0 256l115.69 58.12-40.71 122.9 122.9-40.71L256 512l58.12-115.69 122.9 40.71-40.71-122.9L512 256Zm-152 0c0 57.57-46.83 104.4-104.4 104.4S151.2 313.57 151.2 256 198.03 151.6 255.6 151.6 360 198.43 360 256Z"/></svg>`
+    };
+    
+    this.init();
   }
-  if (gridLogo) {
-    gridLogo.src = isDark ? 'img/White-Logo-Header.svg' : 'img/Red-Logo-Header.svg';
+  
+  init() {
+    this.apply(localStorage.getItem('theme') || 'system');
+    this.button?.addEventListener('click', () => this.cycle());
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.updateLogo());
+  }
+  
+  cycle() {
+    const current = localStorage.getItem('theme') || 'system';
+    const next = this.themes[(this.themes.indexOf(current) + 1) % this.themes.length];
+    this.apply(next);
+  }
+  
+  apply(theme) {
+    if (theme === 'system') {
+      this.root.removeAttribute('data-theme');
+    } else {
+      this.root.setAttribute('data-theme', theme);
+    }
+    
+    if (this.button) {
+      this.button.innerHTML = this.icons[theme];
+      this.button.setAttribute('aria-label', `${theme} theme`);
+    }
+    
+    localStorage.setItem('theme', theme);
+    this.updateLogo();
+  }
+  
+  updateLogo() {
+    const logos = document.querySelectorAll('#siteLogo, #gridLogo');
+    const theme = this.root.getAttribute('data-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = theme === 'dark' || (!theme && prefersDark);
+    
+    logos.forEach(logo => {
+      if (logo) {
+        logo.src = isDark ? 'img/White-Logo-Header.svg' : 'img/Red-Logo-Header.svg';
+      }
+    });
   }
 }
 
-// Call updateLogo after theme changes and on load
-window.addEventListener('DOMContentLoaded', updateLogo);
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
-
-// Call after theme is applied
-function apply(theme) {
-  if (theme === 'system') {
-    root.removeAttribute('data-theme');
-    button.innerHTML = icons.system;
-    button.setAttribute('aria-label', 'System theme');
-  } else {
-    root.setAttribute('data-theme', theme);
-    button.innerHTML = theme === 'dark' ? icons.dark : icons.light;
-    button.setAttribute('aria-label', `${theme} theme`);
-  }
-  localStorage.setItem('theme', theme);
-  updateLogo(); // <-- Add this line
-}
-
-button.addEventListener('click', () => {
-  const current = localStorage.getItem('theme') || 'system';
-  const next    = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length];
-  apply(next);
-});
-
-// initial load
-apply(localStorage.getItem('theme') || 'system');
-window.addEventListener('DOMContentLoaded', updateLogo);
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+// Initialize theme manager
+const themeManager = new ThemeManager();
 
 // 3-D tilt effect for .card (Bento-Box style, responds to mouse near the card)
 const maxTilt = 7; // degrees at edges
@@ -779,3 +783,109 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(repositionMafiaCards, 100);
   });
 });
+
+// Consolidate all DOMContentLoaded listeners into one
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme and logo initialization
+  updateLogo();
+  
+  // Photo grid initialization
+  initializePhotoGrid();
+  
+  // Lightbox initialization
+  initializeLightbox();
+  
+  // Quote slider initialization
+  initializeQuoteSlider();
+  
+  // Hamburger menu initialization
+  initializeHamburgerMenu();
+  
+  // Main title fade effect
+  initializeMainTitleFade();
+  
+  // Scroll-driven video
+  initializeScrollVideo();
+  
+  // Grid repositioning
+  initializeGridRepositioning();
+  
+  // Sequential pop-in animation
+  initializePopInAnimation();
+});
+
+// Use modern JavaScript features more efficiently
+const $ = (selector, context = document) => context.querySelector(selector);
+const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+
+// Cache DOM queries
+const DOM = {
+  header: $('header'),
+  mainTitle: $('.mainTitle'),
+  hamburger: $('#hamburger'),
+  nav: $('nav'),
+  photoGrid: $('.photo-grid'),
+  quoteTrack: $('.quote-track')
+};
+
+// Use event delegation where possible
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.card')) handleCardClick(e);
+  if (e.target.matches('.hamburger')) handleHamburgerClick(e);
+  if (e.target.matches('.quote-nav')) handleQuoteNav(e);
+});
+
+// Create a single, reusable debounce utility
+function debounce(func, wait, immediate = false) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      timeout = null;
+      if (!immediate) func(...args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func(...args);
+  };
+}
+
+// Optimize scroll handlers
+const optimizedScrollHandler = debounce(() => {
+  handleHeaderScroll();
+  handleMainTitleFade();
+  handleScrollVideo();
+}, 16); // ~60fps
+
+window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+
+// Single intersection observer for all animations
+const createOptimizedObserver = (callback, options = {}) => {
+  const defaultOptions = {
+    threshold: 0.1,
+    rootMargin: '50px'
+  };
+  
+  return new IntersectionObserver(callback, { ...defaultOptions, ...options });
+};
+
+// Optimize image loading
+function optimizeImages() {
+  const images = document.querySelectorAll('img[data-src]');
+  
+  const imageObserver = createOptimizedObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+}
+
+// Call optimizeImages on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', optimizeImages);

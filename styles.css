@@ -1,18 +1,35 @@
 :root {
+  /* Consolidate and organize variables */
+  /* Colors */
   --bg: #f5f5f5;
   --bg-dark: #181818;
   --card-bg: #fff;
-  --accent: #111;
   --text: #111;
   --border: #ddd;
   --link: #0070f3;
-  --shadow-main: rgba(0,0,0,.18);
-  --shadow-sub:  rgba(0,0,0,.10);
+  
+  /* Spacing */
   --gap: 1rem;
+  --gap-sm: calc(var(--gap) * 0.5);
+  --gap-lg: calc(var(--gap) * 2);
+  
+  /* Sizing */
   --radius: 16px;
-  --font-stack: "Inter", system-ui, sans-serif;
   --box-size: 260px;
-  --lightbox-bg: rgba(245, 245, 245, 0.9); /* Light theme lightbox background */
+  --header-height: 80px;
+  
+  /* Shadows */
+  --shadow-main: rgba(0,0,0,.18);
+  --shadow-sub: rgba(0,0,0,.10);
+  --shadow-card: 0 12px 28px 0 var(--shadow-main), 0 1.5px 6px 0 var(--shadow-sub);
+  
+  /* Typography */
+  --font-stack: "Inter", system-ui, sans-serif;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 /* ----------  System-dark fallback ---------- */
@@ -176,6 +193,19 @@ nav a {
 nav a:hover { 
   opacity: 0.6;
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* Add current page styling to main navigation */
+nav a.current {
+  background: var(--text); /* Use theme text color for background */
+  color: var(--card-bg); /* Use theme background color for text */
+  cursor: default;
+}
+
+nav a.current:hover {
+  opacity: 1; /* Keep current items fully visible */
+  background: var(--text); /* Maintain background on hover */
+  color: var(--card-bg); /* Keep text color */
 }
 
 /* Dark mode hover effect */
@@ -409,22 +439,59 @@ nav a:hover {
 
 /* ======= Footer ======= */
 footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: calc(var(--gap) * 2) var(--gap);
   font-size: 0.875rem;
+  gap: 1rem;
+  background: var(--bg);
+}
+
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 footer a {
   color: var(--link);
   text-decoration: none;
-  margin: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.3s ease;
 }
 
 footer a:hover {
   opacity: 0.7;
   color: var(--accent);
+  background: rgba(0, 0, 0, 0.05);
 }
 
+/* Responsive footer */
+@media (max-width: 600px) {
+  footer {
+    padding: var(--gap);
+  }
+  
+  footer .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  footer a {
+    padding: 0.5rem 1rem;
+  }
+}
 .mode-toggle {
   background: var(--card-bg);
   color: var(--text);
@@ -1511,144 +1578,109 @@ body.lightbox-active {
   display: block;
 }
 
-/* Project Footer Navigation */
+/* Project Footer Navigation - Glass Morphism Style to Match Header */
 .project-footer {
-  background: var(--card-bg);
-  border-top: 1px solid var(--border);
-  padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem) clamp(1.5rem, 3vh, 2rem) clamp(1rem, 4vw, 3rem);
-  margin-top: clamp(2rem, 6vh, 4rem);
-  /* Remove min-height that was creating too much space */
-}
-
-.project-nav {
+  margin-top: 3rem;
   width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  transition: background 0.3s, backdrop-filter 0.3s;
 }
 
-.project-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2.5rem);
+.project-footer ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: min(1000px, 90vw);
   margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row = 2 rows for 8 items */
+  gap: 1rem;
+  max-width: 1200px;
 }
 
-.project-nav a {
-  color: var(--text);
+.project-footer li {
+  display: flex;
+}
+
+.project-footer a {
   text-decoration: none;
-  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--text);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius);
   transition: all 0.3s ease;
-  font-weight: 500;
-  font-size: clamp(1rem, 2.5vw, 1.1rem);
-  white-space: nowrap;
-  display: inline-block;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  /* Remove background and border - no shape until hover */
+  background: transparent;
+  border: none;
 }
 
-.project-nav a:hover {
+.project-footer a:hover {
   opacity: 0.6;
   background: rgba(255, 255, 255, 0.1);
 }
 
-.project-nav a.current {
-  opacity: 0.6;
+.project-footer a.current {
+  background: var(--text); /* Use theme text color for background */
+  color: var(--card-bg); /* Use theme background color for text */
+  cursor: default;
 }
 
-/* Dark mode hover effect for project nav */
+.project-footer a.current:hover {
+  opacity: 1; /* Keep current items fully visible */
+  background: var(--text); /* Maintain background on hover */
+  color: var(--card-bg); /* Keep text color */
+}
+
+/* Dark mode hover effect */
 @media (prefers-color-scheme: dark) {
-  .project-nav a:hover {
+  .project-footer a:hover {
     background: rgba(255, 255, 255, 0.1);
   }
 }
 
-:root[data-theme="dark"] .project-nav a:hover {
+:root[data-theme="dark"] .project-footer a:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-:root[data-theme="light"] .project-nav a:hover {
+:root[data-theme="light"] .project-footer a:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure project page body extends full height */
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .project-footer ul {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on mobile */
+    gap: 0.75rem;
+  }
+  
+  .project-footer a {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .project-footer {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-footer ul {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+  }
+  
+  .project-footer a {
+    padding: 1rem;
+  }
+}
+
+/* Project page layout */
 .project-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-.project-page .project-main {
-  flex: 1;
-}
-
-.project-page .project-footer {
-  margin-top: auto; /* Push footer to bottom */
-}
-
-/* Responsive Design for Projects */
-@media (max-width: 900px) {
-  .project-hero {
-    padding: clamp(2rem, 6vh, 4rem) clamp(1rem, 4vw, 2rem) clamp(1rem, 3vh, 2rem);
-  }
-  
-  .project-gallery {
-    padding: clamp(1rem, 4vw, 2rem);
-  }
-  
-  .project-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(250px, 45vw), 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
-  }
-  
-  .project-featured {
-    padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2rem);
-  }
-  
-  .project-footer {
-    padding: clamp(1.5rem, 3vh, 2.5rem) clamp(1rem, 4vw, 2rem) clamp(1rem, 2vh, 1.5rem) clamp(1rem, 4vw, 2rem);
-  }
-}
-
-@media (max-width: 600px) {
-  .project-hero {
-    padding: clamp(1.5rem, 5vh, 3rem) clamp(0.75rem, 3vw, 1.5rem) clamp(0.75rem, 2vh, 1.5rem);
-  }
-  
-  .project-hero h1 {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-  }
-  
-  .project-hero p {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-  }
-  
-  .project-gallery {
-    padding: clamp(0.75rem, 3vw, 1.5rem);
-  }
-  
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(0.75rem, 2.5vw, 1.5rem);
-  }
-  
-  .project-featured {
-    padding: clamp(1rem, 3vh, 2rem) clamp(0.75rem, 3vw, 1.5rem);
-  }
-  
-  .project-footer {
-    /* Show footer on mobile with appropriate padding */
-    padding: clamp(1rem, 2.5vh, 1.5rem) clamp(0.75rem, 3vw, 1.5rem);
-    display: block; /* Ensure it's visible */
-  }
-  
-  .project-nav ul {
-    gap: clamp(0.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 1.5rem);
-  }
-  
-  .project-nav a {
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    padding: clamp(0.4rem, 1.2vw, 0.8rem) clamp(0.8rem, 2vw, 1.2rem);
-  }
 }
