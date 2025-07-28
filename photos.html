@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riley Sligting - Graphic Design Portfolio</title>
+  <title>Riley Sligting - Photography Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
+  <link rel="icon" href="img/Favicon.ico" sizes="any">
+  <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
 <body class="photo-page">
   <header>
@@ -298,6 +301,20 @@
       </div>
     </section>
   </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-container">
+      <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
+      <div class="lightbox-main">
+        <img id="lightbox-main-img" src="" alt="">
+        <button class="lightbox-btn lightbox-prev" id="lightbox-prev">‹</button>
+        <button class="lightbox-btn lightbox-next" id="lightbox-next">›</button>
+      </div>
+    </div>
+    <button class="lightbox-btn lightbox-close" id="lightbox-close">×</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

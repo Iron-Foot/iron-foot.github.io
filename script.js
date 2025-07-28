@@ -742,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function repositionMafiaCards() {
-    const mafiaCardsScene = document.querySelector('.scene .card[href="projects/cards.html"]')?.closest('.scene');
+    const mafiaCardsScene = document.querySelector('.scene .card[href="cards.html"]')?.closest('.scene');
     const quoteBlock = document.querySelector('.quote-block-full-width');
     const portfolioContinued = document.querySelector('#portfolio-continued .grid');
     const originalGrid = document.querySelector('#portfolio .grid');
@@ -754,9 +754,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const screenWidth = window.innerWidth;
     console.log('Screen width:', screenWidth); // Debug log
-    
-    // Move to after quote block on medium screens (601px to 900px)
-    if (screenWidth <= 900 && screenWidth > 600) {
+
+    // Move to after quote block on medium screens (601px to 1199px)
+    if (screenWidth <= 1199 && screenWidth > 600) {
       console.log('Moving to portfolio-continued'); // Debug log
       // Only move if it's not already there
       if (!portfolioContinued.contains(mafiaCardsScene)) {
