@@ -132,6 +132,69 @@ header {
   gap: 1rem;
 }
 
+/* Resume Download Button */
+.resume-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 2px solid var(--text);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.resume-btn:hover {
+  background: var(--text);
+  color: var(--card-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.resume-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .resume-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    gap: 0.4rem;
+  }
+  
+  .resume-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0;
+    min-width: 40px;
+    justify-content: center;
+  }
+  
+  .resume-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Hide text on very small screens, show only icon */
+  .resume-btn::after {
+    content: "";
+  }
+}
+
 /* Hamburger Menu */
 .hamburger {
   display: none;
@@ -493,24 +556,64 @@ footer a:hover {
   }
 }
 .mode-toggle {
-  background: var(--card-bg);
-  color: var(--text);
-  border: 0px solid var(--text);
-}
-
-.mode-toggle {
-  margin-left: 1rem;
-  border: 2px solid var(--text);
-  background: var(--card-bg);
-  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--text);
+  border: 2px solid var(--text);
   cursor: pointer;
   font-size: 1.1rem;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  min-width: 44px;
 }
-.mode-toggle:focus { outline: 2px solid var(--accent); }
 
+.mode-toggle:hover {
+  background: var(--text);
+  color: var(--card-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mode-toggle:focus { 
+  outline: 2px solid var(--accent); 
+}
+
+.mode-toggle .icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Mobile adjustments for mode toggle */
+@media (max-width: 768px) {
+  .mode-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .mode-toggle .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mode-toggle {
+    padding: 0.4rem 0.6rem;
+    min-width: 40px;
+  }
+  
+  .mode-toggle .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ======= Main Content Styles ======= */
 main {
   padding-top: 80px; /* Adjust to your header height */
 }
