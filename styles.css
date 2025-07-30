@@ -496,7 +496,8 @@ nav a.current:hover {
   .span-1x2 {
     grid-column: span 1 !important;
     grid-row: span 1 !important;
-    min-height: 260px;
+    /* Remove min-height to let images determine card height */
+    /* min-height: 260px; */
   }
 }
 
@@ -1647,6 +1648,8 @@ body.lightbox-active {
   overflow: hidden;
   box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
   transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+  /* Remove any height or aspect-ratio constraints */
+  height: fit-content;
 }
 
 .project-item:hover {
@@ -1656,8 +1659,9 @@ body.lightbox-active {
 
 .project-item img {
   width: 100%;
-  height: auto;
+  height: auto; /* Let the image determine its own height */
   display: block;
+  /* Remove object-fit: cover to preserve natural proportions */
 }
 
 /* Featured Project Section */
