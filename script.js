@@ -889,3 +889,91 @@ function optimizeImages() {
 
 // Call optimizeImages on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', optimizeImages);
+
+// Quote Slider with Auto-cycling
+document.addEventListener('DOMContentLoaded', () => {
+  const quoteSlider = document.querySelector('.quote-slider');
+  if (!quoteSlider) return;
+
+  const quoteTrack = quoteSlider.querySelector('.quote-track');
+  const quotes = quoteTrack.querySelectorAll('.quote-item');
+  const prevBtn = document.querySelector('.quote-prev');
+  const nextBtn = document.querySelector('.quote-next');
+  const dots = document.querySelectorAll('.quote-dot');
+  
+  let currentIndex = 0;
+  let autoSlideInterval;
+  const slideInterval = 4000; // 4 seconds
+
+  function updateSlider() {
+    const translateX = -currentIndex * 100;
+    quoteTrack.style.transform = `translateX(${translateX}%)`;
+    
+    // Update active states for quotes
+    quotes.forEach((quote, index) => {
+      quote.classList.toggle('active', index === currentIndex);
+    });
+    
+    // Update active states for dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  function goToQuote(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+
+  function nextQuote() {
+    currentIndex = (currentIndex + 1) % quotes.length;
+    updateSlider();
+  }
+
+  function prevQuote() {
+    currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+    updateSlider();
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextQuote, slideInterval);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  // Event listeners for navigation buttons
+  nextBtn?.addEventListener('click', () => {
+    nextQuote();
+    resetAutoSlide();
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    prevQuote();
+    resetAutoSlide();
+  });
+
+  // Event listeners for dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      goToQuote(index);
+      resetAutoSlide();
+    });
+  });
+
+  // Pause auto-slide when user hovers over the quote block
+  quoteSlider.addEventListener('mouseenter', stopAutoSlide);
+  quoteSlider.addEventListener('mouseleave', startAutoSlide);
+
+  // Start auto-sliding
+  startAutoSlide();
+
+  // Initial setup
+  updateSlider();
+});
