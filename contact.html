@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-43G4Y2LWQM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,71 +13,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Contact</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body>
+<body class="contact-page">
+    <!-- Use this nav structure in all pages -->
     <header>
-        <div class="circle-pointer" id="circlePointer"></div>
-        <nav class="fadein">
-            <div class="header-container">
-                <a href="index.html" class="logo"><img src="img/White-Logo-Header.svg" alt="Logo" class="logo"></a>
-                <ul>
-                    <li><a href="index.html" class="nav-link">Work</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
+      <div class="logo" aria-label="Site Logo">
+        <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
+        Riley Sligting
+      </div>
+      <nav aria-label="Primary Navigation">
+        <ul>
+          <li><a href="index.html">Work</a></li>
+          <li><a href="photos.html">Photography</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="current">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-controls">
+      <a href="Riley Sligting Resume.pdf" download class="resume-btn" aria-label="Download Resume">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Resume
+      </a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
+      </div>
     </header>
     
     <main>
-        <!-- Main Title Section -->
-        <section class="mainTitle">
-            <h1 class="fadein">Contact Me</h1>
-            <div class="fadein">
-                <p class="bodyCopyContact">Got a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
-            </div>
+      <div class="contact-hero">
+        <section class="contact-form">
+          <h1>Contact Me</h1>
+          <p>I'd love to hear from you! Please fill out the form below to get in touch.</p>
+          <iframe 
+            class="clickup-embed clickup-dynamic-height" 
+            src="https://forms.clickup.com/9014506678/p/f/8cmwx5p-494/ZPV8LO32E6UC00DR6I/form" 
+            onwheel="" 
+            width="100%" 
+            height="100%" 
+            style="background: transparent; border: 1px solid #ccc;">
+          </iframe>
+          <script async src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js"></script>
         </section>
-
-        <!-- Contact Form Section -->
-        <section class="fadein">
-            <form id="contactForm">
-                <label for="name">Name<span>*</span></label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                
-                <label for="email">Email address<span>*</span></label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+      </div>
     </main>
 
     <footer>
-        <div class="footer-section">
-            <p class="fadein">Riley Sligting</p>
-          </div>
-          <div class="footer-section">
-            <p class="fadein"><a href="tel:(801)906-3543">(801) 906-3543</a></p>
-            <p class="fadein"><a href="mailto:riley@sligting.com">riley@sligting.com</a></p>
-          </div>
+        <p>© <span id="year"></span> Riley Sligting | <a href="mailto:riley@sligting.com">riley@sligting.com</a></p>
+        <p>
+          <a href="https://www.instagram.com/r.s.design.art/" target="_blank" rel="noopener">Instagram</a> •
+          <a href="https://www.linkedin.com/in/rileysligting/" target="_blank" rel="noopener">LinkedIn</a>
+        </p>
     </footer>
 
-    <script src="js/circular Mouse Pointer.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/fadein.js"></script>
-    <script src="js/colorFillWhite.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function(){
-    emailjs.init("lKxe-tFRVNu3sj_yt"); // Replace with your EmailJS public key
-  })();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
