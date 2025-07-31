@@ -1405,28 +1405,27 @@ body.lightbox-active {
     overflow-x: auto;
     display: flex;
     gap: 0.5rem;
-    padding: 0 2rem; /* Reduced padding for better mobile experience */
-    /* Enable smooth scrolling on mobile */
+    padding: 0 2rem;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+    -webkit-overflow-scrolling: touch;
   }
   
   .lightbox-thumbnails img {
     height: 100%;
     width: auto;
     margin-bottom: 0;
-    flex-shrink: 0; /* Prevent images from shrinking */
+    flex-shrink: 0;
   }
   
   .lightbox-main {
-    height: calc(100% - 100px); /* Account for thumbnails container */
+    height: calc(100% - 100px);
   }
   
   .lightbox-prev, .lightbox-next {
-    bottom: 100px; /* Position above thumbnails with more space */
+    bottom: 100px;
     top: auto;
     transform: none;
-    z-index: 1002; /* Ensure buttons are above thumbnails */
+    z-index: 1002;
   }
   
   .lightbox-prev {
@@ -1443,6 +1442,7 @@ body.lightbox-active {
     height: 48px;
     font-size: 1.8rem;
     background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%; /* ADD THIS LINE - keeps buttons round on mobile */
   }
   
   .lightbox-btn:hover {
