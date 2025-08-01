@@ -726,9 +726,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Main title fade effect
   initializeMainTitleFade();
   
-  // Scroll-driven video
-  initializeScrollVideo();
-  
   // Grid repositioning
   initializeGridRepositioning();
   

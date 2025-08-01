@@ -1815,3 +1815,40 @@ body.lightbox-active {
   display: flex;
   flex-direction: column;
 }
+
+/* Project Gallery Lightbox Support */
+.project-gallery .scene,
+.project-featured .scene {
+    width: 100%;
+    height: fit-content;
+}
+
+.project-gallery .card,
+.project-featured .card {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.project-gallery .card:hover,
+.project-featured .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px 0 rgba(0,0,0,0.25), 0 4px 12px 0 rgba(0,0,0,0.15);
+}
+
+.project-gallery .card img,
+.project-featured .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ensure featured items maintain their styling */
+.project-featured .scene {
+    max-width: 1200px;
+    margin: 0 auto;
+}
