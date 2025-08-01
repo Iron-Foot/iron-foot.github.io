@@ -1485,57 +1485,40 @@ body.lightbox-active {
   margin-bottom: 0;
 }
 
-/* Project Video Section - Scroll-driven */
+/* Project Video Section - Regular Looping Video */
 .project-video {
-  height: 300vh; /* Make the section 3x viewport height to allow for scroll duration */
-  position: relative;
+  padding: 2rem;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .video-container {
-  position: sticky;
-  top: 80px;
-  max-width: 100vw;
-  width: 100vw;
-  height: calc(100vh - 80px);
-  border-radius: 0;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: none;
-  display: flex; /* Add flex to center the video */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+  background: #000;
 }
 
 .video-container video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center; /* Ensure it's centered when cropping */
+  height: auto;
   display: block;
 }
 
 /* Responsive adjustments for project video */
 @media (max-width: 900px) {
   .project-video {
-    height: 250vh; /* Slightly shorter on mobile */
-  }
-  
-  .video-container {
-    top: 80px; /* Maintain header spacing on mobile */
-    height: calc(100vh - 80px);
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 600px) {
   .project-video {
-    height: 200vh; /* Even shorter on very small screens */
-  }
-  
-  .video-container {
-    top: 80px; /* Maintain header spacing on mobile */
-    height: calc(100vh - 80px);
+    padding: 1rem;
   }
 }
 
@@ -1693,10 +1676,10 @@ body.lightbox-active {
   height: fit-content;
 }
 
-.project-item:hover {
+/*.project-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px 0 rgba(0,0,0,0.25), 0 4px 12px 0 rgba(0,0,0,0.15);
-}
+}*/
 
 .project-item img {
   width: 100%;
@@ -1713,7 +1696,7 @@ body.lightbox-active {
 }
 
 .featured-item {
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
   border-radius: var(--radius);
   overflow: hidden;
