@@ -1306,14 +1306,14 @@ body.lightbox-active {
   margin-bottom: 1rem;
   cursor: pointer;
   opacity: 0.5;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease; /* Removed transform transition */
   border: 2px solid transparent;
   /* REMOVED: scroll-snap-align property */
 }
 
 .lightbox-thumbnails img:hover {
   opacity: 0.75;
-  transform: scale(1.05);
+  /* REMOVED: transform: scale(1.05); */
 }
 
 .lightbox-thumbnails img.active {

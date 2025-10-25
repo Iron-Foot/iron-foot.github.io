@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
         </div>
       </div>
-      <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
+a      <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
     `;
   }
 
@@ -494,7 +494,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Populate thumbnails
   photos.forEach((photo, index) => {
-    const imgSrc = photo.querySelector('img').src;
+    const img = photo.querySelector('img');
+    const imgSrc = img.currentSrc || img.src; // Use currentSrc (what browser chose) or fallback to src
+    
     const thumb = document.createElement('img');
     thumb.src = imgSrc;
     thumb.addEventListener('click', () => {
@@ -521,8 +523,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index === currentIndex) return;
     currentIndex = index;
     const photo = photos[currentIndex];
-    const imgSrc = photo.querySelector('img').src;
-    const imgAlt = photo.querySelector('img').alt;
+    const img = photo.querySelector('img');
+    
+    // Get the largest image from srcset for lightbox display
+    let imgSrc = img.currentSrc || img.src;
+    
+    // If srcset exists, parse it and get the largest image
+    if (img.srcset) {
+      const srcsetArray = img.srcset.split(',').map(s => s.trim().split(' '));
+      // Get the last item (largest resolution)
+      const largestSrc = srcsetArray[srcsetArray.length - 1][0];
+      imgSrc = largestSrc;
+    }
+    
+    const imgAlt = img.alt;
 
     mainImage.src = imgSrc;
     mainImage.alt = imgAlt;
