@@ -59,6 +59,7 @@
         <section class="project-video">
             <div class="video-container">
                 <video autoplay muted loop playsinline>
+                    <source src="vid/ActionTarget-TacHouse_1.webm" type="video/webm">
                     <source src="vid/ActionTarget-TacHouse.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -67,24 +68,47 @@
         
         <section class="project-gallery">
             <div class="project-grid">
-                <div class="project-item">
-                    <img src="img/ActionTarget-SRADisplay.webp" loading="lazy" alt="SRA Display Design">
+                <div class="scene">
+                    <a class="card photo-item" href="#">
+                        <img src="img/ActionTarget-SRADisplay.webp" loading="lazy" alt="SRA Display Design">
+                    </a>
                 </div>
-                <div class="project-item">
-                    <img src="img/ActionTarget-StoreCat.webp" loading="lazy" alt="Store Catalog Design">
+                <div class="scene">
+                    <a class="card photo-item" href="#">
+                        <img src="img/ActionTarget-StoreCat.webp" loading="lazy" alt="Store Catalog Design">
+                    </a>
                 </div>
-                <div class="project-item">
-                    <img src="img/ActionTarget-Patch.webp" loading="lazy" alt="Tactical Patch Design">
+                <div class="scene">
+                    <a class="card photo-item" href="#">
+                        <img src="img/ActionTarget-Patch.webp" loading="lazy" alt="Tactical Patch Design">
+                    </a>
                 </div>
-                <div class="project-item">
-                    <img src="img/ActionTarget-Sticker.webp" loading="lazy" alt="Sticker Design">
+                <div class="scene">
+                    <a class="card photo-item" href="#">
+                        <img src="img/ActionTarget-Sticker.webp" loading="lazy" alt="Sticker Design">
+                    </a>
                 </div>
-                <div class="project-item">
-                    <img src="img/ActionTarget-Buff.webp" loading="lazy" alt="Buff Design">
+                <div class="scene">
+                    <a class="card photo-item" href="#">
+                        <img src="img/ActionTarget-Buff.webp" loading="lazy" alt="Buff Design">
+                    </a>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Add Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-container">
+            <div class="lightbox-thumbnails"></div>
+            <div class="lightbox-main">
+                <button class="lightbox-btn lightbox-prev" aria-label="Previous image">‹</button>
+                <img src="" alt="Enlarged photo" />
+                <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
+            </div>
+        </div>
+        <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
+    </div>
 
     <footer class="project-footer">
             <ul>

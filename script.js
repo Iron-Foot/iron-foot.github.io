@@ -1,9 +1,96 @@
+// =================================================
+// TABLE OF CONTENTS
+// =================================================
+/*
+1. UTILITIES & HELPERS
+   - Year Update
+   - Debounce Function
+   - DOM Query Shortcuts ($, $$)
+   - DOM Cache Object
+
+2. THEME MANAGEMENT
+   - ThemeManager Class
+   - Theme Toggle Logic
+   - Logo Updates (Dark/Light)
+
+3. CARD INTERACTIONS
+   - 3D Tilt Effects
+   - Push-button Pressed Effects
+
+4. HEADER & NAVIGATION
+   - Sticky Header Glass Effect
+   - Hamburger Menu Logic
+   - Mobile Menu Handling
+
+5. ANIMATIONS & VISUAL EFFECTS
+   - Sequential Pop-in Animation
+   - Main Title Fade on Scroll
+   - Intersection Observer Setup
+
+6. PHOTO GRID & MASONRY
+   - Photo Grid Layout (Pinterest-style)
+   - Responsive Grid Repositioning
+   - Image Loading Optimization
+
+7. LIGHTBOX VIEWER
+   - Global Lightbox Photo Viewer
+   - Scroll-to-Select Navigation
+   - Keyboard & Touch Controls
+
+8. QUOTE SLIDER
+   - Auto-cycling Quote Slider
+   - Navigation Dots
+   - Manual Controls & Auto-pause
+
+9. FORM HANDLING
+   - Contact Form Submission
+   - Error Handling & Status Updates
+
+10. PERFORMANCE OPTIMIZATION
+    - Optimized Scroll Handlers
+    - Image Lazy Loading
+    - Event Delegation
+*/
+// =================================================
+// 1. UTILITIES & HELPERS
+// =================================================
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// ──────────────── Theme-toggle logic ──────────────
+// Create a single, reusable debounce utility
+function debounce(func, wait, immediate = false) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      timeout = null;
+      if (!immediate) func(...args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func(...args);
+  };
+}
+
+// Use modern JavaScript features more efficiently
+const $ = (selector, context = document) => context.querySelector(selector);
+const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+
+// Cache DOM queries
+const DOM = {
+  header: $('header'),
+  mainTitle: $('.mainTitle'),
+  hamburger: $('#hamburger'),
+  nav: $('nav'),
+  photoGrid: $('.photo-grid'),
+  quoteTrack: $('.quote-track')
+};
+
+// =================================================
+// 2. THEME MANAGEMENT
+// =================================================
 class ThemeManager {
   constructor() {
     this.root = document.documentElement;
@@ -63,6 +150,9 @@ class ThemeManager {
 // Initialize theme manager
 const themeManager = new ThemeManager();
 
+// =================================================
+// 3. CARD INTERACTIONS
+// =================================================
 // 3-D tilt effect for .card (Bento-Box style, responds to mouse near the card)
 const maxTilt = 7; // degrees at edges
 document.querySelectorAll('.scene').forEach(scene => {
@@ -82,7 +172,8 @@ document.querySelectorAll('.scene').forEach(scene => {
     card.style.transform = 'rotateX(0) rotateY(0)';
   });
 });
-// ––––––––––––– Push-button pressed effect –––––––––––
+
+// Push-button pressed effect
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('pointerdown', () => card.classList.add('pressed'));
   const release = () => card.classList.remove('pressed');
@@ -90,13 +181,55 @@ document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('pointerleave',release);
 });
 
-// ───────────── Sticky-header glass effect ───────────
+// =================================================
+// 4. HEADER & NAVIGATION
+// =================================================
+// Sticky-header glass effect
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 10);
 });
 
-// ─────────────── Sequential pop-in animation on visible ──────────────
+// Hamburger Menu Logic
+const hamburger = document.getElementById('hamburger');
+const nav = document.querySelector('nav');
+
+if (hamburger && nav) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (nav.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on a link
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// =================================================
+// 5. ANIMATIONS & VISUAL EFFECTS
+// =================================================
+// Sequential pop-in animation on visible
 window.addEventListener('DOMContentLoaded', () => {
   const scenes = Array.from(document.querySelectorAll('.scene'));
   const images = Array.from(document.querySelectorAll('.scene img'));
@@ -153,45 +286,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Contact Form Submission
-const form = document.getElementById('contactForm');
-const formStatus = document.getElementById('form-status');
-
-if (form) {
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            if (response.ok) {
-                formStatus.textContent = "Thanks for your submission!";
-                form.reset();
-            } else {
-                let errorMsg = `Error ${response.status}: ${response.statusText}`;
-                try {
-                    const data = await response.json();
-                    if (Object.hasOwn(data, 'errors')) {
-                        errorMsg += " - " + data["errors"].map(error => error["message"]).join(", ");
-                    } else if (data.message) {
-                        errorMsg += " - " + data.message;
-                    }
-                    formStatus.textContent = errorMsg;
-                } catch {
-                    formStatus.textContent = errorMsg;
-                }
-            }
-        } catch (error) {
-            formStatus.textContent = `Network error: ${error.message}`;
-        }
-    });
-}
-
 // Fade out main title on scroll
 document.addEventListener('DOMContentLoaded', function() {
   const mainTitle = document.querySelector('.mainTitle');
@@ -243,6 +337,9 @@ document.addEventListener('DOMContentLoaded', function() {
   handleScroll();
 });
 
+// =================================================
+// 6. PHOTO GRID & MASONRY
+// =================================================
 // Robust Masonry Grid Layout for Photos Page
 function initializePhotoGrid() {
   const grid = document.querySelector('.photo-grid');
@@ -289,364 +386,6 @@ function initializePhotoGrid() {
 
 // Run the function
 initializePhotoGrid();
-
-// =================================================
-// Lightbox Photo Viewer Script (Global Scroll-to-Select)
-// =================================================
-document.addEventListener('DOMContentLoaded', () => {
-  const photoGrid = document.querySelector('.photo-grid');
-  if (!photoGrid) return;
-
-  const photos = Array.from(photoGrid.querySelectorAll('.card'));
-  if (photos.length === 0) return;
-
-  // Create lightbox elements once
-  const lightbox = document.createElement('div');
-  lightbox.className = 'lightbox';
-  document.body.appendChild(lightbox);
-
-  lightbox.innerHTML = `
-    <div class="lightbox-container">
-      <div class="lightbox-thumbnails"></div>
-      <div class="lightbox-main">
-        <button class="lightbox-btn lightbox-prev" aria-label="Previous image">‹</button>
-        <img src="" alt="Enlarged photo" />
-        <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
-      </div>
-    </div>
-    <button class="lightbox-btn lightbox-close" aria-label="Close viewer">&times;</button>
-  `;
-
-  const mainImage = lightbox.querySelector('.lightbox-main img');
-  const thumbnailsContainer = lightbox.querySelector('.lightbox-thumbnails');
-  const closeBtn = lightbox.querySelector('.lightbox-close');
-  const nextBtn = lightbox.querySelector('.lightbox-next');
-  const prevBtn = lightbox.querySelector('.lightbox-prev');
-
-  let currentIndex = -1;
-  let scrollTimeout;
-
-  // Populate thumbnails
-  photos.forEach((photo, index) => {
-    const imgSrc = photo.querySelector('img').src;
-    const thumb = document.createElement('img');
-    thumb.src = imgSrc;
-    thumb.addEventListener('click', () => {
-      updateMainImage(index); // Add this line
-      if (window.innerWidth <= 800) {
-        thumb.scrollIntoView({ 
-          behavior: 'smooth', 
-          inline: 'center',
-          block: 'nearest'
-        });
-      } else {
-        thumb.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
-      }
-    });
-    thumbnailsContainer.appendChild(thumb);
-  });
-
-  const thumbnailImages = thumbnailsContainer.querySelectorAll('img');
-
-  function updateMainImage(index) {
-    if (index === currentIndex) return;
-    currentIndex = index;
-    const photo = photos[currentIndex];
-    const imgSrc = photo.querySelector('img').src;
-    const imgAlt = photo.querySelector('img').alt;
-
-    mainImage.src = imgSrc;
-    mainImage.alt = imgAlt;
-
-    thumbnailImages.forEach(thumb => thumb.classList.remove('active'));
-    thumbnailImages[currentIndex].classList.add('active');
-  }
-
-  function findCenterThumbnail() {
-    if (window.innerWidth <= 800) {
-      // Mobile: Use horizontal center for horizontal thumbnail strip
-      const viewportCenterX = window.innerWidth / 2;
-      
-      let closestIndex = 0;
-      let minDistance = Infinity;
-
-      thumbnailImages.forEach((thumb, index) => {
-        const thumbRect = thumb.getBoundingClientRect();
-        // Find the thumbnail's center relative to the viewport horizontally
-        const thumbCenterX = thumbRect.left + thumbRect.width / 2;
-        
-        // Check its distance from the viewport's horizontal center
-        const distance = Math.abs(viewportCenterX - thumbCenterX);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = index;
-        }
-      });
-      updateMainImage(closestIndex);
-    } else {
-      // Desktop: Use vertical center for vertical thumbnail strip
-      const viewportCenterY = window.innerHeight / 2;
-
-      let closestIndex = 0;
-      let minDistance = Infinity;
-
-      thumbnailImages.forEach((thumb, index) => {
-        const thumbRect = thumb.getBoundingClientRect();
-        // Find the thumbnail's center relative to the viewport vertically
-        const thumbCenterY = thumbRect.top + thumbRect.height / 2;
-        
-        // Check its distance from the viewport's vertical center
-        const distance = Math.abs(viewportCenterY - thumbCenterY);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIndex = index;
-        }
-      });
-      updateMainImage(closestIndex);
-    }
-  }
-
-  // Use requestAnimationFrame for smooth, instant selection on scroll
-  let isScrolling = null;
-  thumbnailsContainer.addEventListener('scroll', () => {
-    if (isScrolling) {
-      window.cancelAnimationFrame(isScrolling);
-    }
-    isScrolling = window.requestAnimationFrame(findCenterThumbnail);
-  });
-
-  // NEW: Handle global mouse wheel scrolling with mobile consideration
-  function handleWheelScroll(e) {
-    // Only prevent default on desktop to allow mobile touch scrolling
-    if (window.innerWidth > 800) {
-      e.preventDefault(); // Prevent default window scroll on desktop
-      thumbnailsContainer.scrollTop += e.deltaY;
-    } else {
-      // On mobile, let the thumbnails container handle horizontal scrolling
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        e.preventDefault();
-        thumbnailsContainer.scrollLeft += e.deltaX;
-      }
-    }
-  }
-
-  function openLightbox(index) {
-    document.body.classList.add('lightbox-active'); // Disable body scroll
-    lightbox.classList.add('active');
-    
-    // Different scroll behavior for mobile vs desktop
-    if (window.innerWidth <= 800) {
-      // Mobile: horizontal scroll into view
-      thumbnailImages[index].scrollIntoView({ 
-        behavior: 'smooth', 
-        inline: 'center',
-        block: 'nearest'
-      });
-    } else {
-      // Desktop: vertical scroll into view
-      thumbnailImages[index].scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
-    }
-    
-    updateMainImage(index);
-    
-    window.addEventListener('keydown', handleKeydown);
-    window.addEventListener('wheel', handleWheelScroll, { passive: false });
-  }
-
-  function closeLightbox() {
-    document.body.classList.remove('lightbox-active'); // Re-enable body scroll
-    lightbox.classList.remove('active');
-    window.removeEventListener('keydown', handleKeydown);
-    window.removeEventListener('wheel', handleWheelScroll);
-  }
-
-  function showNext() {
-    const nextIndex = (currentIndex + 1) % photos.length;
-    updateMainImage(nextIndex); // Add this line
-    if (window.innerWidth <= 800) {
-      thumbnailImages[nextIndex].scrollIntoView({ 
-        behavior: 'smooth', 
-        inline: 'center',
-        block: 'nearest'
-      });
-    } else {
-      thumbnailImages[nextIndex].scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
-    }
-  }
-
-  function showPrev() {
-    const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
-    updateMainImage(prevIndex); // Add this line
-    if (window.innerWidth <= 800) {
-      thumbnailImages[prevIndex].scrollIntoView({ 
-        behavior: 'smooth', 
-        inline: 'center',
-        block: 'nearest'
-      });
-    } else {
-      thumbnailImages[prevIndex].scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-      });
-    }
-  }
-
-  function handleKeydown(e) {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-  }
-
-  photos.forEach((photo, index) => {
-    photo.addEventListener('click', (e) => {
-      e.preventDefault();
-      openLightbox(index);
-    });
-  });
-
-  closeBtn.addEventListener('click', closeLightbox);
-  nextBtn.addEventListener('click', showNext);
-  prevBtn.addEventListener('click', showPrev);
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-});
-
-// ──────────────── Hamburger Menu Logic ──────────────
-const hamburger = document.getElementById('hamburger');
-const nav = document.querySelector('nav');
-
-if (hamburger && nav) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-    
-    // Prevent body scroll when menu is open
-    if (nav.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  });
-
-  // Close menu when clicking on a link
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-}
-
-// Quote Slider
-document.addEventListener('DOMContentLoaded', () => {
-  const track = document.querySelector('.quote-track');
-  if (track) {
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.quote-next');
-    const prevButton = document.querySelector('.quote-prev');
-    let currentIndex = 0;
-
-    const updateSlides = () => {
-      track.style.transform = 'translateX(-' + 100 * currentIndex + '%)';
-    };
-
-    nextButton.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateSlides();
-    });
-
-    prevButton.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateSlides();
-    });
-
-    // Initialize
-    updateSlides();
-  }
-});
-
-// Load Quotes from JSON file
-function loadQuotes() {
-  fetch('quotes.json')
-    .then(response => response.json())
-    .then(data => {
-      const track = document.querySelector('.quote-track');
-      if (!track) return;
-
-      // Clear existing slides
-      track.innerHTML = '';
-
-      data.quotes.forEach(quote => {
-        const slide = document.createElement('div');
-        slide.className = 'quote-slide';
-        slide.innerHTML = `
-          <p class="quote-text">"${quote.text}"</p>
-          <p class="quote-author">— ${quote.author}</p>
-        `;
-        track.appendChild(slide);
-      });
-
-      // Re-initialize the slider with new slides
-      initializeQuoteSlider();
-    })
-    .catch(error => console.error('Error loading quotes:', error));
-}
-
-// Initialize quote slider
-function initializeQuoteSlider() {
-  const track = document.querySelector('.quote-track');
-  if (!track) return;
-
-  const slides = Array.from(track.children);
-  const nextButton = document.querySelector('.quote-next');
-  const prevButton = document.querySelector('.quote-prev');
-  let currentIndex = 0;
-
-  const updateSlides = () => {
-    track.style.transform = 'translateX(-' + 100 * currentIndex + '%)';
-  };
-
-  nextButton.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlides();
-  });
-
-  prevButton.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateSlides();
-  });
-
-  // Initialize
-  updateSlides();
-}
-
-// Load quotes on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  loadQuotes();
-});
 
 // Responsive Grid Reordering - Move Mafia Cards on medium screens
 document.addEventListener('DOMContentLoaded', () => {
@@ -706,109 +445,256 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Consolidate all DOMContentLoaded listeners into one
+// =================================================
+// 7. LIGHTBOX VIEWER
+// =================================================
+// Enhanced Lightbox Photo Viewer Script (Works on multiple page types)
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme and logo initialization
-  updateLogo();
+  // Look for either photo-grid or project-gallery
+  const photoGrid = document.querySelector('.photo-grid');
+  const projectGallery = document.querySelector('.project-gallery');
   
-  // Photo grid initialization
-  initializePhotoGrid();
-  
-  // Lightbox initialization
-  initializeLightbox();
-  
-  // Quote slider initialization
-  initializeQuoteSlider();
-  
-  // Hamburger menu initialization
-  initializeHamburgerMenu();
-  
-  // Main title fade effect
-  initializeMainTitleFade();
-  
-  // Grid repositioning
-  initializeGridRepositioning();
-  
-  // Sequential pop-in animation
-  initializePopInAnimation();
-});
+  const container = photoGrid || projectGallery;
+  if (!container) return; // Exit if neither exists
 
-// Use modern JavaScript features more efficiently
-const $ = (selector, context = document) => context.querySelector(selector);
-const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+  const photos = Array.from(container.querySelectorAll('.card'));
+  if (photos.length === 0) return;
 
-// Cache DOM queries
-const DOM = {
-  header: $('header'),
-  mainTitle: $('.mainTitle'),
-  hamburger: $('#hamburger'),
-  nav: $('nav'),
-  photoGrid: $('.photo-grid'),
-  quoteTrack: $('.quote-track')
-};
-
-// Use event delegation where possible
-document.addEventListener('click', (e) => {
-  if (e.target.matches('.card')) handleCardClick(e);
-  if (e.target.matches('.hamburger')) handleHamburgerClick(e);
-  if (e.target.matches('.quote-nav')) handleQuoteNav(e);
-});
-
-// Create a single, reusable debounce utility
-function debounce(func, wait, immediate = false) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      timeout = null;
-      if (!immediate) func(...args);
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func(...args);
-  };
-}
-
-// Optimize scroll handlers
-const optimizedScrollHandler = debounce(() => {
-  handleHeaderScroll();
-  handleMainTitleFade();
-  handleScrollVideo();
-}, 16); // ~60fps
-
-window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-
-// Single intersection observer for all animations
-const createOptimizedObserver = (callback, options = {}) => {
-  const defaultOptions = {
-    threshold: 0.1,
-    rootMargin: '50px'
-  };
+  // Check if lightbox already exists in HTML, otherwise create it
+  let lightbox = document.querySelector('.lightbox');
   
-  return new IntersectionObserver(callback, { ...defaultOptions, ...options });
-};
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    document.body.appendChild(lightbox);
 
-// Optimize image loading
-function optimizeImages() {
-  const images = document.querySelectorAll('img[data-src]');
-  
-  const imageObserver = createOptimizedObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.classList.remove('lazy');
-        imageObserver.unobserve(img);
+    lightbox.innerHTML = `
+      <div class="lightbox-container">
+        <div class="lightbox-thumbnails"></div>
+        <div class="lightbox-main">
+          <button class="lightbox-btn lightbox-prev" aria-label="Previous image">‹</button>
+          <img src="" alt="Enlarged photo" />
+          <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
+        </div>
+      </div>
+      <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
+    `;
+  }
+
+  const mainImage = lightbox.querySelector('.lightbox-main img');
+  const thumbnailsContainer = lightbox.querySelector('.lightbox-thumbnails');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const nextBtn = lightbox.querySelector('.lightbox-next');
+  const prevBtn = lightbox.querySelector('.lightbox-prev');
+
+  let currentIndex = -1;
+
+  // Clear existing thumbnails (in case of re-initialization)
+  thumbnailsContainer.innerHTML = '';
+
+  // Populate thumbnails
+  photos.forEach((photo, index) => {
+    const imgSrc = photo.querySelector('img').src;
+    const thumb = document.createElement('img');
+    thumb.src = imgSrc;
+    thumb.addEventListener('click', () => {
+      updateMainImage(index);
+      if (window.innerWidth <= 800) {
+        thumb.scrollIntoView({ 
+          behavior: 'smooth', 
+          inline: 'center',
+          block: 'nearest'
+        });
+      } else {
+        thumb.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
       }
     });
+    thumbnailsContainer.appendChild(thumb);
   });
+
+  const thumbnailImages = thumbnailsContainer.querySelectorAll('img');
+
+  function updateMainImage(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+    const photo = photos[currentIndex];
+    const imgSrc = photo.querySelector('img').src;
+    const imgAlt = photo.querySelector('img').alt;
+
+    mainImage.src = imgSrc;
+    mainImage.alt = imgAlt;
+
+    thumbnailImages.forEach(thumb => thumb.classList.remove('active'));
+    thumbnailImages[currentIndex].classList.add('active');
+  }
+
+  function findCenterThumbnail() {
+    if (window.innerWidth <= 800) {
+      // Mobile: Use horizontal center
+      const viewportCenterX = window.innerWidth / 2;
+      
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      thumbnailImages.forEach((thumb, index) => {
+        const thumbRect = thumb.getBoundingClientRect();
+        const thumbCenterX = thumbRect.left + thumbRect.width / 2;
+        const distance = Math.abs(viewportCenterX - thumbCenterX);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+      updateMainImage(closestIndex);
+    } else {
+      // Desktop: Use vertical center
+      const viewportCenterY = window.innerHeight / 2;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      thumbnailImages.forEach((thumb, index) => {
+        const thumbRect = thumb.getBoundingClientRect();
+        const thumbCenterY = thumbRect.top + thumbRect.height / 2;
+        const distance = Math.abs(viewportCenterY - thumbCenterY);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+      updateMainImage(closestIndex);
+    }
+  }
+
+  let isScrolling = null;
+  thumbnailsContainer.addEventListener('scroll', () => {
+    if (isScrolling) {
+      window.cancelAnimationFrame(isScrolling);
+    }
+    isScrolling = window.requestAnimationFrame(findCenterThumbnail);
+  });
+
+  function handleWheelScroll(e) {
+    if (window.innerWidth > 800) {
+      e.preventDefault();
+      thumbnailsContainer.scrollTop += e.deltaY;
+    } else {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        thumbnailsContainer.scrollLeft += e.deltaX;
+      }
+    }
+  }
+
+  function openLightbox(index) {
+    document.body.classList.add('lightbox-active');
+    lightbox.classList.add('active');
+    
+    if (window.innerWidth <= 800) {
+      thumbnailImages[index].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      thumbnailImages[index].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+    
+    updateMainImage(index);
+    
+    window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('wheel', handleWheelScroll, { passive: false });
+  }
+
+  function closeLightbox() {
+    document.body.classList.remove('lightbox-active');
+    lightbox.classList.remove('active');
+    window.removeEventListener('keydown', handleKeydown);
+    window.removeEventListener('wheel', handleWheelScroll);
+  }
+
+  function showNext() {
+    const nextIndex = (currentIndex + 1) % photos.length;
+    updateMainImage(nextIndex);
+    if (window.innerWidth <= 800) {
+      thumbnailImages[nextIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      thumbnailImages[nextIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+  }
+
+  function showPrev() {
+    const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
+    updateMainImage(prevIndex);
+    if (window.innerWidth <= 800) {
+      thumbnailImages[prevIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        inline: 'center',
+        block: 'nearest'
+      });
+    } else {
+      thumbnailImages[prevIndex].scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
+  }
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  }
+
+  // Add event listeners for all interactive elements
+  photos.forEach((photo, index) => {
+    photo.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+
+  // Close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeLightbox);
+  }
   
-  images.forEach(img => imageObserver.observe(img));
-}
+  // Navigation buttons
+  if (nextBtn) {
+    nextBtn.addEventListener('click', showNext);
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', showPrev);
+  }
 
-// Call optimizeImages on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', optimizeImages);
+  // Click background to close - THIS IS THE KEY FIX
+  lightbox.addEventListener('click', (e) => {
+    // Check if click is directly on lightbox background (not on children)
+    if (e.target === lightbox || e.target.classList.contains('lightbox')) {
+      closeLightbox();
+    }
+  });
+});
 
+// =================================================
+// 8. QUOTE SLIDER
+// =================================================
 // Quote Slider with Auto-cycling
 document.addEventListener('DOMContentLoaded', () => {
   const quoteSlider = document.querySelector('.quote-slider');
@@ -895,4 +781,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial setup
   updateSlider();
+});
+
+// =================================================
+// 9. FORM HANDLING
+// =================================================
+// Contact Form Submission
+const form = document.getElementById('contactForm');
+const formStatus = document.getElementById('form-status');
+
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                formStatus.textContent = "Thanks for your submission!";
+                form.reset();
+            } else {
+                let errorMsg = `Error ${response.status}: ${response.statusText}`;
+                try {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        errorMsg += " - " + data["errors"].map(error => error["message"]).join(", ");
+                    } else if (data.message) {
+                        errorMsg += " - " + data.message;
+                    }
+                    formStatus.textContent = errorMsg;
+                } catch {
+                    formStatus.textContent = errorMsg;
+                }
+            }
+        } catch (error) {
+            formStatus.textContent = `Network error: ${error.message}`;
+        }
+    });
+}
+
+// =================================================
+// 10. PERFORMANCE OPTIMIZATION
+// =================================================
+// Single intersection observer for all animations
+const createOptimizedObserver = (callback, options = {}) => {
+  const defaultOptions = {
+    threshold: 0.1,
+    rootMargin: '50px'
+  };
+  
+  return new IntersectionObserver(callback, { ...defaultOptions, ...options });
+};
+
+// Optimize image loading
+function optimizeImages() {
+  const images = document.querySelectorAll('img[data-src]');
+  
+  const imageObserver = createOptimizedObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => imageObserver.observe(img));
+}
+
+// Call optimizeImages on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', optimizeImages);
+
+// Optimize scroll handlers
+const optimizedScrollHandler = debounce(() => {
+  handleHeaderScroll();
+  handleMainTitleFade();
+  handleScrollVideo();
+}, 16); // ~60fps
+
+window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+
+// Use event delegation where possible
+document.addEventListener('click', (e) => {
+  if (e.target.matches('.card')) handleCardClick(e);
+  if (e.target.matches('.hamburger')) handleHamburgerClick(e);
+  if (e.target.matches('.quote-nav')) handleQuoteNav(e);
 });
