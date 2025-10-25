@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="lightbox-btn lightbox-next" aria-label="Next image">›</button>
         </div>
       </div>
-a      <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
+      <button class="lightbox-btn lightbox-close" aria-label="Close viewer">×</button>
     `;
   }
 
