@@ -314,6 +314,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mainTitle) {
       mainTitle.style.opacity = opacity;
+      
+      // Also add hidden class to disable pointer events
+      if (scrollY > viewportHeight * FADE_COMPLETE_RATIO) {
+        mainTitle.classList.add('hidden');
+      } else {
+        mainTitle.classList.remove('hidden');
+      }
+    }
+    
+    // Hide scroll indicator after scrolling down a bit
+    if (scrollIndicator) {
+      if (scrollY > 100) {
+        scrollIndicator.classList.add('hidden');
+      } else {
+        scrollIndicator.classList.remove('hidden');
+      }
     }
   }
   

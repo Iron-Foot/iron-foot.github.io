@@ -1100,17 +1100,13 @@ body.contact-page footer a:hover {
   width: 100%;
   z-index: 1; /* Behind the portfolio content */
   transition: opacity 0.5s ease-out;
+  pointer-events: auto; /* Allow clicks when visible */
 }
 
-.mainTitle h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  margin-bottom: 0.5rem;
-}
-
-.mainTitle p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.8;
+/* Hide the entire mainTitle container when scrolled */
+.mainTitle.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent any clicks when hidden */
 }
 
 /* Call-to-action buttons */
@@ -1155,6 +1151,13 @@ body.contact-page footer a:hover {
   opacity: 0.7;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 5; /* Add z-index to ensure proper stacking */
+  pointer-events: auto; /* Allow clicks when visible */
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent clicks when hidden */
 }
 
 .scroll-indicator:hover {
