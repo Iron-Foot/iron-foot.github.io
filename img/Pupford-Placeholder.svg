@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="Pupford artwork placeholder">
+  <style>
+    .bg { fill: #e9e9e9; }
+    .fg { fill: #9a9a9a; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #262626; }
+      .fg { fill: #6e6e6e; }
+    }
+  </style>
+  <rect class="bg" width="800" height="800"/>
+  <g class="fg" transform="translate(400 370)">
+    <!-- simple paw mark -->
+    <ellipse cx="0" cy="40" rx="86" ry="70"/>
+    <ellipse cx="-96" cy="-38" rx="34" ry="44" transform="rotate(-18 -96 -38)"/>
+    <ellipse cx="-34" cy="-84" rx="34" ry="46"/>
+    <ellipse cx="34" cy="-84" rx="34" ry="46"/>
+    <ellipse cx="96" cy="-38" rx="34" ry="44" transform="rotate(18 96 -38)"/>
+  </g>
+  <text class="fg" x="400" y="600" text-anchor="middle"
+        font-family="Inter, system-ui, sans-serif" font-size="34" letter-spacing="6">PUPFORD</text>
+  <text class="fg" x="400" y="646" text-anchor="middle"
+        font-family="Inter, system-ui, sans-serif" font-size="22" letter-spacing="2">Artwork coming soon</text>
+</svg>
