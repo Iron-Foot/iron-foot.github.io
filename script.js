@@ -353,6 +353,54 @@ document.addEventListener('DOMContentLoaded', function() {
   handleScroll();
 });
 
+// Expanding stack: the stack is pinned (position: sticky) so cycling which
+// item is expanded never resizes the document and fights the user's scroll.
+// Each item's height is a continuous function of scroll position (no CSS
+// transition) so fast scrolling can't skip past an item's expanded state,
+// and the baseline collapsed height is derived from the viewport so the
+// whole stack always sums to exactly 100vh - it never overflows the page.
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.querySelector('.expand-stack-wrapper');
+  const items = Array.from(document.querySelectorAll('.expand-item[data-expand]'));
+  if (!wrapper || items.length === 0) return;
+
+  const n = items.length;
+
+  function update() {
+    const rect = wrapper.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const scrollable = rect.height - vh;
+    const progress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
+    const cursor = progress * n; // continuous position over the item slots (0..n)
+
+    // Collapsed items never take more than 70% of the viewport combined,
+    // leaving the rest to pan into whichever item is active.
+    const minHeight = Math.min(50, (vh * 0.7) / n);
+    const extra = vh - n * minHeight;
+
+    const weights = items.map((_, i) => Math.max(0, 1 - Math.abs(cursor - (i + 0.5))));
+    const weightSum = weights.reduce((a, b) => a + b, 0) || 1;
+
+    items.forEach((item, i) => {
+      const weight = weights[i] / weightSum;
+      item.style.height = `${minHeight + extra * weight}px`;
+      item.classList.toggle('expanded', weights[i] > 0.5);
+    });
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => { update(); ticking = false; });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+});
+
 // =================================================
 // 6. PHOTO GRID & MASONRY
 // =================================================

@@ -427,6 +427,77 @@ nav a.current:hover {
   min-height: 100vh; 
 }
 
+/* ======= Expanding Stack Sections ======= */
+/* Pinned viewport: page scrolls through this wrapper's height while the
+   stack itself stays fixed in place, avoiding reflow-driven scroll jumps. */
+.expand-stack-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(var(--item-count, 5) * 100vh);
+  margin-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+.expand-stack {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.expand-item {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  /* height is scrubbed directly from scroll position in JS every frame -
+     no transition here, or it lags behind fast scrolling and looks like
+     items get skipped */
+}
+
+.expand-item .expand-media {
+  position: absolute;
+  inset: 0;
+}
+
+.expand-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.expand-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+.expand-item.expanded .expand-caption {
+  opacity: 1;
+}
+
+.expand-caption h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expand-item { transition: none !important; }
+  .expand-caption { transition: none !important; }
+}
+
 /* ======= Grid ======= */
 .grid {                           /* ⬇︎ bigger boxes */
   display: grid;
