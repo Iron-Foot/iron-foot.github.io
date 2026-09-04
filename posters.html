@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Posters</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,53 +51,123 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Poster 73</h1>
-            <p>Poster 73 is based on the idea of reflecting others. Every element on this poster is a symbol of a reflection. The prime number 73 reflecting the prime number 37. 73 written in binary 10101 is an anagram. Picking up the pen to reflect the world.</p>
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Poster design &nbsp;/&nbsp; Two pieces</p>
+                    <h1>Posters</h1>
+                    <p class="case-hero__lede">Two posters, two very different briefs: a self-portrait built from the number 73, and a three-colour series on watch maintenance.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Print posters</span></li>
+                    <li><span class="meta-key">Pieces</span><span class="meta-val">Poster 73; Watch Maintenance</span></li>
+                    <li><span class="meta-key">Formats</span><span class="meta-val">Single framed print; series of three</span></li>
+                </ul>
+            </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Me-Poster-Mockup-Wide.webp" loading="lazy" alt="Poster 73 Mockup">
-                    </a>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Poster 73" style="--focus: 50% 50%">
+            <img src="img/Me-Poster-Mockup-Wide.webp" alt="Poster 73 framed in black on a pale wall, large numerals 73 cut through by a hand holding a pen">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Poster 73</p>
+                    <strong>Framed, on the wall</strong>
+                </div>
+                <p class="spec">Single sheet &middot; black on black</p>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 01: Poster 73 ============ -->
+        <section class="study-chapter project-gallery" aria-labelledby="ch-1">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <h2 id="ch-1">Poster 73</h2>
+                    <p class="spec">Self-portrait &middot; one sheet</p>
+                </div>
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Reflection</p>
+                        <h3>Every element on the sheet is a mirror of something else.</h3>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>Poster 73 is built on the idea of reflecting others. The prime number 73 mirrors the prime number 37. Written in binary, 1001001, it reads the same in both directions. The hand picking up the pen stands for reflecting the world back.</p>
+                        <p>The piece is set black on black, with the numerals cut through by the hand and a row of moon phases across the top as one more mirrored sequence.</p>
+                    </div>
+                </div>
+                <div class="study-grid study-grid--1">
+                    <figure class="study-fig reveal" style="--ar: 16 / 10; --focus: 50% 50%">
+                        <a class="card photo-item" href="img/Poster-73.webp" aria-label="View larger: Poster 73 framed on a wall, close view">
+                            <img src="img/Poster-73.webp" loading="lazy" alt="Poster 73 framed on a wall, close view">
+                        </a>
+                        <figcaption><span>Poster 73, framed</span><span class="n">01</span></figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
-        
-        <section class="project-hero">
-            <h1>Watch Maintenance</h1>
-            <p>A minimalist poster exploring the intricate beauty of timepiece mechanics and the art of precision maintenance.</p>
-        </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Poster-Watches.webp" loading="lazy" alt="Watch Maintenance Poster">
-                    </a>
+
+        <!-- ============ CHAPTER 02: Watch Maintenance ============ -->
+        <section class="study-chapter project-gallery" aria-labelledby="ch-2">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <h2 id="ch-2">Watch Maintenance</h2>
+                    <p class="spec">Series of three &middot; red, green, blue</p>
                 </div>
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">02 &mdash; Series</p>
+                        <h3>One layout, three colours, built to hang as a row.</h3>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>A set of three posters on the care of mechanical watches, one per colour, designed to hang together in a shop window. Each sheet pairs a large watch face with a column of Roman numerals and a short block of copy, so the series reads as one system from across the street and as three separate sheets up close.</p>
+                    </div>
+                </div>
+                <div class="study-grid study-grid--1">
+                    <figure class="study-fig reveal" style="--ar: 16 / 9">
+                        <a class="card photo-item" href="img/Poster-Watches.webp" aria-label="View larger: Three Watch Maintenance posters in red, green and blue displayed in a shop window">
+                            <img src="img/Poster-Watches.webp" loading="lazy" alt="Three Watch Maintenance posters in red, green and blue displayed in a shop window">
+                        </a>
+                        <figcaption><span>Watch Maintenance, series of three, in the window</span><span class="n">02</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="magazine-spreads.html">
+                    <span class="title">Magazine Spreads</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html" class="current">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

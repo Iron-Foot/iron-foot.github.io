@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Magazine Spreads</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,88 +51,160 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Why Mars</h1>
-            <p>Editorial design exploring humanity's journey to Mars through compelling layouts and typography.</p>
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Editorial design &nbsp;/&nbsp; Two features</p>
+                    <h1>Magazine Spreads</h1>
+                    <p class="case-hero__lede">Two long-form features laid out as magazine spreads: <em>Why Mars</em>, a photo-led essay on leaving Earth, and a type-led feature on artificial general intelligence.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Editorial layout</span></li>
+                    <li><span class="meta-key">Features</span><span class="meta-val">Why Mars; Artificial General Intelligence</span></li>
+                    <li><span class="meta-key">Format</span><span class="meta-val">Double-page spreads</span></li>
+                </ul>
+            </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Why-Mars-Mockup1.webp" loading="lazy" alt="Why Mars Spread 1">
-                    </a>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Why Mars" style="--focus: 50% 50%">
+            <img src="img/Why-Mars-Mockup2.webp" alt="Open magazine spread with WHY MARS in large condensed type over a photograph of the Martian surface">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Why Mars</p>
+                    <strong>Opening spread</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Why-Mars-Mockup2.webp" loading="lazy" alt="Why Mars Spread 2">
-                    </a>
+                <p class="spec">Full-bleed photography &middot; condensed display type</p>
+            </div>
+        </section>
+
+        <!-- ============ CHAPTER 01: Why Mars ============ -->
+        <section class="study-chapter project-gallery" aria-labelledby="ch-1">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <h2 id="ch-1">Why Mars</h2>
+                    <p class="spec">Four spreads &middot; photo-led</p>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Why-Mars-Mockup3.webp" loading="lazy" alt="Why Mars Spread 3">
-                    </a>
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Feature</p>
+                        <h3>The argument for the trip is made with pictures first.</h3>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>The opening spread runs a full-bleed photograph under a condensed headline, and the following pages alternate between black-and-white archival imagery and the rust-coloured surface of the planet, so the palette shifts from Earth to Mars as you read.</p>
+                        <p>Body copy is kept to narrow columns with generous margins, leaving the photography room to breathe, and pull quotes are set in the same condensed face as the title to hold the spreads together.</p>
+                    </div>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Why-Mars-Mockup4.webp" loading="lazy" alt="Why Mars Spread 4">
-                    </a>
+                <div class="study-grid study-grid--3">
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Why-Mars-Mockup1.webp" aria-label="View larger: Why Mars interior spread with black-and-white archival photography">
+                            <img src="img/Why-Mars-Mockup1.webp" loading="lazy" alt="Why Mars interior spread with black-and-white archival photography">
+                        </a>
+                        <figcaption><span>Archival spread</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Why-Mars-Mockup3.webp" aria-label="View larger: Why Mars spread showing the rust-coloured Martian surface">
+                            <img src="img/Why-Mars-Mockup3.webp" loading="lazy" alt="Why Mars spread showing the rust-coloured Martian surface">
+                        </a>
+                        <figcaption><span>Surface spread</span><span class="n">02</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Why-Mars-Mockup4.webp" aria-label="View larger: Why Mars spread with a rocket launch on an orange field">
+                            <img src="img/Why-Mars-Mockup4.webp" loading="lazy" alt="Why Mars spread with a rocket launch on an orange field">
+                        </a>
+                        <figcaption><span>Launch spread</span><span class="n">03</span></figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
-        
-        <section class="project-hero">
-            <h1>Artificial General Intelligence</h1>
-            <p>A comprehensive magazine spread examining the future of artificial intelligence and its impact on society.</p>
+
+        <!-- ============ CHAPTER 02: Artificial General Intelligence ============ -->
+        <section class="study-chapter project-gallery" aria-labelledby="ch-2">
+            <div class="shell">
+                <div class="section-head reveal">
+                    <h2 id="ch-2">Artificial General Intelligence</h2>
+                    <p class="spec">Five spreads &middot; type-led</p>
+                </div>
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">02 &mdash; Feature</p>
+                        <h3>No photography to lean on, so the type does the work.</h3>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>A halftone gradient built from dots runs across the spreads, shifting from red to blue, and the section headings, Introduction, History, Terminology and Characteristics, are set large in the same gradient so each turn of the page has a landmark.</p>
+                        <p>The columns stay narrow and the measure short, which keeps a dense subject readable and leaves the dot field to carry the mood.</p>
+                    </div>
+                </div>
+                <div class="study-grid study-grid--3">
+                    <figure class="study-fig reveal span-2" style="--ar: 16 / 9">
+                        <a class="card photo-item" href="img/Magazine-Spread.webp" aria-label="View larger: Artificial General Intelligence title spread with a halftone dot portrait and gradient headline">
+                            <img src="img/Magazine-Spread.webp" loading="lazy" alt="Artificial General Intelligence title spread with a halftone dot portrait and gradient headline">
+                        </a>
+                        <figcaption><span>Title spread</span><span class="n">04</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 0.87">
+                        <a class="card photo-item" href="img/Magazine-Spread-2.webp" aria-label="View larger: Artificial General Intelligence spread with a halftone shape and headline">
+                            <img src="img/Magazine-Spread-2.webp" loading="lazy" alt="Artificial General Intelligence spread with a halftone shape and headline">
+                        </a>
+                        <figcaption><span>Opening spread</span><span class="n">05</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Magazine-Spread-3.webp" aria-label="View larger: Introduction spread with a wave of halftone dots across the pages">
+                            <img src="img/Magazine-Spread-3.webp" loading="lazy" alt="Introduction spread with a wave of halftone dots across the pages">
+                        </a>
+                        <figcaption><span>Introduction</span><span class="n">06</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Magazine-Spread-4.webp" aria-label="View larger: Terminology and Characteristics spread with a halftone globe">
+                            <img src="img/Magazine-Spread-4.webp" loading="lazy" alt="Terminology and Characteristics spread with a halftone globe">
+                        </a>
+                        <figcaption><span>Terminology and Characteristics</span><span class="n">07</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Magazine-Spread-6.webp" aria-label="View larger: History spread with a halftone wave and two columns of text">
+                            <img src="img/Magazine-Spread-6.webp" loading="lazy" alt="History spread with a halftone wave and two columns of text">
+                        </a>
+                        <figcaption><span>History</span><span class="n">08</span></figcaption>
+                    </figure>
+                </div>
+            </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Magazine-Spread.webp" loading="lazy" alt="AGI Magazine Spread 1">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Magazine-Spread-2.webp" loading="lazy" alt="AGI Magazine Spread 2">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Magazine-Spread-3.webp" loading="lazy" alt="AGI Magazine Spread 3">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Magazine-Spread-4.webp" loading="lazy" alt="AGI Magazine Spread 4">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Magazine-Spread-6.webp" loading="lazy" alt="AGI Magazine Spread 5">
-                    </a>
-                </div>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="beak-and-comb.html">
+                    <span class="title">Beak and Comb</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html" class="current">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

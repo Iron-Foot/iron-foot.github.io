@@ -1606,3 +1606,328 @@
 .motion-item__cap p { margin: 0.35rem 0 0; font-size: 0.88rem; line-height: 1.6; color: var(--muted); }
 
 @media (max-width: 760px) { .motion-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   STUDY LAYOUT — lighter case template for self-directed work
+   Reuses case-hero / meta-list / split / rundown / section-head /
+   case-next from above. Adds a full-bleed opener, an unboxed
+   gallery grid with captions, and numbered chapters for pages
+   that hold more than one piece.
+   ============================================================ */
+
+/* Full-bleed opener: edge to edge, no card chrome */
+.study-opener {
+  position: relative;
+  line-height: 0;
+  background: var(--panel-2);
+}
+
+.study-opener img {
+  width: 100%;
+  height: clamp(320px, 72vh, 820px);
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  display: block;
+}
+
+/* Gallery: plain grid, hairline gaps, captions under each figure */
+.study-gallery { padding: 0 0 var(--section-y); }
+
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cell-gap);
+  align-items: start;
+}
+
+.study-grid--1 { grid-template-columns: minmax(0, 1fr); }
+.study-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.study-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.study-grid .span-2 { grid-column: span 2; }
+
+.study-fig { margin: 0; min-width: 0; }
+
+/* Neutralise the index-grid .card chrome (flex, white hover, blend) */
+.study-fig a.card,
+.study-fig .frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--panel-2);
+  box-shadow: none;
+  color: inherit;
+  cursor: zoom-in;
+  transform: none;
+}
+
+.study-fig .frame { cursor: default; }
+
+.study-fig a.card:hover { background: var(--panel-2); color: inherit; }
+.study-fig a.card:hover img { mix-blend-mode: normal; transform: scale(1.025); }
+
+.study-fig img,
+.study-fig video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ar, 4 / 3);
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  border-radius: 0;
+  display: block;
+  transition: transform 0.7s cubic-bezier(.2, .7, .3, 1);
+}
+
+.study-fig figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-top: 0.7rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.study-fig figcaption .n {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* Chapters: numbered sections for pages holding more than one piece */
+.study-chapter { padding: 0 0 var(--section-y); }
+
+.study-chapter .section-head { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+
+.study-chapter .split { margin-bottom: clamp(1.75rem, 4vw, 3rem); }
+
+.split__aside h3 {
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0.6rem 0 0;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .study-grid--3,
+  .study-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .study-grid,
+  .study-grid--3,
+  .study-grid--4 { grid-template-columns: minmax(0, 1fr); }
+  .study-grid .span-2 { grid-column: auto; }
+  .study-opener img { height: clamp(260px, 55vh, 520px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-fig a.card:hover img { transform: none; }
+}
+
+/* ------------------------------------------------------------
+   Study page accents (accent colour only; surfaces stay neutral)
+   ------------------------------------------------------------ */
+
+/* Beak and Comb red */
+.case-page[data-accent="beak"] {
+  --accent-project: #b3261e;
+  --accent-project-soft: rgba(179, 38, 30, 0.13);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="beak"] {
+    --accent-project: #e8574c;
+    --accent-project-soft: rgba(232, 87, 76, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="beak"] {
+  --accent-project: #e8574c;
+  --accent-project-soft: rgba(232, 87, 76, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="beak"] {
+  --accent-project: #b3261e;
+  --accent-project-soft: rgba(179, 38, 30, 0.13);
+}
+
+/* Hollis amber */
+.case-page[data-accent="hollis"] {
+  --accent-project: #b3782a;
+  --accent-project-soft: rgba(179, 120, 42, 0.14);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="hollis"] {
+    --accent-project: #e0a24a;
+    --accent-project-soft: rgba(224, 162, 74, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="hollis"] {
+  --accent-project: #e0a24a;
+  --accent-project-soft: rgba(224, 162, 74, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="hollis"] {
+  --accent-project: #b3782a;
+  --accent-project-soft: rgba(179, 120, 42, 0.14);
+}
+
+/* Mafia deco gold */
+.case-page[data-accent="mafia"] {
+  --accent-project: #9c7a2e;
+  --accent-project-soft: rgba(156, 122, 46, 0.14);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="mafia"] {
+    --accent-project: #d4ab4c;
+    --accent-project-soft: rgba(212, 171, 76, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="mafia"] {
+  --accent-project: #d4ab4c;
+  --accent-project-soft: rgba(212, 171, 76, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="mafia"] {
+  --accent-project: #9c7a2e;
+  --accent-project-soft: rgba(156, 122, 46, 0.14);
+}
+
+/* Rud's Dirt brick */
+.case-page[data-accent="ruds"] {
+  --accent-project: #a8402f;
+  --accent-project-soft: rgba(168, 64, 47, 0.13);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="ruds"] {
+    --accent-project: #e0664f;
+    --accent-project-soft: rgba(224, 102, 79, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="ruds"] {
+  --accent-project: #e0664f;
+  --accent-project-soft: rgba(224, 102, 79, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="ruds"] {
+  --accent-project: #a8402f;
+  --accent-project-soft: rgba(168, 64, 47, 0.13);
+}
+
+/* Sabriel navy */
+.case-page[data-accent="book"] {
+  --accent-project: #2f4a7a;
+  --accent-project-soft: rgba(47, 74, 122, 0.14);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="book"] {
+    --accent-project: #7c9ad4;
+    --accent-project-soft: rgba(124, 154, 212, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="book"] {
+  --accent-project: #7c9ad4;
+  --accent-project-soft: rgba(124, 154, 212, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="book"] {
+  --accent-project: #2f4a7a;
+  --accent-project-soft: rgba(47, 74, 122, 0.14);
+}
+
+/* Poster graphite */
+.case-page[data-accent="posters"] {
+  --accent-project: #3a3a3a;
+  --accent-project-soft: rgba(58, 58, 58, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="posters"] {
+    --accent-project: #bdbdbd;
+    --accent-project-soft: rgba(189, 189, 189, 0.14);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="posters"] {
+  --accent-project: #bdbdbd;
+  --accent-project-soft: rgba(189, 189, 189, 0.14);
+}
+:root[data-theme="light"] .case-page[data-accent="posters"] {
+  --accent-project: #3a3a3a;
+  --accent-project-soft: rgba(58, 58, 58, 0.12);
+}
+
+/* Mars rust */
+.case-page[data-accent="mars"] {
+  --accent-project: #b8512a;
+  --accent-project-soft: rgba(184, 81, 42, 0.13);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="mars"] {
+    --accent-project: #e57a4d;
+    --accent-project-soft: rgba(229, 122, 77, 0.16);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="mars"] {
+  --accent-project: #e57a4d;
+  --accent-project-soft: rgba(229, 122, 77, 0.16);
+}
+:root[data-theme="light"] .case-page[data-accent="mars"] {
+  --accent-project: #b8512a;
+  --accent-project-soft: rgba(184, 81, 42, 0.13);
+}
+
+/* SocialClimb: navy / orange / sky. Orange is the accent; the band takes a
+   cool tint so the hero sits closer to the brand than the neutral default. */
+.case-page[data-accent="socialclimb"] {
+  --accent-project: #d96a1c;
+  --accent-project-soft: rgba(233, 123, 44, 0.14);
+  --band: #eef3f7;
+  --panel-2: #e4ebf1;
+  --hairline: rgba(15, 53, 86, 0.14);
+  --muted: rgba(15, 53, 86, 0.62);
+}
+@media (prefers-color-scheme: dark) {
+  .case-page[data-accent="socialclimb"] {
+    --accent-project: #f0904a;
+    --accent-project-soft: rgba(240, 144, 74, 0.16);
+    --band: #0e1a26;
+    --panel-2: #172634;
+    --hairline: rgba(255, 255, 255, 0.10);
+    --muted: rgba(255, 255, 255, 0.6);
+  }
+}
+:root[data-theme="dark"] .case-page[data-accent="socialclimb"] {
+  --accent-project: #f0904a;
+  --accent-project-soft: rgba(240, 144, 74, 0.16);
+  --band: #0e1a26;
+  --panel-2: #172634;
+  --hairline: rgba(255, 255, 255, 0.10);
+  --muted: rgba(255, 255, 255, 0.6);
+}
+:root[data-theme="light"] .case-page[data-accent="socialclimb"] {
+  --accent-project: #d96a1c;
+  --accent-project-soft: rgba(233, 123, 44, 0.14);
+  --band: #eef3f7;
+  --panel-2: #e4ebf1;
+  --hairline: rgba(15, 53, 86, 0.14);
+  --muted: rgba(15, 53, 86, 0.62);
+}
+
+/* Video inside the image + copy duo (same frame treatment as a.card) */
+.duo__media {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #000;
+  line-height: 0;
+}
+.duo__media video { width: 100%; height: auto; display: block; }
+
+/* Smaller display tile for three-line headlines */
+.tile__big--sm { font-size: clamp(1.5rem, 2.6vw, 2.2rem); }
+
+/* Progression, six-up: three across so the frames stay large enough to read.
+   Square frames; thumbnails are pre-cropped to the drawing, the lightbox
+   opens the full canvas. */
+.progression--six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.progression--six .stage__frame { aspect-ratio: 1 / 1; }
+.progression--six .stage__frame img { padding: 0; }
+.progression--six .stage__frame--cover img { object-fit: cover; object-position: 50% 45%; }
+@media (max-width: 860px) { .progression--six { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .progression--six { grid-template-columns: 1fr; } }

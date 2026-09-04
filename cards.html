@@ -12,13 +12,15 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riley Sligting - Cards Project</title>
+    <title>Riley Sligting - Mafia Cards</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,63 +51,124 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Cards</h1>
-            <p>Custom designed playing cards for a mafia-themed game</p>
-        </section>
-        
-        <section class="project-video">
-            <div class="video-container">
-                <video autoplay muted loop playsinline>
-                    <source src="vid/Cards.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Game design &nbsp;/&nbsp; Illustration, card system, motion</p>
+                    <h1>Mafia Cards</h1>
+                    <p class="case-hero__lede">A role card set for the party game Mafia: painted characters for the Detective, the Mafia and the Citizen, with an art-deco back that gives nothing away.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Card game</span></li>
+                    <li><span class="meta-key">Deliverables</span><span class="meta-val">Three painted role cards, deco card back, looping motion piece</span></li>
+                    <li><span class="meta-key">Roles</span><span class="meta-val">Detective, Mafia, Citizen</span></li>
+                </ul>
             </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Mafia-Card-1.webp" loading="lazy" alt="Mafia Card 1">
-                    </a>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="The set" style="--focus: 50% 50%">
+            <img src="img/Mafia-Cards-All-three.webp" alt="Three Mafia role cards fanned on a grey surface, one face down showing a gold art-deco back">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">The set</p>
+                    <strong>Three roles, one back</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Mafia-Card-2.webp" loading="lazy" alt="Mafia Card 2">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Mafia-Card-3.webp" loading="lazy" alt="Mafia Card 3">
-                    </a>
+                <p class="spec">Poker size &middot; gold on black</p>
+            </div>
+        </section>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Overview</p>
+                        <h2>The back has to keep a secret. The face has to sell the part.</h2>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>Mafia is played on bluffing, so the card back is the most important surface in the set. A symmetrical art-deco pattern in gold on black gives nothing away and looks the same whichever way it is dealt.</p>
+                        <p>Each role gets a full-figure painted character in 1920s dress: a detective with a hand at his holster, a mafiosa with a pistol held behind her back, and a citizen who has no idea what is coming. The role name runs vertically down the edge so it can be read with the card barely tilted.</p>
+                        <p>A short motion piece turns the cards over in sequence, the way they would be revealed at the table.</p>
+                        <ol class="rundown">
+                            <li><span class="num">01</span><div><h3>Characters</h3><p>Three painted figures, one per role.</p></div></li>
+                            <li><span class="num">02</span><div><h3>Card back</h3><p>Gold-on-black deco pattern, symmetrical so it reads the same either way up.</p></div></li>
+                            <li><span class="num">03</span><div><h3>Motion</h3><p>Looping reveal of the set.</p></div></li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </section>
-        
-        <section class="project-featured">
-            <div class="featured-item">
-                <img src="img/Mafia-Cards-All-three.webp" loading="lazy" alt="All Three Mafia Cards">
+
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Role cards">
+            <div class="shell">
+                <div class="study-grid study-grid--4">
+                    <figure class="study-fig reveal" style="--ar: 5 / 7">
+                        <a class="card photo-item" href="img/Mafia-Card-1.webp" aria-label="View larger: Detective role card: a man in a fedora, shirt and suspenders with a hand at his holster">
+                            <img src="img/Mafia-Card-1.webp" loading="lazy" alt="Detective role card: a man in a fedora, shirt and suspenders with a hand at his holster">
+                        </a>
+                        <figcaption><span>Detective</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 7">
+                        <a class="card photo-item" href="img/Mafia-Card-2.webp" aria-label="View larger: Mafia role card: a woman in a green 1920s dress holding a pistol behind her back">
+                            <img src="img/Mafia-Card-2.webp" loading="lazy" alt="Mafia role card: a woman in a green 1920s dress holding a pistol behind her back">
+                        </a>
+                        <figcaption><span>Mafia</span><span class="n">02</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 7">
+                        <a class="card photo-item" href="img/Mafia-Card-3.webp" aria-label="View larger: Citizen role card: a woman in a plum flapper dress and headband, mid-step">
+                            <img src="img/Mafia-Card-3.webp" loading="lazy" alt="Citizen role card: a woman in a plum flapper dress and headband, mid-step">
+                        </a>
+                        <figcaption><span>Citizen</span><span class="n">03</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 7">
+                        <div class="frame">
+                            <video autoplay muted loop playsinline poster="img/Mafia-Cards-All-three.webp" aria-label="Looping video of the three role cards being turned over">
+                                <source src="vid/Cards.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <figcaption><span>Reveal, looping</span><span class="n">04</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="ruds-dirt.html">
+                    <span class="title">Rud&rsquo;s Dirt</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html" class="current">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

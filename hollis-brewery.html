@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Hollis Brewery</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,53 +51,117 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Hollis Brewery</h1>
-            <p>Created comprehensive branding, product design, and menu design for a local craft brewery.</p>
-        </section>
-        <section class="project-featured">
-            <div class="featured-item">
-                <img src="img/Hollis-Brewery-Store-Front.webp" loading="lazy" alt="Beak and Comb Complete Brand Identity">
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Brand identity &nbsp;/&nbsp; Packaging, menus, storefront</p>
+                    <h1>Hollis Brewery</h1>
+                    <p class="case-hero__lede">An identity for a craft brewery, carried from the bottle label to the folded menu to the sign over the door.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Brand identity</span></li>
+                    <li><span class="meta-key">Deliverables</span><span class="meta-val">Crest and wordmark, bottle label series, menu system, storefront signage</span></li>
+                    <li><span class="meta-key">Surfaces</span><span class="meta-val">Glass, paper, signage</span></li>
+                </ul>
             </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Hollis-Brewery-Beer-Mockup.webp" loading="lazy" alt="Hollis Brewery Beer Label Design">
-                    </a>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Storefront" style="--focus: 50% 50%">
+            <img src="img/Hollis-Brewery-Store-Front.webp" alt="Hollis Brewery storefront at dusk with the crest lit on a dark fascia above the entrance">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Storefront</p>
+                    <strong>The crest on the sign, lit for the evening crowd</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Hollis-Brewery-Menu-Front-Back.webp" loading="lazy" alt="Hollis Brewery Menu Front and Back">
-                    </a>
+                <p class="spec">Exterior signage &middot; shown in place</p>
+            </div>
+        </section>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Overview</p>
+                        <h2>One crest that has to work on a bottle, a menu and a wall.</h2>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>Hollis Brewery needed an identity that felt established from day one. The crest sits at the centre of everything: bold enough to read as a lit sign at street level, simple enough to print small on a bottle neck.</p>
+                        <p>The label series gives each beer its own illustration, like the pheasant on Pheasant&rsquo;s Flight, inside a shared frame so the line-up looks like a family on the shelf. The menu uses the same black-and-cream pairing, folded so the crest lands on the front panel.</p>
+                        <p>Everything was designed to survive cheap printing and dim light: high contrast, few colours, and type sizes that hold up on a bar top.</p>
+                        <ol class="rundown">
+                            <li><span class="num">01</span><div><h3>Identity</h3><p>Crest, wordmark and lockups.</p></div></li>
+                            <li><span class="num">02</span><div><h3>Packaging</h3><p>Bottle labels with a per-beer illustration inside a shared frame.</p></div></li>
+                            <li><span class="num">03</span><div><h3>Menus</h3><p>Folded menu, front and back, in the same black and cream.</p></div></li>
+                            <li><span class="num">04</span><div><h3>Environment</h3><p>Storefront signage.</p></div></li>
+                        </ol>
+                    </div>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Hollis-Brewery-Menu.webp" loading="lazy" alt="Hollis Brewery Menu Design">
-                    </a>
+            </div>
+        </section>
+
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Labels and menus">
+            <div class="shell">
+                <div class="study-grid study-grid--3">
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Hollis-Brewery-Beer-Mockup.webp" aria-label="View larger: Two Hollis Brewery bottles lying on a grey surface, one showing the Pheasant’s Flight label">
+                            <img src="img/Hollis-Brewery-Beer-Mockup.webp" loading="lazy" alt="Two Hollis Brewery bottles lying on a grey surface, one showing the Pheasant’s Flight label">
+                        </a>
+                        <figcaption><span>Bottle labels</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Hollis-Brewery-Menu-Front-Back.webp" aria-label="View larger: Hollis Brewery menu shown flat, front and back panels side by side">
+                            <img src="img/Hollis-Brewery-Menu-Front-Back.webp" loading="lazy" alt="Hollis Brewery menu shown flat, front and back panels side by side">
+                        </a>
+                        <figcaption><span>Menu, front and back</span><span class="n">02</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Hollis-Brewery-Menu.webp" aria-label="View larger: Hollis Brewery menu standing folded with the crest on the front panel">
+                            <img src="img/Hollis-Brewery-Menu.webp" loading="lazy" alt="Hollis Brewery menu standing folded with the crest on the front panel">
+                        </a>
+                        <figcaption><span>Menu, folded</span><span class="n">03</span></figcaption>
+                    </figure>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="cards.html">
+                    <span class="title">Mafia Cards</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html" class="current">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

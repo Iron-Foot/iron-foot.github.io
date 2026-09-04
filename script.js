@@ -311,10 +311,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Smooth scroll for scroll indicator
   if (scrollIndicator && portfolioSection) {
     scrollIndicator.addEventListener('click', function() {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
+      // Land at the top of the pinned project stack (falls back to one
+      // viewport down if the stack is absent).
+      const stack = document.querySelector('.expand-stack-wrapper');
+      const top = stack ? stack.getBoundingClientRect().top + window.scrollY : window.innerHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   }
   
@@ -374,34 +375,93 @@ document.addEventListener('DOMContentLoaded', function() {
 // Each item's height is a continuous function of scroll position (no CSS
 // transition) so fast scrolling can't skip past an item's expanded state,
 // and the baseline collapsed height is derived from the viewport so the
-// whole stack always sums to exactly 100vh - it never overflows the page.
+// whole stack always sums to exactly the pinned height - it never overflows.
+//
+// Each item gets a --w custom property (0 collapsed .. 1 expanded) that the
+// CSS uses for dimming, the scrim caption, the collapsed label and the
+// image settle; a progress rail on the right doubles as click-to-jump.
 document.addEventListener('DOMContentLoaded', () => {
   const wrapper = document.querySelector('.expand-stack-wrapper');
+  const stack = wrapper && wrapper.querySelector('.expand-stack');
   const items = Array.from(document.querySelectorAll('.expand-item[data-expand]'));
-  if (!wrapper || items.length === 0) return;
+  if (!wrapper || !stack || items.length === 0) return;
 
   const n = items.length;
+  const header = document.querySelector('header');
+  const rail = wrapper.querySelector('.expand-rail');
+  let headerHeight = 0;
+  let activeIndex = -1;
+
+  // Build the progress rail (one button per item).
+  const railButtons = [];
+  if (rail) {
+    items.forEach((item, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      const name = item.querySelector('h2');
+      btn.setAttribute('aria-label', `Go to ${name ? name.textContent.trim() : `project ${i + 1}`}`);
+      btn.addEventListener('click', () => scrollToItem(i));
+      rail.appendChild(btn);
+      railButtons.push(btn);
+    });
+  }
+
+  // Scroll so that item i sits at the centre of its fully-open plateau.
+  function scrollToItem(i) {
+    const rect = wrapper.getBoundingClientRect();
+    const scrollable = rect.height - (window.innerHeight - headerHeight);
+    const top = rect.top + window.scrollY + ((i + 0.5) / n) * scrollable;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  function measure() {
+    headerHeight = header ? header.getBoundingClientRect().height : 0;
+    wrapper.style.setProperty('--stack-top', `${headerHeight}px`);
+  }
+
+  // Each item is fully open for the middle half of its scroll slot and
+  // hands off over the outer quarters with an ease curve. The curve is
+  // symmetric about 0.5, so neighbouring weights always sum to exactly 1
+  // during a handoff - no visual hinge at the crossover.
+  function weightFor(distance) {
+    const raw = Math.max(0, 1 - distance);              // 1 at slot centre, 0 one slot away
+    const t = Math.min(1, Math.max(0, (raw - 0.25) / 0.5)); // plateau at |distance| <= 0.25
+    return t * t * (3 - 2 * t);                          // smoothstep
+  }
 
   function update() {
     const rect = wrapper.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const scrollable = rect.height - vh;
+    const stackHeight = window.innerHeight - headerHeight;
+    const scrollable = rect.height - stackHeight;
     const progress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
     const cursor = progress * n; // continuous position over the item slots (0..n)
 
-    // Collapsed items never take more than 70% of the viewport combined,
+    // Collapsed items never take more than 55% of the stack combined,
     // leaving the rest to pan into whichever item is active.
-    const minHeight = Math.min(50, (vh * 0.7) / n);
-    const extra = vh - n * minHeight;
+    const minHeight = Math.min(50, (stackHeight * 0.55) / n);
+    const extra = stackHeight - n * minHeight;
+    stack.style.setProperty('--collapsed-height', `${minHeight}px`);
 
-    const weights = items.map((_, i) => Math.max(0, 1 - Math.abs(cursor - (i + 0.5))));
+    const weights = items.map((_, i) => weightFor(Math.abs(cursor - (i + 0.5))));
     const weightSum = weights.reduce((a, b) => a + b, 0) || 1;
 
+    let best = 0;
     items.forEach((item, i) => {
-      const weight = weights[i] / weightSum;
-      item.style.height = `${minHeight + extra * weight}px`;
-      item.classList.toggle('expanded', weights[i] > 0.5);
+      const w = weights[i] / weightSum;
+      item.style.height = `${minHeight + extra * w}px`;
+      item.style.setProperty('--w', w.toFixed(4));
+      item.classList.toggle('expanded', w >= 0.5);
+      if (w > weights[best] / weightSum) best = i;
     });
+
+    if (best !== activeIndex) {
+      activeIndex = best;
+      railButtons.forEach((btn, i) => {
+        if (i === best) btn.setAttribute('aria-current', 'true');
+        else btn.removeAttribute('aria-current');
+      });
+    }
   }
 
   let ticking = false;
@@ -413,7 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', () => { measure(); onScroll(); });
+  measure();
   update();
 });
 
