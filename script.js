@@ -181,6 +181,22 @@ document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('pointerleave',release);
 });
 
+// Auto-label project gallery cards with their image's alt text on hover,
+// reusing the .card-title treatment already styled for the homepage grid.
+// Skip case-study pages (project-case.css) - they bring their own captions
+// (.tile__cap / .figure-cap) and don't want this one layered underneath.
+if (!document.body.classList.contains('case-page')) {
+  document.querySelectorAll('.project-gallery .card').forEach(card => {
+    if (card.querySelector('.card-title')) return;
+    const img = card.querySelector('img');
+    if (!img || !img.alt) return;
+    const title = document.createElement('span');
+    title.className = 'card-title';
+    title.textContent = img.alt;
+    card.appendChild(title);
+  });
+}
+
 // =================================================
 // 4. HEADER & NAVIGATION
 // =================================================
@@ -404,52 +420,60 @@ document.addEventListener('DOMContentLoaded', () => {
 // =================================================
 // 6. PHOTO GRID & MASONRY
 // =================================================
-// Robust Masonry Grid Layout for Photos Page
-function initializePhotoGrid() {
-  const grid = document.querySelector('.photo-grid');
-  if (!grid) return; // Exit if no grid on page
+// Robust masonry layout, shared by the photography grid and every project
+// page's gallery grid so multi-image galleries pack tightly with no gaps.
+function initializeMasonryGrids() {
+  const grids = document.querySelectorAll('.photo-grid, .project-grid');
 
-  const rowHeight = parseInt(getComputedStyle(grid).gridAutoRows);
-  const rowGap = parseInt(getComputedStyle(grid).gap);
+  grids.forEach(grid => {
+    const rowHeight = parseInt(getComputedStyle(grid).gridAutoRows) || 1;
+    const rowGap = parseInt(getComputedStyle(grid).gap) || 0;
 
-  const setItemSpan = (item) => {
-    const card = item.querySelector('.card');
-    if (!card) return;
-    const itemHeight = card.getBoundingClientRect().height;
-    const itemSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = `span ${itemSpan}`;
-  };
+    // Height is derived from the image's natural aspect ratio and the
+    // item's rendered width, not the item's own rendered height - the
+    // item's height is 100% of its grid row, which starts at the 1px
+    // baseline until a span is assigned, so measuring it directly would
+    // just read back that squashed baseline instead of the real size.
+    const setItemSpan = (item) => {
+      const img = item.querySelector('img');
+      if (!img || !img.naturalWidth) return;
+      const itemWidth = item.getBoundingClientRect().width;
+      const itemHeight = itemWidth * (img.naturalHeight / img.naturalWidth);
+      const itemSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+      item.style.gridRowEnd = `span ${itemSpan}`;
+    };
 
-  const layoutGrid = () => {
-    grid.querySelectorAll('.scene').forEach(setItemSpan);
-  };
+    const layoutGrid = () => {
+      grid.querySelectorAll('.scene').forEach(setItemSpan);
+    };
 
-  // Layout each item after its image loads
-  const images = grid.querySelectorAll('img');
-  images.forEach(img => {
-    img.classList.add('loading');
-    // Handle both cached and loading images
-    if (img.complete) {
-      setItemSpan(img.closest('.scene'));
-      img.classList.remove('loading');
-    } else {
-      img.addEventListener('load', () => {
+    // Layout each item after its image loads
+    const images = grid.querySelectorAll('img');
+    images.forEach(img => {
+      img.classList.add('loading');
+      // Handle both cached and loading images
+      if (img.complete) {
         setItemSpan(img.closest('.scene'));
         img.classList.remove('loading');
-      }, { once: true });
-    }
-  });
+      } else {
+        img.addEventListener('load', () => {
+          setItemSpan(img.closest('.scene'));
+          img.classList.remove('loading');
+        }, { once: true });
+      }
+    });
 
-  // Re-layout on window resize
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(layoutGrid, 100);
+    // Re-layout on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(layoutGrid, 100);
+    });
   });
 }
 
 // Run the function
-initializePhotoGrid();
+initializeMasonryGrids();
 
 // Responsive Grid Reordering - Move Mafia Cards on medium screens
 document.addEventListener('DOMContentLoaded', () => {
@@ -514,14 +538,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // =================================================
 // Enhanced Lightbox Photo Viewer Script (Works on multiple page types)
 document.addEventListener('DOMContentLoaded', () => {
-  // Look for either photo-grid or project-gallery
-  const photoGrid = document.querySelector('.photo-grid');
-  const projectGallery = document.querySelector('.project-gallery');
-  
-  const container = photoGrid || projectGallery;
-  if (!container) return; // Exit if neither exists
-
-  const photos = Array.from(container.querySelectorAll('.card'));
+  // Collect cards from every photo-grid/project-gallery on the page (a page
+  // can have more than one gallery section) so prev/next cycles through all
+  // of them instead of only the first section found.
+  const photos = Array.from(document.querySelectorAll('.photo-grid .card, .project-gallery .card'));
   if (photos.length === 0) return;
 
   // Check if lightbox already exists in HTML, otherwise create it
@@ -936,19 +956,3 @@ function optimizeImages() {
 
 // Call optimizeImages on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', optimizeImages);
-
-// Optimize scroll handlers
-const optimizedScrollHandler = debounce(() => {
-  handleHeaderScroll();
-  handleMainTitleFade();
-  handleScrollVideo();
-}, 16); // ~60fps
-
-window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-
-// Use event delegation where possible
-document.addEventListener('click', (e) => {
-  if (e.target.matches('.card')) handleCardClick(e);
-  if (e.target.matches('.hamburger')) handleHamburgerClick(e);
-  if (e.target.matches('.quote-nav')) handleQuoteNav(e);
-});

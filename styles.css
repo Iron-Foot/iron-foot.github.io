@@ -767,7 +767,7 @@ main {
 
 .card-title {
   position: absolute;
-  left: 0; right: 0;
+  left: 0; right: 0; bottom: 0;
   padding: 1rem 0.5rem;
   color: #111;
   font-size: 1.1rem;
@@ -1284,6 +1284,7 @@ body.contact-page footer a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 1px; /* A small base unit for the JS to calculate spans */
+  align-items: start; /* never stretch items to fill a rounded-up row span */
   gap: 1.5rem;
   padding: 1rem;
   max-width: 1600px;
@@ -1292,6 +1293,9 @@ body.contact-page footer a:hover {
 
 .photo-grid .scene {
   width: 100%;
+  height: auto; /* base .scene rule sets height:100%, which stretches to fill
+                   the row-span exactly and shows any rounding overshoot as
+                   a grey sliver below the image - auto hugs the card instead */
   /* The grid-row-end will be set by JavaScript to create the masonry effect */
 }
 
@@ -1540,16 +1544,41 @@ body.lightbox-active {
 }
 
 .project-hero {
+  position: relative;
   text-align: center;
   padding: 4rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Soft glow behind the title so each project page reads as more than plain text on a grey field */
+.project-hero::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 120%);
+  height: 320px;
+  background: radial-gradient(ellipse 50% 50% at 50% 0%, rgba(204,51,51,0.12), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .project-hero h1 {
   font-size: clamp(3rem, 6vw, 4.5rem);
   margin-bottom: 1rem;
   font-weight: 700;
+}
+
+.project-hero h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #cc3333, #ff8a65);
 }
 
 .project-hero p {
@@ -1736,6 +1765,8 @@ body.lightbox-active {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 1px; /* base unit; JS sets each item's row span for masonry packing */
+  align-items: start; /* never stretch items to fill a rounded-up row span */
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -1775,6 +1806,12 @@ body.lightbox-active {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 12px 28px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10);
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s cubic-bezier(.4,0,.2,1);
+}
+
+.featured-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px 0 rgba(0,0,0,0.25), 0 4px 12px 0 rgba(0,0,0,0.15);
 }
 
 .featured-item img {
@@ -1797,7 +1834,7 @@ body.lightbox-active {
   margin: 0 auto;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 items per row = 2 rows for 8 items */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* wraps cleanly regardless of project count */
   gap: 1rem;
   max-width: 1200px;
 }
@@ -1893,12 +1930,17 @@ body.lightbox-active {
 /* Project Gallery Lightbox Support */
 .project-gallery .scene {
   width: 100%;
-  height: fit-content;
+  height: auto; /* base .scene rule sets height:100%, which stretches to fill
+                   the row-span exactly and shows any rounding overshoot as
+                   a grey sliver below the image - auto hugs the card instead */
 }
 
 .project-gallery .card {
   cursor: pointer;
   display: block;
+  overflow: hidden; /* clip the caption bar to the card's rounded corners */
+  height: auto; /* hug the image - base .card rule defaults to height:100%, which
+                   left a grey gap below shorter images inside a taller row span */
 }
 
 .project-gallery .card img {

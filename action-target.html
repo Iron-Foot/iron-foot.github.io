@@ -14,11 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Action Target</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
-    <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
+    <link rel="icon" href="img/Favicon.svg" type="image/svg+xml">
 </head>
-<body class="project-page">
+<body class="project-page case-page">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,55 +50,326 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
+
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Action Target</h1>
-            <p>Created campaign materials for Action Target, including a website, events, and promotional videos.</p>
-        </section>
-        
-        <section class="project-video">
-            <div class="video-container">
-                <video autoplay muted loop playsinline>
-                    <source src="vid/ActionTarget-TacHouse_1.webm" type="video/webm">
-                    <source src="vid/ActionTarget-TacHouse.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+
+        <!-- ============ 1. HERO — full-bleed band, editorial split ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Brand campaign &nbsp;/&nbsp; Firearms training industry</p>
+                    <h1>Action&nbsp;Target</h1>
+                    <p class="case-hero__lede">
+                        A full campaign system for the world's largest supplier of shooting range
+                        equipment — spanning the trade show floor, the product catalog, and the
+                        merchandise people actually wear home.
+                    </p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Client</span><span class="meta-val">Action Target</span></li>
+                    <li><span class="meta-key">Role</span><span class="meta-val">Graphic Designer &middot; Part-time</span></li>
+                    <li><span class="meta-key">Scope</span><span class="meta-val">Identity systems, environmental, print, apparel, motion</span></li>
+                    <li><span class="meta-key">Dates</span><span class="meta-val">Aug 2022 &ndash; Oct 2025</span></li>
+                    <li><span class="meta-key">Location</span><span class="meta-val">Provo, Utah, United States &middot; On-site</span></li>
+                </ul>
             </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ActionTarget-SRADisplay.webp" loading="lazy" alt="SRA Display Design">
-                    </a>
+
+        <!-- ============ 2. FULL-BLEED FILM ============ -->
+        <section class="case-film" aria-label="Tactical house flythrough">
+            <video autoplay muted loop playsinline poster="img/ActionTarget-SRADisplay.webp">
+                <source src="vid/ActionTarget-TacHouse_1.webm" type="video/webm">
+                <source src="vid/ActionTarget-TacHouse.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Promotional film</p>
+                    <strong>Tactical House — 3D flythrough</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ActionTarget-StoreCat.webp" loading="lazy" alt="Store Catalog Design">
-                    </a>
+                <p class="spec">16:9 &middot; 1920&times;1080<br>Silent loop &middot; WebM / MP4</p>
+            </div>
+        </section>
+
+        <!-- ============ 3. OVERVIEW — double column + stat strip ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside">
+                        <p class="eyebrow">01 — Overview</p>
+                        <h2>One system, built to survive every surface it lands on.</h2>
+                    </aside>
+                    <div class="split__body">
+                        <p>
+                            Action Target sells complex, high-consideration equipment to a customer base
+                            that meets the brand in wildly different places — a convention hall, a printed
+                            catalog, a range bag, a screen. The campaign needed to hold together across all
+                            of them without flattening into one repeated logo.
+                        </p>
+                        <p>
+                            The answer was a modular kit: a fixed set of marks, a tight blue-and-graphite
+                            palette, and a topographic pattern language that could stretch across a
+                            twelve-foot display or shrink to a two-inch patch and still read as the same brand.
+                        </p>
+
+                        <ol class="rundown">
+                            <li>
+                                <span class="num">01</span>
+                                <div>
+                                    <h3>Environmental &amp; events</h3>
+                                    <p>Smart Range Axis trade show display — layout, interactive station graphics, and large-format wall panels.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="num">02</span>
+                                <div>
+                                    <h3>Print &amp; sales collateral</h3>
+                                    <p>Store catalog design and production, from cover system through interior spreads and spec pages.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="num">03</span>
+                                <div>
+                                    <h3>Merchandise program</h3>
+                                    <p>Apparel, PVC patches, sticker sheets, neck gaiters, and a die-struck training camp challenge coin.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="num">04</span>
+                                <div>
+                                    <h3>Motion</h3>
+                                    <p>Promotional videos including a 3D flythrough of the modular tactical house product line.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ActionTarget-Patch.webp" loading="lazy" alt="Tactical Patch Design">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ActionTarget-Sticker.webp" loading="lazy" alt="Sticker Design">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ActionTarget-Buff.webp" loading="lazy" alt="Buff Design">
-                    </a>
+
+                <div class="stat-strip">
+                    <div class="stat">
+                        <p class="eyebrow">Deliverables</p>
+                        <b>20+</b>
+                    </div>
+                    <div class="stat">
+                        <p class="eyebrow">Trade show build</p>
+                        <b>1</b>
+                    </div>
+                    <div class="stat">
+                        <p class="eyebrow">Merch SKUs</p>
+                        <b>05</b>
+                    </div>
+                    <div class="stat">
+                        <p class="eyebrow">Core palette</p>
+                        <b>03</b>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- ============ 4. BENTO GRID ============ -->
+        <section class="case-bento project-gallery">
+            <div class="shell">
+                <div class="section-head">
+                    <h2>The kit</h2>
+                    <p class="spec">Fig. 01–06 &nbsp;/&nbsp; select pieces<br>Click any image to enlarge</p>
+                </div>
+
+                <div class="bento">
+
+                    <!-- big feature: trade show display -->
+                    <div class="reveal c2 r2">
+                        <a class="card photo-item" href="#" aria-label="Smart Range Axis trade show display">
+                            <img src="img/ActionTarget-SRADisplay.webp" loading="lazy" alt="Smart Range Axis trade show display booth">
+                            <span class="tile__cap">
+                                <span class="eyebrow">Fig. 01 — Environmental</span>
+                                <strong>Smart Range Axis display</strong>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- colour spec module -->
+                    <div class="reveal r2">
+                        <div class="tile tile--pad">
+                            <p class="eyebrow">Palette</p>
+                            <div class="swatches">
+                                <div class="swatch">
+                                    <p class="spec">Axis Blue<br>C88 M56 Y0 K5<br>#1573C4</p>
+                                    <span class="dot" style="background:#1573C4"></span>
+                                </div>
+                                <div class="swatch">
+                                    <p class="spec">Graphite<br>C0 M0 Y0 K85<br>#2E2E2E</p>
+                                    <span class="dot" style="background:#2E2E2E"></span>
+                                </div>
+                                <div class="swatch">
+                                    <p class="spec">Range Grey<br>C0 M0 Y0 K28<br>#B8B8B8</p>
+                                    <span class="dot" style="background:#B8B8B8"></span>
+                                </div>
+                                <div class="swatch">
+                                    <p class="spec">Signal White<br>C0 M0 Y0 K0<br>#FFFFFF</p>
+                                    <span class="dot" style="background:#FFFFFF"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- statement tile -->
+                    <div class="reveal">
+                        <div class="tile tile--pad">
+                            <p class="eyebrow">Positioning</p>
+                            <p class="tile__big">Better<br>Equipped</p>
+                        </div>
+                    </div>
+
+                    <!-- challenge coin -->
+                    <div class="reveal">
+                        <a class="card photo-item" href="#" aria-label="Training camp challenge coin">
+                            <img src="img/ActionTarget-Coin.webp" loading="lazy" alt="Die-struck hexagonal training camp challenge coin, front and back">
+                            <span class="tile__cap">
+                                <span class="eyebrow">Fig. 02 — Object</span>
+                                <strong>Challenge coin</strong>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- catalog, wide -->
+                    <div class="reveal c2">
+                        <a class="card photo-item" href="#" aria-label="Store catalog design">
+                            <img src="img/ActionTarget-StoreCat.webp" loading="lazy" alt="Action Target store catalog cover and interior spread">
+                            <span class="tile__cap">
+                                <span class="eyebrow">Fig. 03 — Print</span>
+                                <strong>Store catalog</strong>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- type specimen -->
+                    <div class="reveal c2">
+                        <div class="tile tile--pad">
+                            <p class="eyebrow">Typography</p>
+                            <p class="specimen">AaBbCc 0123</p>
+                            <p class="specimen__set">
+                                <span class="specimen__abc">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                                abcdefghijklmnopqrstuvwxyz</span>
+                            </p>
+                            <ul class="type-scale">
+                                <li><span>Display</span><span>72 / 68 &middot; -3%</span></li>
+                                <li><span>Headline</span><span>32 / 36 &middot; -2%</span></li>
+                                <li><span>Body</span><span>16 / 26</span></li>
+                                <li><span>Spec / caption</span><span>11 / 16 &middot; +12%</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 5. FULL-WIDTH STATEMENT ============ -->
+        <section class="case-statement">
+            <div class="shell">
+                <blockquote>
+                    Shrink it to a patch, blow it up to a booth — <span>it still has to look like the same company.</span>
+                </blockquote>
+                <p class="statement-note spec">
+                    The constraint that shaped every piece in the campaign.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============ 6. TRIPLE ROW ============ -->
+        <section class="case-triple project-gallery">
+            <div class="shell">
+                <div class="section-head">
+                    <h2>Merchandise</h2>
+                    <p class="spec">Fig. 04–06 &nbsp;/&nbsp; produced goods</p>
+                </div>
+
+                <div class="triple">
+                    <div>
+                        <div class="reveal">
+                            <a class="card photo-item" href="#" aria-label="PVC patch set">
+                                <img src="img/ActionTarget-Patch.webp" loading="lazy" alt="Three PVC morale patches: LETC eagle, rifle, and thin blue line flag">
+                            </a>
+                        </div>
+                        <div class="figure-cap">
+                            <strong>PVC patch set</strong>
+                            <span class="spec">Fig. 04</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="reveal">
+                            <a class="card photo-item" href="#" aria-label="Sticker sheet">
+                                <img src="img/ActionTarget-Sticker.webp" loading="lazy" alt="Die-cut sticker sheet with mascot, logo, and skull illustrations">
+                            </a>
+                        </div>
+                        <div class="figure-cap">
+                            <strong>Die-cut sticker sheet</strong>
+                            <span class="spec">Fig. 05</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="reveal">
+                            <a class="card photo-item" href="#" aria-label="Neck gaiter">
+                                <img src="img/ActionTarget-Buff.webp" loading="lazy" alt="Printed neck gaiter with camouflage and blue line pattern">
+                            </a>
+                        </div>
+                        <div class="figure-cap">
+                            <strong>Printed neck gaiter</strong>
+                            <span class="spec">Fig. 06</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 7. DOUBLE — image + copy ============ -->
+        <section class="case-double project-gallery">
+            <div class="shell">
+                <div class="duo">
+                    <div class="reveal">
+                        <a class="card photo-item" href="#" aria-label="Apparel print, front and back">
+                            <img src="img/ActionTarget-Shirt.webp" loading="lazy" alt="All-over print t-shirt front and back with flag and topographic pattern">
+                        </a>
+                    </div>
+                    <div class="duo__copy">
+                        <p class="eyebrow">02 — Apparel</p>
+                        <h2>An all-over print that reads at ten feet.</h2>
+                        <p>
+                            The apparel program pushed the pattern language furthest. Stars, stripes,
+                            and the topographic motif were rebuilt as a full-bleed sublimation print,
+                            tuned so the flag reads clearly at a distance and dissolves into texture up close.
+                        </p>
+                        <p>
+                            The same artwork was re-cut for the neck gaiter, keeping the merch line
+                            visually consistent across two very different garment shapes.
+                        </p>
+                        <div class="tag-row">
+                            <span class="tag">Sublimation</span>
+                            <span class="tag">Pattern design</span>
+                            <span class="tag">Front &amp; back</span>
+                            <span class="tag">Production-ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 8. NEXT PROJECT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="social-climb.html">
+                    <span class="title">SocialClimb</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Add Lightbox -->
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-container">
             <div class="lightbox-thumbnails"></div>
@@ -120,9 +392,31 @@
                 <li><a href="social-climb.html">SocialClimb</a></li>
                 <li><a href="beak-and-comb.html">Beak and Comb</a></li>
                 <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
+                <li><a href="pupford.html">Pupford</a></li>
             </ul>
     </footer>
-    
+
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
