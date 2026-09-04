@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Book Cover</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,43 +51,109 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Book Cover</h1>
-            <p>A compelling book cover design that captures the essence of the story through thoughtful typography and imagery.</p>
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Book design &nbsp;/&nbsp; <em>Sabriel</em> by Garth Nix</p>
+                    <h1>Book Cover</h1>
+                    <p class="case-hero__lede">A redesigned hardcover for Garth Nix&rsquo;s <em>Sabriel</em>: a navy case with silver ornament, a bell motif on the front and a repeating pattern across the back.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Book cover</span></li>
+                    <li><span class="meta-key">Deliverables</span><span class="meta-val">Front cover, spine, back cover</span></li>
+                    <li><span class="meta-key">Palette</span><span class="meta-val">Navy and silver</span></li>
+                </ul>
+            </div>
         </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Book-Cover.webp" loading="lazy" alt="Book Cover Front Design">
-                    </a>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Front cover" style="--focus: 50% 50%">
+            <img src="img/Book-Cover.webp" alt="Hardcover of Sabriel standing upright, navy with silver filigree and a bell at the centre of the front cover">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Front cover</p>
+                    <strong>A bell inside a frame of silver filigree</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Book-Cover-2.webp" loading="lazy" alt="Book Cover Back Design">
-                    </a>
+                <p class="spec">Hardcover &middot; navy case &middot; silver ornament</p>
+            </div>
+        </section>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Overview</p>
+                        <h2>A cover that reads like an heirloom, not a paperback.</h2>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p><em>Sabriel</em> is a story about bells, the dead and an old kingdom, and most of its covers lean on the heroine. This one leans on the objects instead: a single bell inside a frame of silver filigree on a deep navy case, the kind of book that looks like it has been on the shelf for a long time.</p>
+                        <p>The title is set in a serif with hand-drawn flourishes, and the author&rsquo;s name sits small at the foot so the ornament does the selling. The back carries a repeating pattern built from the same ornaments, with the blurb in a plain panel so it stays readable.</p>
+                        <ol class="rundown">
+                            <li><span class="num">01</span><div><h3>Front</h3><p>Bell and filigree frame with the title and series name.</p></div></li>
+                            <li><span class="num">02</span><div><h3>Back</h3><p>Repeating ornament pattern with a plain blurb panel.</p></div></li>
+                            <li><span class="num">03</span><div><h3>Spine</h3><p>Title and author stacked to match the front.</p></div></li>
+                        </ol>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Front and back">
+            <div class="shell">
+                <div class="study-grid">
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Book-Cover.webp" aria-label="View larger: Front cover of the Sabriel hardcover redesign">
+                            <img src="img/Book-Cover.webp" loading="lazy" alt="Front cover of the Sabriel hardcover redesign">
+                        </a>
+                        <figcaption><span>Front cover</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Book-Cover-2.webp" aria-label="View larger: Back cover of the Sabriel hardcover redesign with a repeating silver pattern and blurb panel">
+                            <img src="img/Book-Cover-2.webp" loading="lazy" alt="Back cover of the Sabriel hardcover redesign with a repeating silver pattern and blurb panel">
+                        </a>
+                        <figcaption><span>Back cover</span><span class="n">02</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="posters.html">
+                    <span class="title">Posters</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html" class="current">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>

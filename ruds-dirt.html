@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riley Sligting - Rud's Dirt</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,71 +51,143 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Rud's Dirt</h1>
-            <p>Branding and marketing materials for a local excavation and landscaping company, emphasizing reliability and quality service.</p>
-        </section>
-        
-        <section class="project-featured">
-            <div class="featured-item">
-                <img src="img/Ruds-Dirt-Shirt.webp" loading="lazy" alt="Rud's Dirt Shirt">
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Brand identity &nbsp;/&nbsp; Print, stationery, packaging, apparel</p>
+                    <h1>Rud&rsquo;s Dirt</h1>
+                    <p class="case-hero__lede">Branding and marketing pieces for a soil and excavation outfit: a trifold, stationery, a kraft mailer box and a shirt the crew would actually wear.</p>
+                </div>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Brand identity</span></li>
+                    <li><span class="meta-key">Deliverables</span><span class="meta-val">Wordmark, trifold brochure, business card and envelope, mailer box, t-shirt</span></li>
+                    <li><span class="meta-key">Palette</span><span class="meta-val">Brick red, kraft and cream</span></li>
+                </ul>
             </div>
         </section>
 
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Ruds-Dirt-Trifold.webp" loading="lazy" alt="Rud's Dirt Branding">
-                    </a>
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Apparel" style="--focus: 50% 30%">
+            <img src="img/Ruds-Dirt-Shirt.webp" alt="Person standing in a garden wearing a brick-red Rud’s Dirt t-shirt">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Apparel</p>
+                    <strong>The mark, worn</strong>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Ruds-Dirt-Envelope-Business-Card.webp" loading="lazy" alt="Rud's Dirt Marketing Materials">
-                    </a>
+                <p class="spec">Screen-printed tee &middot; one colour on brick red</p>
+            </div>
+        </section>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Overview</p>
+                        <h2>A dirt company that looks like it knows what it is doing.</h2>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>Rud&rsquo;s Dirt sells soil, gravel and excavation to homeowners who mostly want to trust that the truck will show up. The identity leans on that: a plain, confident wordmark, one brick red, and kraft board wherever the material could carry it.</p>
+                        <p>The trifold does the explaining, with a die-cut circle that lets the inside show through the cover, while the business card and envelope keep to the red-and-cream pairing so the stack of stationery reads as one set.</p>
+                        <p>The mailer box was designed for soil samples, with the mark on the lid and a red band as the only printed colour, so it stays cheap to produce and obvious on a porch.</p>
+                        <ol class="rundown">
+                            <li><span class="num">01</span><div><h3>Print</h3><p>Trifold brochure with a die-cut cover.</p></div></li>
+                            <li><span class="num">02</span><div><h3>Stationery</h3><p>Business card and envelope.</p></div></li>
+                            <li><span class="num">03</span><div><h3>Packaging</h3><p>Kraft mailer box with a single-colour band.</p></div></li>
+                            <li><span class="num">04</span><div><h3>Apparel</h3><p>Screen-printed tee.</p></div></li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Ruds-Dirt-Box1.webp" loading="lazy" alt="Rud's Dirt Marketing Materials">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Ruds-Dirt-Box2.webp" loading="lazy" alt="Rud's Dirt Marketing Materials">
-                    </a>
-                </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Ruds-Dirt-Box3.webp" loading="lazy" alt="Rud's Dirt Marketing Materials">
-                    </a>
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Print and stationery">
+            <div class="shell">
+                <div class="study-grid">
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Trifold.webp" aria-label="View larger: Rud’s Dirt trifold brochure shown open and closed, with a die-cut circle in the cover">
+                            <img src="img/Ruds-Dirt-Trifold.webp" loading="lazy" alt="Rud’s Dirt trifold brochure shown open and closed, with a die-cut circle in the cover">
+                        </a>
+                        <figcaption><span>Trifold brochure, die-cut cover</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Envelope-Business-Card.webp" aria-label="View larger: Rud’s Dirt business cards and envelope laid out on a cream surface">
+                            <img src="img/Ruds-Dirt-Envelope-Business-Card.webp" loading="lazy" alt="Rud’s Dirt business cards and envelope laid out on a cream surface">
+                        </a>
+                        <figcaption><span>Business card and envelope</span><span class="n">02</span></figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Mailer box">
+            <div class="shell">
+                <div class="study-grid study-grid--4">
+                    <figure class="study-fig reveal" style="--ar: 5 / 4">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Box1.webp" aria-label="View larger: Closed kraft mailer box with a red band and the Rud’s Dirt mark">
+                            <img src="img/Ruds-Dirt-Box1.webp" loading="lazy" alt="Closed kraft mailer box with a red band and the Rud’s Dirt mark">
+                        </a>
+                        <figcaption><span>Mailer box, closed</span><span class="n">03</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 4">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Box2.webp" aria-label="View larger: Kraft mailer box with the lid lifting">
+                            <img src="img/Ruds-Dirt-Box2.webp" loading="lazy" alt="Kraft mailer box with the lid lifting">
+                        </a>
+                        <figcaption><span>Lid lifting</span><span class="n">04</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 4">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Box3.webp" aria-label="View larger: Kraft mailer box open, showing the red interior print">
+                            <img src="img/Ruds-Dirt-Box3.webp" loading="lazy" alt="Kraft mailer box open, showing the red interior print">
+                        </a>
+                        <figcaption><span>Open, red interior</span><span class="n">05</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 5 / 4">
+                        <a class="card photo-item" href="img/Ruds-Dirt-Box4.webp" aria-label="View larger: Kraft mailer box fully open from the side">
+                            <img src="img/Ruds-Dirt-Box4.webp" loading="lazy" alt="Kraft mailer box fully open from the side">
+                        </a>
+                        <figcaption><span>Fully open</span><span class="n">06</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
 
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="book-cover.html">
+                    <span class="title">Book Cover</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html" class="current">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
