@@ -64,37 +64,75 @@
     </div>
   </div>
   <div class="portfolio-content">
-    <!-- Pinned viewport; scrolling through this wrapper cycles which strip is expanded -->
+    <!-- Pinned viewport; scrolling through this wrapper cycles which strip is expanded.
+         Each item is a link to its project page; the collapsed label, caption and
+         progress rail are driven by a per-item --w (0..1) custom property set in JS. -->
     <div class="expand-stack-wrapper" style="--item-count: 7">
       <div class="expand-stack">
-        <section class="expand-item expanded" data-expand>
-          <div class="expand-media"><img src="pupford-img/Pupford-Cover-CakePups.webp" alt="Pupford" /></div>
-          <div class="expand-caption"><h2>Pupford</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/ActionTarget-SRADisplay.webp" alt="Action Target" /></div>
-          <div class="expand-caption"><h2>Action Target</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/Hollis-Brewery-Beer-Mockup.webp" alt="Hollis Brewery" /></div>
-          <div class="expand-caption"><h2>Hollis Brewery</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/ChickenCards.webp" alt="Beak and Comb" /></div>
-          <div class="expand-caption"><h2>Beak and Comb</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/Poster-73.webp" alt="Posters" /></div>
-          <div class="expand-caption"><h2>Posters</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/Ruds-Dirt-Shirt-Flat.webp" alt="Rud's Dirt" /></div>
-          <div class="expand-caption"><h2>Rud's Dirt</h2></div>
-        </section>
-        <section class="expand-item" data-expand>
-          <div class="expand-media"><img src="img/Why-Mars-Mockup2.webp" alt="Why Mars?" /></div>
-          <div class="expand-caption"><h2>Why Mars?</h2></div>
-        </section>
+        <a class="expand-item expanded" data-expand href="pupford.html" style="--focus: 50% 40%">
+          <div class="expand-media"><img src="pupford-img/Pupford-Cover-CakePups.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">01</span><span>Pupford</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Packaging</span><span class="expand-count">01 / 07</span></p>
+            <h2>Pupford</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="action-target.html" style="--focus: 50% 45%">
+          <div class="expand-media"><img src="img/ActionTarget-SRADisplay.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">02</span><span>Action Target</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Trade Show Display</span><span class="expand-count">02 / 07</span></p>
+            <h2>Action Target</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="hollis-brewery.html" style="--focus: 50% 50%">
+          <div class="expand-media"><img src="img/Hollis-Brewery-Beer-Mockup.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">03</span><span>Hollis Brewery</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Packaging</span><span class="expand-count">03 / 07</span></p>
+            <h2>Hollis Brewery</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="beak-and-comb.html" style="--focus: 50% 50%">
+          <div class="expand-media"><img src="img/ChickenCards.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">04</span><span>Beak and Comb</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Playing Cards</span><span class="expand-count">04 / 07</span></p>
+            <h2>Beak and Comb</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="posters.html" style="--focus: 50% 40%">
+          <div class="expand-media"><img src="img/Poster-73.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">05</span><span>Posters</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Print</span><span class="expand-count">05 / 07</span></p>
+            <h2>Posters</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="ruds-dirt.html" style="--focus: 50% 35%">
+          <div class="expand-media"><img src="img/Ruds-Dirt-Shirt-Flat.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">06</span><span>Rud's Dirt</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Apparel</span><span class="expand-count">06 / 07</span></p>
+            <h2>Rud's Dirt</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <a class="expand-item" data-expand href="magazine-spreads.html" style="--focus: 50% 50%">
+          <div class="expand-media"><img src="img/Why-Mars-Mockup2.webp" alt="" /></div>
+          <div class="expand-label"><span class="expand-num">07</span><span>Why Mars?</span></div>
+          <div class="expand-caption">
+            <p class="expand-kicker"><span>Editorial</span><span class="expand-count">07 / 07</span></p>
+            <h2>Why Mars?</h2>
+            <span class="expand-cta">View project</span>
+          </div>
+        </a>
+        <div class="expand-rail" role="navigation" aria-label="Featured projects"></div>
       </div>
     </div>
 
@@ -193,7 +231,7 @@
               <div class="scene span-1x2">
           <a class="card" href="social-climb.html">
             <img src="img/SocailClimb-Case-Study-Index.webp" alt="SocailClimb Case Study" />
-            <span class="card-title">Social Climb</span>
+            <span class="card-title">SocialClimb</span>
           </a>
         </div>
         <div class="scene span-2x1">

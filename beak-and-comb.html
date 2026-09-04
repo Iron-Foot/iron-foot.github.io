@@ -12,13 +12,15 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riley Sligting - Beak and Comb Project</title>
+    <title>Riley Sligting - Beak and Comb</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-case.css">
+    <link rel="stylesheet" href="project-case.css">
     <link rel="stylesheet" href="https://use.typekit.net/gct4yig.css">
     <link rel="icon" href="img/Favicon.ico" sizes="any">
     <link rel="icon" href="img/Favicon.svg" type="image/svg+xml"> 
 </head>
-<body class="project-page">
+<body class="project-page case-page" data-accent="beak">
     <header>
     <a href="index.html" class="logo" aria-label="Site Logo" style="text-decoration: none; color: inherit;">
       <img id="siteLogo" src="img/Red-Logo-Header.svg" alt="Riley Sligting Logo" />
@@ -49,49 +51,110 @@
             <button class="mode-toggle" id="modeToggle" aria-pressed="false" aria-label="Toggle light/dark mode">🌙</button>
         </div>
     </header>
-    
     <main class="project-main">
-        <section class="project-hero">
-            <h1>Beak and Comb</h1>
-            <p>For my BFA capstone I produced “Beak & Comb,” a production‑ready playing‑card deck that elevates chickens to regal Kings, Queens, and Jacks. Illustrated in a restrained red, gold, and black palette with folk‑inspired motifs, the 54 cards are supported by coordinated packaging, branding, and a gallery installation of large‑scale prints and interactive displays—demonstrating my ability to carry a concept from illustration through production and exhibition.</p>
-        </section>
-        
-        <section class="project-gallery">
-            <div class="project-grid">
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/ChickenCards.webp" loading="lazy" alt="Beak and Comb Packaging 2">
-                    </a>
+        <!-- ============ HERO ============ -->
+        <section class="case-hero">
+            <div class="shell case-hero__grid">
+                <div>
+                    <p class="eyebrow eyebrow--accent">Playing cards &nbsp;/&nbsp; Illustration, packaging, exhibition</p>
+                    <h1>Beak and Comb</h1>
+                    <p class="case-hero__lede">A production-ready 54-card deck that crowns chickens as Kings, Queens and Jacks, drawn in red, gold and black with folk-inspired motifs, and carried through the tuck box and a gallery installation.</p>
                 </div>
-                <div class="scene">
-                    <a class="card photo-item" href="#">
-                        <img src="img/Chicken-Cards-Spread.webp" loading="lazy" alt="Beak and Comb Logo 3">
-                    </a>
+                <ul class="meta-list">
+                    <li><span class="meta-key">Type</span><span class="meta-val">Playing card deck</span></li>
+                    <li><span class="meta-key">Deliverables</span><span class="meta-val">54 illustrated cards, tuck box, brand marks, gallery installation</span></li>
+                    <li><span class="meta-key">Palette</span><span class="meta-val">Red, gold and black</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ FULL-BLEED OPENER ============ -->
+        <section class="study-opener" aria-label="Gallery installation" style="--focus: 50% 45%">
+            <img src="img/Chicken Cards copy.webp" alt="Gallery wall with the full Beak and Comb deck hung in a grid beside two framed prints and a white display table holding the boxed cards">
+            <div class="case-film__rail">
+                <div>
+                    <p class="eyebrow">Gallery installation</p>
+                    <strong>The full deck on the wall, the box on the table</strong>
+                </div>
+                <p class="spec">Wall grid of all 54 cards &middot; framed key art &middot; hands-on display</p>
+            </div>
+        </section>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="case-overview">
+            <div class="shell">
+                <div class="split">
+                    <aside class="split__aside reveal">
+                        <p class="eyebrow">01 &mdash; Overview</p>
+                        <h2>Fifty-four chances to make a chicken look like royalty.</h2>
+                    </aside>
+                    <div class="split__body reveal">
+                        <p>Beak and Comb takes the most ordinary bird on the farm and gives it the court treatment. Every King, Queen and Jack is a chicken in full regalia, drawn with the same weight and symmetry as a traditional French-suited deck, so the cards feel familiar in the hand even when the faces are absurd.</p>
+                        <p>The palette is deliberately narrow: one red, one gold, one black. That restraint keeps fifty-four cards reading as a single object, and it let the folk-inspired borders and pips carry across the tuck box and the brand marks without redrawing anything.</p>
+                        <p>The deck was taken all the way to print and then into a gallery, where the full set hung as a grid beside the framed key art and a display table where visitors could handle the cards.</p>
+                        <ol class="rundown">
+                            <li><span class="num">01</span><div><h3>Illustration</h3><p>52 court and pip cards plus two jokers, drawn as one system.</p></div></li>
+                            <li><span class="num">02</span><div><h3>Packaging</h3><p>Tuck box carrying the folk border, seal and back pattern.</p></div></li>
+                            <li><span class="num">03</span><div><h3>Exhibition</h3><p>Framed prints, a wall grid of the full deck and a hands-on display.</p></div></li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </section>
-        
-        <section class="project-featured">
-            <div class="featured-item">
-                <img src="img/Chicken Cards copy.webp" loading="lazy" alt="Beak and Comb Complete Brand Identity">
+
+        <!-- ============ GALLERY ============ -->
+        <section class="study-gallery project-gallery" aria-label="Deck and packaging">
+            <div class="shell">
+                <div class="study-grid">
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/ChickenCards.webp" aria-label="View larger: Red Beak and Comb tuck box beside a fanned King of Hearts and card back">
+                            <img src="img/ChickenCards.webp" loading="lazy" alt="Red Beak and Comb tuck box beside a fanned King of Hearts and card back">
+                        </a>
+                        <figcaption><span>Tuck box and card back</span><span class="n">01</span></figcaption>
+                    </figure>
+                    <figure class="study-fig reveal" style="--ar: 4 / 3">
+                        <a class="card photo-item" href="img/Chicken-Cards-Spread.webp" aria-label="View larger: Three Beak and Comb cards fanned on a white surface showing a court card and two backs">
+                            <img src="img/Chicken-Cards-Spread.webp" loading="lazy" alt="Three Beak and Comb cards fanned on a white surface showing a court card and two backs">
+                        </a>
+                        <figcaption><span>Court card and backs, fanned</span><span class="n">02</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ NEXT ============ -->
+        <section class="case-next">
+            <div class="shell">
+                <p class="eyebrow">Next project</p>
+                <a class="next-link" href="hollis-brewery.html">
+                    <span class="title">Hollis Brewery</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="project-footer">
-            <ul>
-                <li><a href="book-cover.html">Book Cover</a></li>
-                <li><a href="cards.html">Cards</a></li>
-                <li><a href="posters.html">Posters</a></li>
-                <li><a href="magazine-spreads.html">Magazine Spreads</a></li>
-                <li><a href="hollis-brewery.html">Hollis Brewery</a></li>
-                <li><a href="social-climb.html">SocialClimb</a></li>
-                <li><a href="action-target.html">Action Target</a></li>
-                <li><a href="ruds-dirt.html">Rud's Dirt</a></li>
-                <li><a href="pupford.html">Pupford</a></li>
-            </ul>
-    </footer>
-    
+    <script>
+      // Reveal-on-scroll for this page's modules. Opt-in via a root class so the
+      // page still renders fully when JS is unavailable.
+      (function () {
+        var root = document.documentElement;
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        root.classList.add('js-reveal');
+        window.addEventListener('DOMContentLoaded', function () {
+          var io = new IntersectionObserver(function (entries) {
+            var batch = entries.filter(function (e) { return e.isIntersecting; });
+            batch.forEach(function (entry, i) {
+              setTimeout(function () { entry.target.classList.add('in'); }, i * 80);
+              io.unobserve(entry.target);
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
